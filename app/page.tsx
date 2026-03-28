@@ -13,8 +13,6 @@ import {
   Mail,
   Microscope,
   AudioLines,
-  Github,
-  Instagram,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -95,12 +93,12 @@ const links = [
   {
     label: "GitHub",
     href: "https://github.com/algo0419",
-    icon: Github,
+    icon: ArrowUpRight,
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/whwns_gud/",
-    icon: Instagram,
+    icon: ArrowUpRight,
   },
   {
     label: "Email",
