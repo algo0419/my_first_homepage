@@ -2,6 +2,10 @@
 
 :root {
   color-scheme: dark;
+  --bg: #090a0d;
+  --text: #f5f1ea;
+  --muted: rgba(245, 241, 234, 0.68);
+  --accent: #daff4e;
 }
 
 * {
@@ -15,9 +19,10 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: #0a0a0a;
-  color: #fafafa;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -27,4 +32,12 @@ a {
 
 button {
   font: inherit;
+}
+
+.grain {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at center, black, transparent 88%);
 }
