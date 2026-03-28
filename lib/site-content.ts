@@ -1,4 +1,5 @@
 export type DisciplineKey = "music" | "writing" | "research";
+export type LinkIconKey = "arrow-up-right" | "mail";
 
 export type DisciplinePageData = {
   key: DisciplineKey;
@@ -23,7 +24,14 @@ export type DisciplinePageData = {
   }>;
 };
 
-export const links = [
+export type SiteLink = {
+  href: string;
+  label: string;
+  meta: string;
+  icon: LinkIconKey;
+};
+
+export const links: SiteLink[] = [
   {
     href: "https://github.com/algo0419",
     label: "GitHub",
