@@ -2,10 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { AudioLines, Sparkles } from "lucide-react";
+import { AudioLines, ArrowUpRight, Mail, Mic, Orbit, PenSquare, Sparkles } from "lucide-react";
 import { currentSignals, disciplines, links } from "@/lib/site-content";
 
 export default function HomePage() {
+  const iconMap = {
+    music: Mic,
+    writing: PenSquare,
+    research: Orbit,
+  } as const;
+  const linkIconMap = {
+    "arrow-up-right": ArrowUpRight,
+    mail: Mail,
+  } as const;
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--accent)] selection:text-black">
       <div className="pointer-events-none absolute inset-0">
@@ -153,7 +163,7 @@ export default function HomePage() {
 
         <section className="grid gap-5 py-4 lg:grid-cols-3">
           {disciplines.map((item, index) => {
-            const Icon = item.icon;
+            const Icon = iconMap[item.icon];
 
             return (
               <motion.div
@@ -206,35 +216,39 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-4">
-            {disciplines.map((item, index) => (
-              <motion.div
-                key={item.key}
-                initial={{ opacity: 0, x: 18 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.08 * index, duration: 0.65 }}
-                className="grid gap-5 border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:p-6"
-              >
-                <div className="text-[10px] uppercase tracking-[0.38em] text-[var(--accent)]">
-                  Section
-                </div>
-                <div>
-                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
-                    {item.note}
-                  </p>
-                </div>
-                <div className="flex items-start justify-end">
-                  <Link
-                    href={item.path}
-                    className="inline-flex h-11 w-11 items-center justify-center border border-white/15 text-white/75 transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                  >
-                    <item.icon className="h-4 w-4" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+            {disciplines.map((item, index) => {
+              const ItemIcon = iconMap[item.icon];
+
+              return (
+                <motion.div
+                  key={item.key}
+                  initial={{ opacity: 0, x: 18 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.08 * index, duration: 0.65 }}
+                  className="grid gap-5 border border-white/10 bg-white/[0.04] p-5 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:p-6"
+                >
+                  <div className="text-[10px] uppercase tracking-[0.38em] text-[var(--accent)]">
+                    Section
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-white/68">
+                      {item.note}
+                    </p>
+                  </div>
+                  <div className="flex items-start justify-end">
+                    <Link
+                      href={item.path}
+                      className="inline-flex h-11 w-11 items-center justify-center border border-white/15 text-white/75 transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                    >
+                      <ItemIcon className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
@@ -254,7 +268,7 @@ export default function HomePage() {
 
           <div className="grid gap-3 sm:min-w-80">
             {links.map((link) => {
-              const Icon = link.icon;
+              const Icon = linkIconMap[link.icon];
 
               return (
                 <a

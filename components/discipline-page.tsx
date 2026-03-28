@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Mail,
+  Mic,
+  Orbit,
+  PenSquare,
+} from "lucide-react";
 import { disciplines, links, type DisciplinePageData } from "@/lib/site-content";
 
 type DisciplinePageProps = {
@@ -11,7 +18,16 @@ type DisciplinePageProps = {
 
 export function DisciplinePage({ page }: DisciplinePageProps) {
   const siblings = disciplines.filter((item) => item.key !== page.key);
-  const Icon = page.icon;
+  const iconMap = {
+    music: Mic,
+    writing: PenSquare,
+    research: Orbit,
+  } as const;
+  const linkIconMap = {
+    "arrow-up-right": ArrowUpRight,
+    mail: Mail,
+  } as const;
+  const Icon = iconMap[page.icon];
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--accent)] selection:text-black">
@@ -205,7 +221,7 @@ export function DisciplinePage({ page }: DisciplinePageProps) {
 
           <div className="grid gap-3 sm:min-w-80">
             {links.map((link) => {
-              const IconLink = link.icon;
+              const IconLink = linkIconMap[link.icon];
 
               return (
                 <a

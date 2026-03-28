@@ -1,13 +1,3 @@
-import {
-  ArrowUpRight,
-  AudioLines,
-  Mail,
-  Mic,
-  Orbit,
-  PenSquare,
-  type LucideIcon,
-} from "lucide-react";
-
 export type DisciplineKey = "music" | "writing" | "research";
 
 export type DisciplinePageData = {
@@ -16,7 +6,7 @@ export type DisciplinePageData = {
   strap: string;
   description: string;
   path: string;
-  icon: LucideIcon;
+  icon: DisciplineKey;
   accents: string[];
   note: string;
   intro: string;
@@ -38,19 +28,19 @@ export const links = [
     href: "https://github.com/algo0419",
     label: "GitHub",
     meta: "code, notes, experiments",
-    icon: ArrowUpRight,
+    icon: "arrow-up-right",
   },
   {
     href: "https://www.instagram.com/whwns_gud/",
     label: "Instagram",
     meta: "images, mood, fragments",
-    icon: ArrowUpRight,
+    icon: "arrow-up-right",
   },
   {
     href: "mailto:junhyungcho@kaist.ac.kr",
     label: "Email",
     meta: "collaboration and conversation",
-    icon: Mail,
+    icon: "mail",
   },
 ];
 
@@ -62,7 +52,7 @@ export const disciplines: DisciplinePageData[] = [
     description:
       "Band practice, performance, and listening as a serious craft rather than a side note.",
     path: "/music",
-    icon: Mic,
+    icon: "music",
     accents: ["Band practice", "Live clips", "Listening notes"],
     note: "The music page holds rehearsal culture, setlists, and sonic identity in one place.",
     intro:
@@ -111,7 +101,7 @@ export const disciplines: DisciplinePageData[] = [
     description:
       "A place for essay drafts, short prose, observations, and unfinished but alive ideas.",
     path: "/writing",
-    icon: PenSquare,
+    icon: "writing",
     accents: ["Essay drafts", "Short prose", "Notebook pages"],
     note: "The writing page is for prose that starts from a strong mood and then finds its argument.",
     intro:
@@ -160,7 +150,7 @@ export const disciplines: DisciplinePageData[] = [
     description:
       "Technical interests, lab-facing notes, and questions about device platforms that actually hold up.",
     path: "/research",
-    icon: Orbit,
+    icon: "research",
     accents: ["Photonics", "Quantum devices", "Lab notes"],
     note: "The research page is for technical thinking that still benefits from clear visual framing.",
     intro:
