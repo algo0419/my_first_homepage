@@ -125,13 +125,13 @@ export default function MusicPage() {
         <div className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
           <p className="text-sm text-[var(--muted)]">
             {locale === "ko"
-              ? "밴드 활동만 따로 떼어 두기보다, 평소 듣는 음반과 라이브 기록을 함께 두는 쪽에 가깝습니다."
-              : "This page reads more like a listening archive than a band-only profile."}
+              ? "\uB77C\uC774\uBE0C \uAE30\uB85D\uACFC \uD3C9\uC18C \uB4E3\uB294 \uC74C\uBC18."
+              : "Live documents and favorite records."}
           </p>
           <h1 className="mt-4 whitespace-pre-line text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-black sm:text-6xl">
             {locale === "ko"
-              ? "듣는 음악과\n남겨 둔 라이브를\n같은 보드에 놓기."
-              : "Keep favorite records\nand live documents\non the same board."}
+              ? "\uC74C\uC545 \uC544\uCE74\uC774\uBE0C"
+              : "Music\narchive"}
           </h1>
         </div>
 
@@ -159,8 +159,8 @@ export default function MusicPage() {
             </h2>
             <p className="mt-2 text-sm text-[var(--muted)]">
               {locale === "ko"
-                ? "개인 RYM export에서 별점을 높게 준 음반 일부를 골라 Spotify로 연결했습니다."
-                : "A small board of high-rated records selected from the personal RYM export, linked out to Spotify."}
+                ? "RYM export\uC640 Spotify \uB9C1\uD06C."
+                : "RYM export and Spotify links."}
             </p>
           </div>
           <a
@@ -217,16 +217,16 @@ export default function MusicPage() {
         <div className="border border-[var(--line)] bg-white p-6 sm:p-8">
           <p className="text-sm leading-7 text-[var(--muted)]">
             {locale === "ko"
-              ? "음악 페이지는 장르별 설명을 길게 적기보다, 커버 이미지와 링크만으로 취향의 결이 먼저 보이도록 두었습니다."
-              : "The page stays mostly visual, so the listening map appears through covers and links before long explanations do."}
+              ? "\uCEE4\uBC84, \uBCC4\uC810, \uB9C1\uD06C."
+              : "Covers, ratings, and links."}
           </p>
         </div>
 
         <div className="grid gap-4">
           <div className="border border-[var(--line)] bg-[var(--surface)] p-6 text-sm leading-7 text-[var(--muted)]">
             {locale === "ko"
-              ? "현재 카드들은 export에서 추린 일부이고, 나중에 더 긴 별점 리스트나 디스크립션을 반영해 확장할 수 있습니다."
-              : "The current board is a compact selection from the export and can later expand into a longer rating list if needed."}
+              ? "Rate Your Music / Spotify"
+              : "Rate Your Music / Spotify"}
           </div>
           <a
             href="https://open.spotify.com/"
@@ -245,7 +245,7 @@ export default function MusicPage() {
       <section className="mt-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-medium tracking-[-0.03em] text-black">
-            {locale === "ko" ? "Live room" : "Live room"}
+            {locale === "ko" ? "Live" : "Live"}
           </h2>
         </div>
 

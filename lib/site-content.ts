@@ -32,7 +32,7 @@ export const links: SiteLink[] = [
     href: "https://github.com/algo0419",
     label: "GitHub",
     meta: {
-      ko: "코드, 실험, 작업 기록",
+      ko: "\uCF54\uB4DC, \uC2E4\uD5D8, \uC791\uC5C5 \uAE30\uB85D",
       en: "code, experiments, working notes",
     },
     icon: "arrow-up-right",
@@ -41,8 +41,8 @@ export const links: SiteLink[] = [
     href: "https://rateyourmusic.com/~jHyung",
     label: "Rate Your Music",
     meta: {
-      ko: "개인 별점 아카이브",
-      en: "personal ratings archive",
+      ko: "\uBCC4\uC810 \uC544\uCE74\uC774\uBE0C",
+      en: "ratings archive",
     },
     icon: "arrow-up-right",
   },
@@ -50,7 +50,7 @@ export const links: SiteLink[] = [
     href: "https://blog.naver.com/algo7112",
     label: "Naver Blog",
     meta: {
-      ko: "독서와 글쓰기 노트",
+      ko: "\uB3C5\uC11C\uC640 \uAE00\uC4F0\uAE30 \uB178\uD2B8",
       en: "reading and writing notes",
     },
     icon: "arrow-up-right",
@@ -59,7 +59,7 @@ export const links: SiteLink[] = [
     href: "mailto:junhyungcho@kaist.ac.kr",
     label: "Email",
     meta: {
-      ko: "연락 및 협업",
+      ko: "\uC5F0\uB77D \uBC0F \uD611\uC5C5",
       en: "contact and collaboration",
     },
     icon: "mail",
@@ -72,16 +72,16 @@ export const disciplines: DisciplineSummary[] = [
     path: "/music",
     icon: "music",
     title: {
-      ko: "음악",
+      ko: "\uC74C\uC545",
       en: "Music",
     },
     strap: {
-      ko: "공연 기록과 평소 듣는 음반을 함께 두는 청취 아카이브.",
-      en: "A listening archive that keeps live documents and favorite records in the same frame.",
+      ko: "\uACF5\uC5F0 \uAE30\uB85D\uACFC \uD3C9\uC18C \uB4E3\uB294 \uC74C\uBC18.",
+      en: "Live documents and favorite records.",
     },
     note: {
-      ko: "라이브와 리스닝",
-      en: "live work and listening",
+      ko: "\uB77C\uC774\uBE0C\uC640 \uB9AC\uC2A4\uB2DD",
+      en: "live and listening",
     },
   },
   {
@@ -89,15 +89,15 @@ export const disciplines: DisciplineSummary[] = [
     path: "/writing",
     icon: "writing",
     title: {
-      ko: "독서 / 글",
+      ko: "\uB3C5\uC11C / \uAE00",
       en: "Reading / Writing",
     },
     strap: {
-      ko: "블로그 글과 메모를 한글과 영어로 묶어 놓은 페이지.",
-      en: "A page that gathers blog posts and notes in Korean and English.",
+      ko: "\uBE14\uB85C\uADF8 \uAE00\uACFC \uBA54\uBAA8.",
+      en: "Blog posts and notes.",
     },
     note: {
-      ko: "블로그와 글 목록",
+      ko: "\uBE14\uB85C\uADF8\uC640 \uAE00 \uBAA9\uB85D",
       en: "blog and selected posts",
     },
   },
@@ -106,15 +106,15 @@ export const disciplines: DisciplineSummary[] = [
     path: "/research",
     icon: "research",
     title: {
-      ko: "연구",
+      ko: "\uC5F0\uAD6C",
       en: "Research",
     },
     strap: {
-      ko: "diamond photonic crystal과 BTO hybrid modulation 주변의 시각적 레퍼런스.",
-      en: "A visual board around diamond photonic crystals and BTO hybrid modulation.",
+      ko: "diamond photonic crystal / BTO hybrid modulation",
+      en: "diamond photonic crystal / BTO hybrid modulation",
     },
     note: {
-      ko: "figure와 참고 논문",
+      ko: "figure / papers",
       en: "figures and papers",
     },
   },
@@ -122,93 +122,93 @@ export const disciplines: DisciplineSummary[] = [
 
 export const homeContent = {
   badge: {
-    ko: "개인 아카이브",
-    en: "Personal archive",
+    ko: "\uC900\uD615 \uC870",
+    en: "Junhyung Cho",
   },
   location: "KAIST / Daejeon",
   introLabel: {
-    ko: "세 개의 축으로 정리한 개인 웹사이트",
-    en: "A personal website split into three active tracks",
+    ko: "music / writing / research",
+    en: "music / writing / research",
   },
   title: {
-    ko: "음악, 글, 연구를\n한 화면에서 시작하고\n각 페이지로 깊게 들어가기.",
-    en: "Start with music,\nwriting, and research,\nthen go deeper by page.",
+    ko: "\uC74C\uC545, \uAE00, \uC5F0\uAD6C.",
+    en: "Music, writing,\nand research.",
   },
   description: {
-    ko: "홈은 전체 결을 보여주고, 실제 내용은 각 서브 페이지에서 보다 차분하게 펼쳐집니다. 듣는 음악, 읽고 쓰는 글, 그리고 연구 중인 주제를 분리해서 정리했습니다.",
-    en: "The homepage sets the overall tone, while the actual material unfolds more quietly inside each section. Music, writing, and research are separated so each can keep its own pace.",
+    ko: "\uACF5\uC5F0 \uAE30\uB85D, \uC77D\uACE0 \uC4F4 \uAE00, \uADF8\uB9AC\uACE0 \uC5F0\uAD6C \uC7A5\uBA74\uB4E4.",
+    en: "Live records, texts, and research references.",
   },
   principles: [
     {
-      ko: "미니멀한 구조",
-      en: "Minimal structure",
+      ko: "\uBBF8\uB2C8\uBA40",
+      en: "Minimal",
     },
     {
-      ko: "한 / 영 전환",
+      ko: "\uD55C / \uC601",
       en: "Korean / English",
     },
     {
-      ko: "섹션 중심 탐색",
-      en: "Section-first navigation",
+      ko: "\uC138 \uAC1C\uC758 \uD750\uB984",
+      en: "Three sections",
     },
   ],
   profileLabel: {
-    ko: "프로필",
-    en: "Profile",
+    ko: "\uC18C\uAC1C",
+    en: "About",
   },
   profileTitle: {
-    ko: "공학, 연주, 글쓰기를 서로 다른 리듬으로 이어 가고 있습니다.",
-    en: "Engineering, performance, and writing are moving in parallel at different speeds.",
+    ko: "\uC804\uAE30\uC804\uC790\uACF5\uD559, photonics, quantum optics.",
+    en: "Electrical engineering, photonics, and quantum optics.",
   },
   profileBody: {
-    ko: "전기전자공학을 공부하며 photonics와 quantum optics를 중심으로 연구하고 있습니다. 동시에 밴드와 리스닝 아카이브를 이어 가고, 블로그에 읽고 생각한 것들을 기록합니다.",
-    en: "I study electrical engineering with a focus on photonics and quantum optics, while keeping a parallel practice in music and an ongoing notebook of reading and writing.",
+    ko: "\uC74C\uC545, \uB3C5\uC11C, \uAE00\uC4F0\uAE30\uB97C \uBCD1\uD589\uD558\uBA70 \uAC01 \uC601\uC5ED\uC758 \uAE30\uB85D\uC744 \uC774 \uC0AC\uC774\uD2B8\uC5D0 \uB2F4\uACE0 \uC788\uC2B5\uB2C8\uB2E4.",
+    en: "Music, reading, and writing run alongside the research work collected here.",
   },
 };
 
 export const writingPage = {
   header: {
-    ko: "독서 / 글",
+    ko: "\uB3C5\uC11C / \uAE00",
     en: "Reading / Writing",
   },
   description: {
-    ko: "네이버 블로그를 중심으로 읽기와 쓰기의 흔적을 정리한 페이지.",
-    en: "A page that organizes reading and writing traces around the Naver blog.",
+    ko: "\uBE14\uB85C\uADF8 \uAE00\uACFC \uB3C5\uC11C \uBA54\uBAA8.",
+    en: "Blog posts and reading notes.",
   },
   title: {
-    ko: "블로그와 글 목록을\n한글과 영어로\n함께 보기.",
-    en: "Read the blog\nand selected pieces\nin two languages.",
+    ko: "\uB3C5\uC11C / \uAE00",
+    en: "Reading /\nWriting",
   },
   intro: {
-    ko: "블로그에 쌓인 글 중 몇 편을 골라 영어 설명과 함께 묶었습니다. 문학, 언어, 에세이, 짧은 리뷰를 중심으로 천천히 늘려 갈 생각입니다.",
-    en: "A small set of blog posts is gathered here with English context. The page leans toward literature, language, essays, and short reviews, and can expand over time.",
+    ko: "\uBB38\uD559, \uC5B8\uC5B4, \uC5D0\uC138\uC774, \uC9E7\uC740 \uB9AC\uBDF0.",
+    en: "Literature, language, essays, and short reviews.",
   },
   blogUrl: "https://blog.naver.com/algo7112",
   blogLabel: {
-    ko: "블로그 링크",
-    en: "Blog link",
+    ko: "\uBE14\uB85C\uADF8",
+    en: "Blog",
   },
   blogPlaceholder: {
-    ko: "블로그 링크가 아직 연결되지 않았습니다.",
-    en: "The blog link is not connected yet.",
+    ko: "\uBE14\uB85C\uADF8 \uB9C1\uD06C \uC5C6\uC74C",
+    en: "No blog link",
   },
   entriesLabel: {
-    ko: "골라 둔 글",
+    ko: "\uAE00 \uBAA9\uB85D",
     en: "Selected posts",
   },
   entries: [
     {
       year: "2026",
       category: {
-        ko: "에세이",
+        ko: "\uC5D0\uC138\uC774",
         en: "Essay",
       },
       title: {
-        ko: "모르는 만큼 보인다",
+        ko: "\uBAA8\uB974\uB294 \uB9CC\uD07C \uBCF4\uC778\uB2E4",
         en: "You See More by Knowing Less",
       },
       summary: {
-        ko: "전문성이 시야를 넓히는 동시에 무엇을 놓치게 만드는지에 대해 생각한 짧은 에세이.",
+        ko: "\uC804\uBB38\uC131\uACFC \uC2DC\uC57C\uC758 \uAD00\uACC4\uB97C \uB2E4\uB8EC \uC5D0\uC138\uC774.",
         en: "A short essay on how expertise deepens understanding while also narrowing what remains visible.",
       },
       href: "https://blog.naver.com/algo7112/224232537490",
@@ -216,15 +216,15 @@ export const writingPage = {
     {
       year: "2026",
       category: {
-        ko: "리뷰",
+        ko: "\uB9AC\uBDF0",
         en: "Review",
       },
       title: {
-        ko: "'픽션들'은 포스트모더니즘 시대의 성경이다",
+        ko: "'\uD53D\uC158\uB4E4'\uC740 \uD3EC\uC2A4\uD2B8\uBAA8\uB354\uB2C8\uC998 \uC2DC\uB300\uC758 \uC131\uACBD\uC774\uB2E4",
         en: "'Ficciones' Is the Bible of the Postmodern Age",
       },
       summary: {
-        ko: "보르헤스의 문장과 포스트모던 감각을 함께 읽어 내려가는 독서 기록.",
+        ko: "\uBCF4\uB974\uD5E4\uC2A4\uC640 \uD3EC\uC2A4\uD2B8\uBAA8\uB354\uB2C8\uC998\uC744 \uC5F0\uACB0\uD558\uB294 \uB3C5\uC11C \uAE30\uB85D.",
         en: "A reading note that ties Borges to a postmodern way of thinking and writing.",
       },
       href: "https://blog.naver.com/algo7112/224151247766",
@@ -232,15 +232,15 @@ export const writingPage = {
     {
       year: "2025",
       category: {
-        ko: "에세이",
+        ko: "\uC5D0\uC138\uC774",
         en: "Essay",
       },
       title: {
-        ko: "오직 하나의 좋은 농담을 생각해내기 위해 아주 긴 시간과 노력을 바치고 싶다",
+        ko: "\uC624\uC9C1 \uD558\uB098\uC758 \uC88B\uC740 \uB18D\uB2F4\uC744 \uC0DD\uAC01\uD574\uB0B4\uAE30 \uC704\uD574 \uC544\uC8FC \uAE34 \uC2DC\uAC04\uACFC \uB178\uB825\uC744 \uBC14\uCE58\uACE0 \uC2F6\uB2E4",
         en: "I Want to Spend a Very Long Time Arriving at One Good Joke",
       },
       summary: {
-        ko: "글쓰기와 직관, 그리고 문학의 태도를 농담이라는 형식을 통해 돌아보는 글.",
+        ko: "\uAE00\uC4F0\uAE30\uC640 \uC9C1\uAD00, \uBB38\uD559\uC758 \uD0DC\uB3C4\uB97C \uB2E4\uB8EC \uAE00.",
         en: "A reflective piece on writing, intuition, and literary attitude through the frame of a single joke.",
       },
       href: "https://blog.naver.com/algo7112/224070120051",
@@ -248,15 +248,15 @@ export const writingPage = {
     {
       year: "2025",
       category: {
-        ko: "언어",
+        ko: "\uC5B8\uC5B4",
         en: "Language",
       },
       title: {
-        ko: "왜 일부 언어에서는 '내일'이 곧 '아침'일까?",
+        ko: "\uC65C \uC77C\uBD80 \uC5B8\uC5B4\uC5D0\uC11C\uB294 '\uB0B4\uC77C'\uC774 \uACE7 '\uC544\uCE68'\uC77C\uAE4C?",
         en: "Why Do Some Languages Use the Same Word for 'Morning' and 'Tomorrow'?",
       },
       summary: {
-        ko: "스페인어와 이탈리아어의 어원을 따라가며 시간 감각과 언어의 관계를 살피는 노트.",
+        ko: "\uC2DC\uAC04 \uAC10\uAC01\uACFC \uC5B4\uC6D0\uC758 \uAD00\uACC4\uB97C \uC0B4\uD53C\uB294 \uB178\uD2B8.",
         en: "A short linguistic note following how etymology ties morning and tomorrow together in some languages.",
       },
       href: "https://blog.naver.com/algo7112/223786938523",
@@ -264,15 +264,15 @@ export const writingPage = {
     {
       year: "2025",
       category: {
-        ko: "픽션",
+        ko: "\uD53D\uC158",
         en: "Fiction",
       },
       title: {
-        ko: "예술과 외설의 경계에 관한 스케치",
+        ko: "\uC608\uC220\uACFC \uC678\uC124\uC758 \uACBD\uACC4\uC5D0 \uAD00\uD55C \uC2A4\uCF00\uCE58",
         en: "A Sketch on the Boundary Between Art and Obscenity",
       },
       summary: {
-        ko: "미술관 카페를 배경으로 해석과 감상의 경계를 밀어 보는 짧은 글.",
+        ko: "\uD574\uC11D\uACFC \uAC10\uC0C1\uC758 \uACBD\uACC4\uB97C \uBC00\uC5B4 \uBCF4\uB294 \uC9E7\uC740 \uAE00.",
         en: "A short piece set in a museum cafe, pressing on the boundary between art, obscenity, and interpretation.",
       },
       href: "https://blog.naver.com/algo7112/223722566599",
@@ -282,19 +282,19 @@ export const writingPage = {
 
 export const researchPage = {
   header: {
-    ko: "연구",
+    ko: "\uC5F0\uAD6C",
     en: "Research",
   },
   description: {
-    ko: "현재 관심사를 둘러싼 논문 figure와 키워드를 시각적으로 모아 둔 보드.",
-    en: "A visual board of figures and keywords around the research topics I am working through now.",
+    ko: "\uB17C\uBB38 figure\uC640 \uD0A4\uC6CC\uB4DC.",
+    en: "Figures and keywords.",
   },
   title: {
-    ko: "Diamond photonic crystal과\nBTO hybrid modulation을\n시각적으로 훑기.",
-    en: "A visual pass through\ndiamond photonic crystals\nand BTO hybrid modulation.",
+    ko: "Diamond photonic crystal\nand BTO hybrid modulation",
+    en: "Diamond photonic crystal\nand BTO hybrid modulation",
   },
   intro: {
-    ko: "아직 개인 시뮬레이션 결과물을 올리기 전이라, 현재는 관련 리뷰 논문에서 중요한 figure를 먼저 모아 두었습니다. 나중에는 이 자리에 직접 만든 simulation image가 들어갈 예정입니다.",
-    en: "My own simulation figures are not on the page yet, so the current board starts with a few useful review-paper images. This will later give way to original simulation outputs.",
+    ko: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uB098\uB178\uD3EC\uD1A0\uB2C9\uC2A4\uC640 hybrid modulator \uAD6C\uC870\uB97C \uC911\uC2EC\uC73C\uB85C \uBAA8\uC544 \uB46C \uCC38\uACE0 \uBCF4\uB4DC.",
+    en: "A reference board centered on diamond nanophotonics and hybrid modulator structures.",
   },
 };

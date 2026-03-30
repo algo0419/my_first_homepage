@@ -115,12 +115,12 @@ export default function ResearchPage() {
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-xl font-medium tracking-[-0.03em] text-black">
-              {locale === "ko" ? "Reference figures" : "Reference figures"}
+              {locale === "ko" ? "Figures" : "Figures"}
             </h2>
             <p className="mt-2 text-sm text-[var(--muted)]">
               {locale === "ko"
-                ? "현재는 리뷰 논문 이미지로 페이지를 채워 두었고, 이후에는 직접 만든 시뮬레이션 결과로 교체할 수 있습니다."
-                : "The current board is filled with review-paper figures and can later be replaced with original simulation outputs."}
+                ? "\uB2E4\uC774\uC544\uBAAC\uB4DC \uB098\uB178\uD3EC\uD1A0\uB2C9\uC2A4 / BTO hybrid modulation."
+                : "Diamond nanophotonics / BTO hybrid modulation."}
             </p>
           </div>
         </div>
