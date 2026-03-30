@@ -67,7 +67,7 @@ const cards: FloatingCard[] = [
   { href: "/music", src: "/portraits/portrait-archive-8.jpg", alt: "Junhyung portrait archive 8", x: 86, y: 80, w: 11, h: 14, rotate: 8 },
 ];
 
-const SCALE = 1.18;
+const SCALE = 1.3;
 
 export function FloatingCollage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -106,7 +106,7 @@ export function FloatingCollage() {
   return (
     <div
       ref={containerRef}
-      className="relative h-[1860px] overflow-hidden md:h-[1380px]"
+      className="relative h-[2040px] overflow-hidden md:h-[1540px]"
       onPointerMove={handlePointerMove}
       onPointerUp={() => {
         draggingRef.current = null;
