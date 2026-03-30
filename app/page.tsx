@@ -24,16 +24,16 @@ export default function HomePage() {
           <InteractivePanel className="soft-card lift-card md:col-span-7 md:row-span-4 md:rotate-[-1.2deg]">
             <div className="flex h-full flex-col justify-between p-7 sm:p-9">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="rounded-full border border-[var(--line)] bg-white px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
+                <span className="rounded-full border border-[var(--line)] bg-white/6 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
                   {homeContent.badge[locale]}
                 </span>
-                <span className="text-xs uppercase tracking-[0.18em] text-black/35">
+                <span className="text-xs uppercase tracking-[0.18em] text-white/35">
                   {locale === "ko" ? "\uD648" : "Index"}
                 </span>
               </div>
 
               <div>
-                <h1 className="max-w-4xl whitespace-pre-line text-[3.2rem] font-semibold leading-[0.9] tracking-[-0.075em] text-black sm:text-[5.2rem]">
+                <h1 className="max-w-4xl whitespace-pre-line text-[3.2rem] font-semibold leading-[0.9] tracking-[-0.075em] text-[var(--text)] sm:text-[5.2rem]">
                   {homeContent.title[locale]}
                 </h1>
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)]">
@@ -81,10 +81,10 @@ export default function HomePage() {
               <div className="border-t border-[var(--line)] p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-black/35">
+                    <p className="text-xs uppercase tracking-[0.22em] text-white/35">
                       {locale === "ko" ? "\uC74C\uC545" : "Music"}
                     </p>
-                    <h2 className="mt-3 text-3xl font-medium tracking-[-0.05em] text-black">
+                    <h2 className="mt-3 text-3xl font-medium tracking-[-0.05em] text-[var(--text)]">
                       {locale === "ko" ? "\uB4E3\uB294 \uAC83\uB4E4" : "Listening"}
                     </h2>
                     <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
@@ -93,7 +93,7 @@ export default function HomePage() {
                         : "RYM, Spotify, live clips."}
                     </p>
                   </div>
-                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-black/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black" />
+                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-white/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
                 </div>
               </div>
             </Link>
@@ -102,10 +102,10 @@ export default function HomePage() {
           <InteractivePanel asChild className="soft-card lift-card md:col-span-4 md:row-span-3 md:translate-y-5 md:rotate-[1.2deg]">
             <Link href="/writing" className="group flex h-full flex-col justify-between p-7">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-black/35">
+                <p className="text-xs uppercase tracking-[0.22em] text-white/35">
                   {locale === "ko" ? "\uB3C5\uC11C / \uAE00" : "Writing"}
                 </p>
-                <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-black">
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-[var(--text)]">
                   {locale === "ko"
                     ? "\uBB38\uD559, \uC5B8\uC5B4,\n\uC5D0\uC138\uC774"
                     : "Literature,\nlanguage,\nessays"}
@@ -117,7 +117,7 @@ export default function HomePage() {
                     ? "\u2018\uBAA8\uB974\uB294 \uB9CC\uD07C \uBCF4\uC778\uB2E4\u2019,\n\u2018\uD53D\uC158\uB4E4\u2019, \uC9E7\uC740 \uB9AC\uBDF0 \uB4F1."
                     : "'You See More by Knowing Less',\n'Ficciones', short reviews."}
                 </p>
-                <div className="mt-6 flex items-center gap-2 text-sm text-black/70">
+                <div className="mt-6 flex items-center gap-2 text-sm text-white/70">
                   <span>{locale === "ko" ? "\uBCF4\uAE30" : "View"}</span>
                   <ArrowUpRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
@@ -137,10 +137,10 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-black/35">
+                    <p className="text-xs uppercase tracking-[0.22em] text-white/35">
                       {locale === "ko" ? "\uC5F0\uAD6C" : "Research"}
                     </p>
-                    <h2 className="mt-3 text-3xl font-medium tracking-[-0.05em] text-black">
+                    <h2 className="mt-3 text-3xl font-medium tracking-[-0.05em] text-[var(--text)]">
                       Diamond / BTO
                     </h2>
                     <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
@@ -149,7 +149,7 @@ export default function HomePage() {
                         : "photonic crystal,\nhybrid integration,\nreference figures."}
                     </p>
                   </div>
-                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-black/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black" />
+                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-white/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
                 </div>
               </div>
             </Link>
@@ -157,10 +157,10 @@ export default function HomePage() {
 
           <InteractivePanel className="soft-card lift-card md:col-span-4 md:row-span-2 md:translate-y-2 md:rotate-[0.8deg]">
             <div className="flex h-full flex-col justify-between p-6">
-              <p className="text-xs uppercase tracking-[0.22em] text-black/35">
+              <p className="text-xs uppercase tracking-[0.22em] text-white/35">
                 {locale === "ko" ? "\uD750\uB984" : "Flow"}
               </p>
-              <p className="text-2xl font-medium leading-tight tracking-[-0.05em] text-black sm:text-3xl">
+              <p className="text-2xl font-medium leading-tight tracking-[-0.05em] text-[var(--text)] sm:text-3xl">
                 {locale === "ko"
                   ? "\uC74C\uC545, \uAE00, \uC5F0\uAD6C\uAC00 \uC11E\uC778 \uD55C \uD654\uBA74."
                   : "One surface where music, writing, and research overlap."}
@@ -186,9 +186,9 @@ export default function HomePage() {
               >
                 <div>
                   <p className="text-base font-medium">{link.label}</p>
-                  <p className="mt-1 text-sm text-black/55">{link.meta[locale]}</p>
+                <p className="mt-1 text-sm text-white/55">{link.meta[locale]}</p>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-black/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black" />
+                <ArrowUpRight className="h-4 w-4 text-white/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
               </a>
             </InteractivePanel>
           ))}

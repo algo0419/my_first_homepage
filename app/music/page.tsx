@@ -127,7 +127,7 @@ export default function MusicPage() {
           <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
             {locale === "ko" ? "\uB9AC\uC2A4\uB2DD" : "Listening"}
           </p>
-          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-black sm:text-6xl">
+          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-[var(--text)] sm:text-6xl">
             {locale === "ko" ? "\uC74C\uC545 \uC544\uCE74\uC774\uBE0C" : "Music\narchive"}
           </h1>
           <p className="mt-6 max-w-xl text-base leading-8 text-[var(--muted)]">
@@ -161,7 +161,7 @@ export default function MusicPage() {
             href="https://rateyourmusic.com/~jHyung"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-black underline underline-offset-4"
+            className="inline-flex items-center gap-2 text-sm text-[var(--text)] underline underline-offset-4"
           >
             {locale === "ko" ? "Rate Your Music" : "Rate Your Music"}
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -216,7 +216,7 @@ export default function MusicPage() {
               href="https://rateyourmusic.com/~jHyung"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/70 px-5 py-4 transition hover:bg-white"
+              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/5 px-5 py-4 transition hover:bg-white/10"
             >
               <span className="text-sm font-medium">Rate Your Music</span>
               <ArrowUpRight className="h-4 w-4" />
@@ -225,7 +225,7 @@ export default function MusicPage() {
               href="https://open.spotify.com/"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/70 px-5 py-4 transition hover:bg-white"
+              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/5 px-5 py-4 transition hover:bg-white/10"
             >
               <span className="text-sm font-medium">Spotify</span>
               <ArrowUpRight className="h-4 w-4" />
@@ -249,8 +249,8 @@ export default function MusicPage() {
               ) : (
                 <div className="flex aspect-video items-center justify-center rounded-[24px] border border-dashed border-[var(--line)] bg-[var(--surface)]">
                   <div className="text-center">
-                    <Play className="mx-auto h-6 w-6 text-black/35" />
-                    <p className="mt-4 text-base font-medium text-black">{video.title[locale]}</p>
+                    <Play className="mx-auto h-6 w-6 text-white/35" />
+                    <p className="mt-4 text-base font-medium text-[var(--text)]">{video.title[locale]}</p>
                     <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{video.caption[locale]}</p>
                   </div>
                 </div>

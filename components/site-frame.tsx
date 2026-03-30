@@ -34,15 +34,15 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
   const { locale } = useLocale();
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-black selection:text-white">
+    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-white selection:text-black">
       <ScrollProgress />
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-80 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(255,255,255,0))]" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-80 bg-[radial-gradient(circle_at_top,_rgba(120,120,180,0.18),_rgba(0,0,0,0))]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
         <header className="sticky top-4 z-20 mb-10">
           <div className="glass-panel flex flex-col gap-5 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-1">
-              <Link href="/" className="text-sm font-medium tracking-[-0.02em] text-black">
+              <Link href="/" className="text-sm font-medium tracking-[-0.02em] text-[var(--text)]">
                 Junhyung Cho
               </Link>
               <p className="text-sm text-[var(--muted)]">music, writing, research</p>
@@ -56,8 +56,8 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
                     href={key === "home" ? "/" : `/${key}`}
                     className={`rounded-full border px-3.5 py-2 transition duration-300 ${
                       current === key
-                        ? "border-black bg-black text-white shadow-[0_12px_30px_rgba(17,17,17,0.18)]"
-                        : "border-[var(--line)] bg-white/70 text-black/70 hover:-translate-y-0.5 hover:bg-white"
+                        ? "border-white bg-white text-black shadow-[0_12px_30px_rgba(255,255,255,0.08)]"
+                        : "border-[var(--line)] bg-white/5 text-white/70 hover:-translate-y-0.5 hover:bg-white/10"
                     }`}
                   >
                     {labels[key][locale]}

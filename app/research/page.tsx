@@ -85,7 +85,7 @@ export default function ResearchPage() {
           <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
             {researchPage.description[locale]}
           </p>
-          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-black sm:text-6xl">
+          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-[var(--text)] sm:text-6xl">
             {researchPage.title[locale]}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)]">
@@ -121,7 +121,7 @@ export default function ResearchPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h2 className="text-2xl font-medium tracking-[-0.04em] text-black">
+                  <h2 className="text-2xl font-medium tracking-[-0.04em] text-[var(--text)]">
                     {card.title[locale]}
                   </h2>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
@@ -131,7 +131,7 @@ export default function ResearchPage() {
                     href={card.sourceHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 text-sm text-black underline underline-offset-4"
+                    className="mt-5 inline-flex items-center gap-2 text-sm text-[var(--text)] underline underline-offset-4"
                   >
                     {card.sourceLabel}
                     <ArrowUpRight className="h-3.5 w-3.5" />

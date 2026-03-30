@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
-  --bg: #f4f4f1;
-  --surface: rgba(255, 255, 255, 0.72);
-  --line: rgba(17, 17, 17, 0.08);
-  --text: #111111;
-  --muted: rgba(17, 17, 17, 0.56);
-  --accent: #111111;
+  color-scheme: dark;
+  --bg: #09090b;
+  --surface: rgba(19, 19, 24, 0.8);
+  --panel-strong: rgba(24, 24, 31, 0.9);
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #f5f5f7;
+  --muted: rgba(245, 245, 247, 0.62);
+  --accent: #ffffff;
 }
 
 * {
@@ -22,11 +23,12 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 38%),
-    linear-gradient(to right, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(88, 88, 120, 0.22), transparent 34%),
+    radial-gradient(circle at 20% 20%, rgba(120, 120, 180, 0.08), transparent 22%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     var(--bg);
-  background-size: auto, 28px 28px, 28px 28px, auto;
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
   color: var(--text);
   font-family: var(--font-sans), sans-serif;
   text-rendering: optimizeLegibility;
@@ -64,18 +66,18 @@ img {
 .glass-panel {
   border: 1px solid var(--line);
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(18, 18, 24, 0.72);
   box-shadow:
-    0 20px 60px rgba(17, 17, 17, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 24px 70px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
 }
 
 .soft-card {
   border: 1px solid var(--line);
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 22px 60px rgba(17, 17, 17, 0.06);
+  background: rgba(18, 18, 24, 0.78);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
 }
 
 .lift-card {
@@ -88,7 +90,7 @@ img {
 
 .lift-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 26px 70px rgba(17, 17, 17, 0.12);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
 }
 
 .interactive-panel {
@@ -103,8 +105,8 @@ img {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.72), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
   opacity: 0;
   pointer-events: none;
   transition: opacity 240ms ease;
