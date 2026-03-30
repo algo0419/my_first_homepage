@@ -2,30 +2,10 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { InteractivePanel } from "@/components/interactive-panel";
 import { SiteFrame } from "@/components/site-frame";
 import { useLocale } from "@/components/locale-provider";
 import { disciplines, homeContent, links } from "@/lib/site-content";
-
-const heroPhotos = [
-  {
-    src: "/portraits/portrait-night.jpg",
-    alt: "Junhyung Cho portrait at night",
-  },
-  {
-    src: "/portraits/portrait-stage.jpg",
-    alt: "Junhyung Cho performing on stage",
-  },
-  {
-    src: "/portraits/portrait-city.jpg",
-    alt: "Junhyung Cho walking by mural art",
-  },
-] as const;
-
-const sectionImages = {
-  music: "/portraits/portrait-stage.jpg",
-  writing: "/portraits/portrait-city.jpg",
-  research: "/portraits/portrait-night.jpg",
-} as const;
 
 export default function HomePage() {
   const { locale } = useLocale();
@@ -52,22 +32,16 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-4">
-          {heroPhotos.map((photo, index) => (
-            <div
-              key={photo.src}
-              className={`soft-card lift-card overflow-hidden ${
-                index === 0 ? "h-[320px]" : "h-[152px]"
-              }`}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
-              />
-            </div>
-          ))}
-        </div>
+        <InteractivePanel className="soft-card lift-card overflow-hidden">
+          <div className="relative h-[320px] sm:h-[420px]">
+            <img
+              src="/portraits/portrait-night.jpg"
+              alt="Junhyung Cho portrait at night"
+              className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          </div>
+        </InteractivePanel>
       </section>
 
       <section className="mt-10 fade-up">
@@ -79,21 +53,9 @@ export default function HomePage() {
 
         <div className="grid gap-4">
           {disciplines.map((item, index) => (
-            <Link
-              key={item.key}
-              href={item.path}
-              className="soft-card lift-card group overflow-hidden"
-            >
-              <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
-                <div className="min-h-[260px] overflow-hidden border-b border-[var(--line)] lg:border-b-0 lg:border-r">
-                  <img
-                    src={sectionImages[item.key]}
-                    alt={item.title.en}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                  />
-                </div>
-
-                <div className="flex flex-col justify-between p-7 sm:p-9">
+            <InteractivePanel key={item.key} asChild className="soft-card lift-card group overflow-hidden">
+              <Link href={item.path}>
+                <div className="flex min-h-[220px] flex-col justify-between p-7 sm:p-9">
                   <div>
                     <p className="text-xs uppercase tracking-[0.22em] text-black/35">
                       {String(index + 1).padStart(2, "0")} / {item.note[locale]}
@@ -111,8 +73,8 @@ export default function HomePage() {
                     <ArrowUpRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </InteractivePanel>
           ))}
         </div>
       </section>

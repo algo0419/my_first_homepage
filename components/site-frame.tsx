@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLocale } from "@/components/locale-provider";
+import { ScrollProgress } from "@/components/scroll-progress";
 
 type SiteFrameProps = {
   current?: "home" | "music" | "writing" | "research";
@@ -34,6 +35,7 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-black selection:text-white">
+      <ScrollProgress />
       <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-80 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(255,255,255,0))]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">

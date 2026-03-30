@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight, Play } from "lucide-react";
+import { InteractivePanel } from "@/components/interactive-panel";
 import { SiteFrame } from "@/components/site-frame";
 import { useLocale } from "@/components/locale-provider";
 
@@ -14,8 +15,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e022b74bf21c7e4f56758610949",
     note: {
-      ko: "RYM export에서 가장 높은 평점을 준 음반.",
-      en: "The highest-rated record in the exported RYM list.",
+      ko: "\uAC00\uC7A5 \uB192\uAC8C \uD45C\uC2DC\uB41C \uBCC4\uC810.",
+      en: "Highest rating in the export.",
     },
     layout: "lg:col-span-2 lg:row-span-2",
   },
@@ -28,8 +29,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e021dacfbc31cc873d132958af9",
     note: {
-      ko: "거칠고 밀도 높은 사운드 쪽 취향을 보여 주는 한 축.",
-      en: "One axis of the archive that leans into abrasion and density.",
+      ko: "\uC555\uB825\uAC10\uACFC \uC9C8\uAC10.",
+      en: "Pressure and texture.",
     },
     layout: "lg:col-span-1 lg:row-span-1",
   },
@@ -42,8 +43,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0293c10818e418f39e3096b737",
     note: {
-      ko: "샘플링 감각과 질감을 중심으로 남긴 선택.",
-      en: "A pick that foregrounds sampling texture and lightness.",
+      ko: "\uC0D8\uD50C\uB9C1 \uAC10\uAC01.",
+      en: "Sampling and lightness.",
     },
     layout: "lg:col-span-1 lg:row-span-1",
   },
@@ -56,8 +57,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0258ebd661a51fcf2968db3ea1",
     note: {
-      ko: "부드럽고 정교한 쪽으로 기울 때의 청취 결.",
-      en: "The softer, more precise side of the listening map.",
+      ko: "\uBD80\uB4DC\uB7EC\uC6B4 \uBC30\uC5F4.",
+      en: "Soft precision.",
     },
     layout: "lg:col-span-1 lg:row-span-1",
   },
@@ -70,8 +71,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0250eb0c521d2d3b2f599bff04",
     note: {
-      ko: "멜로디와 배열의 정교함을 확인하는 기준점.",
-      en: "A reference point for arrangement and melodic detail.",
+      ko: "\uBA5C\uB85C\uB514\uC640 \uBC30\uC5F4.",
+      en: "Melody and arrangement.",
     },
     layout: "lg:col-span-1 lg:row-span-1",
   },
@@ -84,8 +85,8 @@ const archiveAlbums = [
     image:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024c7dd2b7fc516356e037bf68",
     note: {
-      ko: "서사와 프로덕션의 균형이 선명한 선택.",
-      en: "A record where narrative and production stay in crisp balance.",
+      ko: "\uC11C\uC0AC\uC640 \uD504\uB85C\uB355\uC158.",
+      en: "Narrative and production.",
     },
     layout: "lg:col-span-2 lg:row-span-1",
   },
@@ -94,23 +95,23 @@ const archiveAlbums = [
 const liveVideos = [
   {
     title: {
-      ko: "공연 영상 01",
+      ko: "\uACF5\uC5F0 \uC601\uC0C1 01",
       en: "Live video 01",
     },
     caption: {
-      ko: "나중에 YouTube 영상 ID를 넣으면 여기서 바로 재생됩니다.",
-      en: "Add a YouTube video ID later and it will play directly here.",
+      ko: "YouTube ID",
+      en: "YouTube ID",
     },
     youtubeId: "",
   },
   {
     title: {
-      ko: "공연 영상 02",
+      ko: "\uACF5\uC5F0 \uC601\uC0C1 02",
       en: "Live video 02",
     },
     caption: {
-      ko: "추가 라이브 클립이나 리허설 영상을 위한 슬롯.",
-      en: "A second slot for another live clip or rehearsal video.",
+      ko: "YouTube ID",
+      en: "YouTube ID",
     },
     youtubeId: "",
   },
@@ -121,46 +122,39 @@ export default function MusicPage() {
 
   return (
     <SiteFrame current="music">
-      <section className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
-          <p className="text-sm text-[var(--muted)]">
-            {locale === "ko"
-              ? "\uB77C\uC774\uBE0C \uAE30\uB85D\uACFC \uD3C9\uC18C \uB4E3\uB294 \uC74C\uBC18."
-              : "Live documents and favorite records."}
+      <section className="fade-up grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="soft-card p-7 sm:p-10">
+          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
+            {locale === "ko" ? "\uB9AC\uC2A4\uB2DD" : "Listening"}
           </p>
-          <h1 className="mt-4 whitespace-pre-line text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-black sm:text-6xl">
-            {locale === "ko"
-              ? "\uC74C\uC545 \uC544\uCE74\uC774\uBE0C"
-              : "Music\narchive"}
+          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-black sm:text-6xl">
+            {locale === "ko" ? "\uC74C\uC545 \uC544\uCE74\uC774\uBE0C" : "Music\narchive"}
           </h1>
+          <p className="mt-6 max-w-xl text-base leading-8 text-[var(--muted)]">
+            {locale === "ko"
+              ? "RYM export, Spotify, live clips."
+              : "RYM export, Spotify, live clips."}
+          </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
           {[
-            locale === "ko" ? "rym export" : "rym export",
-            locale === "ko" ? "spotify links" : "spotify links",
-            locale === "ko" ? "live room" : "live room",
+            "RYM export",
+            "Spotify links",
+            "Live room",
           ].map((item) => (
-            <div
-              key={item}
-              className="border border-[var(--line)] bg-white p-5 text-sm tracking-[0.08em] text-[var(--muted)]"
-            >
+            <InteractivePanel key={item} className="soft-card lift-card p-5 text-sm tracking-[0.08em] text-[var(--muted)]">
               {item}
-            </div>
+            </InteractivePanel>
           ))}
         </div>
       </section>
 
-      <section className="mt-6">
+      <section className="mt-8 fade-up">
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-xl font-medium tracking-[-0.03em] text-black">
-              {locale === "ko" ? "Listening archive" : "Listening archive"}
-            </h2>
-            <p className="mt-2 text-sm text-[var(--muted)]">
-              {locale === "ko"
-                ? "RYM export\uC640 Spotify \uB9C1\uD06C."
-                : "RYM export and Spotify links."}
+            <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
+              {locale === "ko" ? "\uBCC4\uC810 \uC74C\uBC18" : "Selected records"}
             </p>
           </div>
           <a
@@ -169,91 +163,81 @@ export default function MusicPage() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 text-sm text-black underline underline-offset-4"
           >
-            {locale === "ko" ? "RYM 프로필 보기" : "Open RYM profile"}
+            {locale === "ko" ? "Rate Your Music" : "Rate Your Music"}
             <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-4 lg:auto-rows-[220px]">
           {archiveAlbums.map((album) => (
-            <a
-              key={`${album.artist}-${album.title}`}
-              href={album.href}
-              target="_blank"
-              rel="noreferrer"
-              className={`group relative overflow-hidden border border-[var(--line)] bg-white ${album.layout}`}
-            >
-              <img
-                src={album.image}
-                alt={`${album.artist} - ${album.title}`}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/16 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                <div className="mb-2 flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/65">
-                      {album.artist}
-                    </p>
-                    <p className="mt-1 text-lg font-medium leading-tight tracking-[-0.03em]">
-                      {album.title}
-                    </p>
+            <InteractivePanel key={`${album.artist}-${album.title}`} asChild className="soft-card lift-card group overflow-hidden">
+              <a
+                href={album.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`${album.layout} relative border border-transparent`}
+              >
+                <img
+                  src={album.image}
+                  alt={`${album.artist} - ${album.title}`}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/18 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-white">
+                  <div className="mb-2 flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.22em] text-white/65">
+                        {album.artist}
+                      </p>
+                      <p className="mt-1 text-lg font-medium leading-tight tracking-[-0.03em]">
+                        {album.title}
+                      </p>
+                    </div>
+                    <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs tracking-[0.16em] text-white/80">
+                      {album.rating}
+                    </span>
                   </div>
-                  <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs tracking-[0.16em] text-white/80">
-                    {album.rating}
-                  </span>
+                  <p className="text-xs uppercase tracking-[0.18em] text-white/55">{album.year}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/72">{album.note[locale]}</p>
                 </div>
-                <p className="text-xs uppercase tracking-[0.18em] text-white/55">{album.year}</p>
-                <p className="mt-2 max-w-md text-sm leading-6 text-white/72">
-                  {album.note[locale]}
-                </p>
-              </div>
-            </a>
+              </a>
+            </InteractivePanel>
           ))}
         </div>
       </section>
 
-      <section className="mt-6 grid gap-6 lg:grid-cols-[1.06fr_0.94fr]">
-        <div className="border border-[var(--line)] bg-white p-6 sm:p-8">
-          <p className="text-sm leading-7 text-[var(--muted)]">
-            {locale === "ko"
-              ? "\uCEE4\uBC84, \uBCC4\uC810, \uB9C1\uD06C."
-              : "Covers, ratings, and links."}
+      <section className="mt-8 grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
+        <InteractivePanel className="soft-card lift-card p-7 sm:p-9">
+          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
+            {locale === "ko" ? "\uB9C1\uD06C" : "Links"}
           </p>
-        </div>
-
-        <div className="grid gap-4">
-          <div className="border border-[var(--line)] bg-[var(--surface)] p-6 text-sm leading-7 text-[var(--muted)]">
-            {locale === "ko"
-              ? "Rate Your Music / Spotify"
-              : "Rate Your Music / Spotify"}
+          <div className="mt-6 grid gap-3">
+            <a
+              href="https://rateyourmusic.com/~jHyung"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/70 px-5 py-4 transition hover:bg-white"
+            >
+              <span className="text-sm font-medium">Rate Your Music</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://open.spotify.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between rounded-[24px] border border-[var(--line)] bg-white/70 px-5 py-4 transition hover:bg-white"
+            >
+              <span className="text-sm font-medium">Spotify</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
-          <a
-            href="https://open.spotify.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center justify-between border border-[var(--line)] bg-white px-5 py-4 transition hover:bg-black hover:text-white"
-          >
-            <span className="text-sm font-medium">
-              {locale === "ko" ? "Spotify로 계속 듣기" : "Continue on Spotify"}
-            </span>
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
-
-      <section className="mt-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-medium tracking-[-0.03em] text-black">
-            {locale === "ko" ? "Live" : "Live"}
-          </h2>
-        </div>
+        </InteractivePanel>
 
         <div className="grid gap-4 lg:grid-cols-2">
           {liveVideos.map((video) => (
-            <div key={video.title.en} className="border border-[var(--line)] bg-white p-4">
+            <InteractivePanel key={video.title.en} className="soft-card lift-card p-4">
               {video.youtubeId ? (
-                <div className="aspect-video overflow-hidden bg-black">
+                <div className="aspect-video overflow-hidden rounded-[24px] bg-black">
                   <iframe
                     className="h-full w-full"
                     src={`https://www.youtube.com/embed/${video.youtubeId}`}
@@ -263,19 +247,15 @@ export default function MusicPage() {
                   />
                 </div>
               ) : (
-                <div className="flex aspect-video items-center justify-center border border-dashed border-[var(--line)] bg-[var(--surface)]">
+                <div className="flex aspect-video items-center justify-center rounded-[24px] border border-dashed border-[var(--line)] bg-[var(--surface)]">
                   <div className="text-center">
                     <Play className="mx-auto h-6 w-6 text-black/35" />
-                    <p className="mt-4 text-base font-medium text-black">
-                      {video.title[locale]}
-                    </p>
-                    <p className="mt-2 px-6 text-sm leading-7 text-[var(--muted)]">
-                      {video.caption[locale]}
-                    </p>
+                    <p className="mt-4 text-base font-medium text-black">{video.title[locale]}</p>
+                    <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{video.caption[locale]}</p>
                   </div>
                 </div>
               )}
-            </div>
+            </InteractivePanel>
           ))}
         </div>
       </section>
