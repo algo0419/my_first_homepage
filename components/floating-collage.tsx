@@ -52,6 +52,8 @@ const cards: FloatingCard[] = [
   { href: "/writing", src: "/portraits/portrait-city.jpg", alt: "Junhyung city portrait", x: 22, y: 2, w: 9, h: 12, rotate: -12, depth: 0.92, phase: 7.6 },
 ] as const;
 
+const SCALE = 1.32;
+
 type State = {
   x: number;
   y: number;
@@ -115,8 +117,8 @@ export function FloatingCollage() {
           state.vy += Math.cos(time / 3400 + card.phase) * 0.0022;
 
           if (pointer.active) {
-            const cx = state.x + card.w / 2;
-            const cy = state.y + card.h / 2;
+            const cx = state.x + (card.w * SCALE) / 2;
+            const cy = state.y + (card.h * SCALE) / 2;
             const dx = cx / 100 - pointer.x;
             const dy = cy / 100 - pointer.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -142,14 +144,14 @@ export function FloatingCollage() {
           const sa = stateRef.current[i];
           const sb = stateRef.current[j];
 
-          const ax = sa.x + a.w / 2;
-          const ay = sa.y + a.h / 2;
-          const bx = sb.x + b.w / 2;
-          const by = sb.y + b.h / 2;
+          const ax = sa.x + (a.w * SCALE) / 2;
+          const ay = sa.y + (a.h * SCALE) / 2;
+          const bx = sb.x + (b.w * SCALE) / 2;
+          const by = sb.y + (b.h * SCALE) / 2;
 
           const dx = bx - ax;
           const dy = by - ay;
-          const minDist = (a.w + b.w) * 0.24;
+          const minDist = (a.w * SCALE + b.w * SCALE) * 0.24;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist > 0 && dist < minDist) {
@@ -173,9 +175,9 @@ export function FloatingCollage() {
         }
 
         const minX = 1;
-        const maxX = 99 - card.w;
+        const maxX = 99 - card.w * SCALE;
         const minY = 1;
-        const maxY = 99 - card.h;
+        const maxY = 99 - card.h * SCALE;
 
         if (state.x < minX || state.x > maxX) {
           state.vx *= -0.9;
@@ -192,12 +194,15 @@ export function FloatingCollage() {
         state.hy = state.hy.slice(0, 3);
 
         const rotate = state.rotate + Math.sin(time / 2400 + card.phase) * 2.8;
-        centers[index] = { x: state.x + card.w / 2, y: state.y + card.h / 2 };
+        centers[index] = {
+          x: state.x + (card.w * SCALE) / 2,
+          y: state.y + (card.h * SCALE) / 2,
+        };
 
         node.style.left = `${state.x}%`;
         node.style.top = `${state.y}%`;
-        node.style.width = `${card.w}%`;
-        node.style.height = `${card.h}%`;
+        node.style.width = `${card.w * SCALE}%`;
+        node.style.height = `${card.h * SCALE}%`;
         node.style.transform = `rotate(${rotate}deg)`;
         node.style.zIndex = String(index + 20 + (pointer.dragging === index ? 200 : 0));
 
@@ -208,8 +213,8 @@ export function FloatingCollage() {
           }
           trail.style.left = `${state.hx[trailIndex] ?? state.x}%`;
           trail.style.top = `${state.hy[trailIndex] ?? state.y}%`;
-          trail.style.width = `${card.w}%`;
-          trail.style.height = `${card.h}%`;
+          trail.style.width = `${card.w * SCALE}%`;
+          trail.style.height = `${card.h * SCALE}%`;
           trail.style.transform = `rotate(${rotate - trailIndex * 2}deg)`;
           trail.style.opacity = String(0.16 - trailIndex * 0.04);
         });
@@ -225,7 +230,7 @@ export function FloatingCollage() {
   return (
     <div
       ref={containerRef}
-      className="relative h-[1600px] overflow-hidden md:h-[1120px]"
+      className="relative h-[1940px] overflow-hidden md:h-[1420px]"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         pointerRef.current.x = (event.clientX - rect.left) / rect.width;
@@ -240,7 +245,7 @@ export function FloatingCollage() {
         pointerRef.current.dragging = -1;
       }}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(255,60,32,0.32),transparent_22%),radial-gradient(circle_at_82%_18%,rgba(97,66,255,0.3),transparent_24%),radial-gradient(circle_at_45%_72%,rgba(22,236,196,0.26),transparent_26%),radial-gradient(circle_at_72%_68%,rgba(255,214,10,0.22),transparent_20%),radial-gradient(circle_at_28%_52%,rgba(255,32,134,0.18),transparent_18%),radial-gradient(circle_at_55%_24%,rgba(14,177,255,0.18),transparent_22%)] mix-blend-screen" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,8,18,0.08),rgba(7,7,12,0.02)),radial-gradient(circle_at_14%_18%,rgba(255,80,44,0.36),transparent_20%),radial-gradient(circle_at_84%_16%,rgba(89,97,255,0.3),transparent_22%),radial-gradient(circle_at_50%_70%,rgba(0,238,196,0.24),transparent_24%),radial-gradient(circle_at_72%_62%,rgba(255,214,20,0.24),transparent_16%),radial-gradient(circle_at_30%_54%,rgba(255,40,143,0.24),transparent_18%),radial-gradient(circle_at_60%_28%,rgba(0,168,255,0.22),transparent_20%)] mix-blend-screen" />
 
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
@@ -321,7 +326,7 @@ export function FloatingCollage() {
               pointerRef.current.dragging = -1;
               event.currentTarget.releasePointerCapture(event.pointerId);
             }}
-            className="absolute block cursor-grab overflow-hidden border border-white/8 bg-[var(--panel-strong)] shadow-[0_24px_90px_rgba(0,0,0,0.5)] transition duration-150 active:cursor-grabbing"
+            className="absolute block cursor-grab overflow-hidden border border-white/6 bg-[var(--panel-strong)] shadow-[0_30px_110px_rgba(0,0,0,0.56)] transition duration-150 active:cursor-grabbing"
             style={card.bg ? { background: card.bg } : undefined}
           >
             <img
