@@ -346,7 +346,7 @@ export function FloatingCollage() {
             <div className="mt-8">
               <Link
                 href={categoryMeta[activeCard.category].href}
-                className="inline-flex items-center rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-white/85"
+                className="inline-flex items-center rounded-full bg-white px-5 py-3 text-sm font-medium !text-black transition hover:bg-white/85"
               >
                 {categoryMeta[activeCard.category].label}
               </Link>
