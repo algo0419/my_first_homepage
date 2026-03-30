@@ -21,7 +21,7 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-2">
               <Link href="/" className="text-sm font-medium tracking-[-0.02em]">
-                Junhyung Jo
+                Junhyung Cho
               </Link>
               <p className="text-sm text-[var(--muted)]">
                 {locale === "ko"
