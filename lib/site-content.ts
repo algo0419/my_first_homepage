@@ -56,6 +56,15 @@ export const links: SiteLink[] = [
     icon: "arrow-up-right",
   },
   {
+    href: "https://www.instagram.com/whwns_gud/",
+    label: "Instagram",
+    meta: {
+      ko: "\uC0AC\uC9C4\uACFC \uC7A5\uBA74\uB4E4",
+      en: "photos and fragments",
+    },
+    icon: "arrow-up-right",
+  },
+  {
     href: "mailto:junhyungcho@kaist.ac.kr",
     label: "Email",
     meta: {

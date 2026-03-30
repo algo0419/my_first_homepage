@@ -6,6 +6,24 @@ import { SiteFrame } from "@/components/site-frame";
 import { useLocale } from "@/components/locale-provider";
 import { disciplines, homeContent, links } from "@/lib/site-content";
 
+const homePhotos = [
+  {
+    src: "/portraits/portrait-night.jpg",
+    alt: "Junhyung Cho portrait at night",
+    className: "row-span-2",
+  },
+  {
+    src: "/portraits/portrait-stage.jpg",
+    alt: "Junhyung Cho performing on stage",
+    className: "",
+  },
+  {
+    src: "/portraits/portrait-city.jpg",
+    alt: "Junhyung Cho walking by mural art",
+    className: "",
+  },
+] as const;
+
 export default function HomePage() {
   const { locale } = useLocale();
 
@@ -29,13 +47,17 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-4">
-          {homeContent.principles.map((item) => (
+        <div className="grid auto-rows-[160px] gap-4 sm:grid-cols-2">
+          {homePhotos.map((photo) => (
             <div
-              key={item.en}
-              className="border border-[var(--line)] bg-[var(--surface)] p-6"
+              key={photo.src}
+              className={`overflow-hidden border border-[var(--line)] bg-white ${photo.className}`}
             >
-              <p className="text-sm text-[var(--muted)]">{item[locale]}</p>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="h-full w-full object-cover"
+              />
             </div>
           ))}
         </div>
