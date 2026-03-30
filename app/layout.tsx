@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Space_Grotesk } from "next/font/google";
+import type { ReactNode } from "react";
+import { Space_Grotesk } from "next/font/google";
+import { LocaleProvider } from "@/components/locale-provider";
 import "./globals.css";
 
 const sans = Space_Grotesk({
@@ -7,26 +9,22 @@ const sans = Space_Grotesk({
   variable: "--font-sans",
 });
 
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
-});
-
 export const metadata: Metadata = {
   title: "Junhyung Cho",
   description:
-    "Personal website of Junhyung Cho covering music, writing, research, and selected work.",
+    "A bilingual personal website for music, writing, and research.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sans.variable} ${serif.variable}`}>{children}</body>
+    <html lang="ko">
+      <body className={sans.variable}>
+        <LocaleProvider>{children}</LocaleProvider>
+      </body>
     </html>
   );
 }
