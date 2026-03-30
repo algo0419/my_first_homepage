@@ -19,12 +19,6 @@ export type DisciplineSummary = {
   note: LocalizedText;
 };
 
-export type MusicVideo = {
-  title: LocalizedText;
-  caption: LocalizedText;
-  youtubeId: string;
-};
-
 export type WritingEntry = {
   year: string;
   category: LocalizedText;
@@ -38,17 +32,26 @@ export const links: SiteLink[] = [
     href: "https://github.com/algo0419",
     label: "GitHub",
     meta: {
-      ko: "코드, 실험, 기록",
-      en: "code, experiments, notes",
+      ko: "코드, 실험, 작업 기록",
+      en: "code, experiments, working notes",
     },
     icon: "arrow-up-right",
   },
   {
-    href: "https://www.instagram.com/whwns_gud/",
-    label: "Instagram",
+    href: "https://rateyourmusic.com/~jHyung",
+    label: "Rate Your Music",
     meta: {
-      ko: "이미지와 순간 기록",
-      en: "images and fragments",
+      ko: "개인 별점 아카이브",
+      en: "personal ratings archive",
+    },
+    icon: "arrow-up-right",
+  },
+  {
+    href: "https://blog.naver.com/algo7112",
+    label: "Naver Blog",
+    meta: {
+      ko: "독서와 글쓰기 노트",
+      en: "reading and writing notes",
     },
     icon: "arrow-up-right",
   },
@@ -73,12 +76,12 @@ export const disciplines: DisciplineSummary[] = [
       en: "Music",
     },
     strap: {
-      ko: "합주, 공연, 톤, 무대 위 긴장감에 관한 아카이브.",
-      en: "An archive for rehearsals, live sets, tone, and stage energy.",
+      ko: "공연 기록과 평소 듣는 음반을 함께 두는 청취 아카이브.",
+      en: "A listening archive that keeps live documents and favorite records in the same frame.",
     },
     note: {
-      ko: "공연 영상과 밴드 작업 기록",
-      en: "Live videos and band work",
+      ko: "라이브와 리스닝",
+      en: "live work and listening",
     },
   },
   {
@@ -90,12 +93,12 @@ export const disciplines: DisciplineSummary[] = [
       en: "Reading / Writing",
     },
     strap: {
-      ko: "블로그 링크와 실제 글 목록을 한국어와 영어로 함께 정리하는 공간.",
-      en: "A page that organizes your blog and selected posts in Korean and English.",
+      ko: "블로그 글과 메모를 한글과 영어로 묶어 놓은 페이지.",
+      en: "A page that gathers blog posts and notes in Korean and English.",
     },
     note: {
-      ko: "블로그와 작성한 글 목록",
-      en: "Blog and writing index",
+      ko: "블로그와 글 목록",
+      en: "blog and selected posts",
     },
   },
   {
@@ -107,12 +110,12 @@ export const disciplines: DisciplineSummary[] = [
       en: "Research",
     },
     strap: {
-      ko: "다이아몬드 시뮬레이션과 연구 노트를 위한 페이지.",
-      en: "A page for diamond simulation images and research notes.",
+      ko: "diamond photonic crystal과 BTO hybrid modulation 주변의 시각적 레퍼런스.",
+      en: "A visual board around diamond photonic crystals and BTO hybrid modulation.",
     },
     note: {
-      ko: "이미지와 연구 업데이트 예정",
-      en: "Images and updates to be added",
+      ko: "figure와 참고 논문",
+      en: "figures and papers",
     },
   },
 ];
@@ -122,102 +125,45 @@ export const homeContent = {
     ko: "개인 아카이브",
     en: "Personal archive",
   },
-  location: "KAIST / Korea",
+  location: "KAIST / Daejeon",
   introLabel: {
-    ko: "세 가지 축으로 정리된 개인 사이트",
-    en: "A personal site organized into three active tracks",
+    ko: "세 개의 축으로 정리한 개인 웹사이트",
+    en: "A personal website split into three active tracks",
   },
   title: {
-    ko: "음악, 글, 연구를\n한 화면에\n너무 많이 쌓지 않기.",
-    en: "Keep music,\nwriting, and research\nclear and separate.",
+    ko: "음악, 글, 연구를\n한 화면에서 시작하고\n각 페이지로 깊게 들어가기.",
+    en: "Start with music,\nwriting, and research,\nthen go deeper by page.",
   },
   description: {
-    ko: "홈은 입구 역할만 하고, 실제 내용은 각각의 서브페이지에서 더 차분하고 밀도 있게 보이도록 정리했습니다.",
-    en: "The homepage acts as an entry point, while the actual content lives in dedicated pages with a calmer rhythm.",
+    ko: "홈은 전체 결을 보여주고, 실제 내용은 각 서브 페이지에서 보다 차분하게 펼쳐집니다. 듣는 음악, 읽고 쓰는 글, 그리고 연구 중인 주제를 분리해서 정리했습니다.",
+    en: "The homepage sets the overall tone, while the actual material unfolds more quietly inside each section. Music, writing, and research are separated so each can keep its own pace.",
   },
   principles: [
     {
-      ko: "미니멀한 구성",
+      ko: "미니멀한 구조",
       en: "Minimal structure",
     },
     {
-      ko: "한/영 전환",
+      ko: "한 / 영 전환",
       en: "Korean / English",
     },
     {
-      ko: "서브페이지 중심",
+      ko: "섹션 중심 탐색",
       en: "Section-first navigation",
     },
   ],
   profileLabel: {
-    ko: "소개",
+    ko: "프로필",
     en: "Profile",
   },
   profileTitle: {
-    ko: "공학, 밴드, 글쓰기를 각각의 페이지로 나눠 정리합니다.",
-    en: "Engineering, band work, and writing are split into dedicated pages.",
+    ko: "공학, 연주, 글쓰기를 서로 다른 리듬으로 이어 가고 있습니다.",
+    en: "Engineering, performance, and writing are moving in parallel at different speeds.",
   },
   profileBody: {
-    ko: "전기전자공학을 공부하면서 포토닉스와 양자광학에 관심을 두고 있고, 음악과 글쓰기도 장기적으로 계속해 가고 있습니다.",
-    en: "I study electrical engineering with a focus on photonics and quantum optics, while continuing music and writing as long-term practices.",
+    ko: "전기전자공학을 공부하며 photonics와 quantum optics를 중심으로 연구하고 있습니다. 동시에 밴드와 리스닝 아카이브를 이어 가고, 블로그에 읽고 생각한 것들을 기록합니다.",
+    en: "I study electrical engineering with a focus on photonics and quantum optics, while keeping a parallel practice in music and an ongoing notebook of reading and writing.",
   },
-};
-
-export const musicPage = {
-  header: {
-    ko: "음악",
-    en: "Music",
-  },
-  description: {
-    ko: "합주와 공연 중심의 페이지입니다. 실제 영상은 아래 임베드 영역에 바로 들어가도록 구성했습니다.",
-    en: "This page centers on rehearsals and live performances, with embedded videos ready to play directly on the site.",
-  },
-  title: {
-    ko: "공연과 합주를\n사이트 안에서 바로 보기.",
-    en: "Play live performances\ninside the site.",
-  },
-  intro: {
-    ko: "유튜브 공연 링크만 넣으면 웹사이트 안에서 바로 재생되는 구조입니다. 지금은 영상 ID를 아직 받지 못해서 placeholder 슬롯으로 두었습니다.",
-    en: "The structure is ready for direct YouTube embeds. The slots are placeholders for now because the actual video IDs have not been provided yet.",
-  },
-  videosLabel: {
-    ko: "공연 영상",
-    en: "Live videos",
-  },
-  videos: [
-    {
-      title: {
-        ko: "공연 영상 01",
-        en: "Live video 01",
-      },
-      caption: {
-        ko: "유튜브 영상 ID를 넣으면 여기서 바로 재생됩니다.",
-        en: "Drop a YouTube video ID here and it will play in place.",
-      },
-      youtubeId: "",
-    },
-    {
-      title: {
-        ko: "공연 영상 02",
-        en: "Live video 02",
-      },
-      caption: {
-        ko: "합주 영상이나 공연 클립을 추가하기 위한 슬롯입니다.",
-        en: "A second slot for rehearsal footage or another live clip.",
-      },
-      youtubeId: "",
-    },
-  ] as MusicVideo[],
-  notes: [
-    {
-      ko: "셋리스트, 톤, 무대 위 에너지에 대한 기록",
-      en: "Notes on setlists, tone, and stage energy",
-    },
-    {
-      ko: "밴드 작업을 정리하는 페이지",
-      en: "A place to organize band work",
-    },
-  ],
 };
 
 export const writingPage = {
@@ -226,16 +172,16 @@ export const writingPage = {
     en: "Reading / Writing",
   },
   description: {
-    ko: "네이버 블로그와 지금까지의 글 일부를 한/영으로 정리해 둔 페이지입니다.",
-    en: "A page that links your Naver blog and organizes selected pieces in Korean and English.",
+    ko: "네이버 블로그를 중심으로 읽기와 쓰기의 흔적을 정리한 페이지.",
+    en: "A page that organizes reading and writing traces around the Naver blog.",
   },
   title: {
-    ko: "블로그와 글 목록을\n한/영으로 함께 보기.",
-    en: "Read the blog\nand selected writing in two languages.",
+    ko: "블로그와 글 목록을\n한글과 영어로\n함께 보기.",
+    en: "Read the blog\nand selected pieces\nin two languages.",
   },
   intro: {
-    ko: "공개 RSS에서 확인 가능한 글 몇 편을 추려 writing 페이지에 실제 콘텐츠로 반영했습니다. 이후 더 추가하고 싶은 글은 같은 방식으로 계속 넣을 수 있습니다.",
-    en: "A small set of publicly visible posts from the blog RSS feed has been folded into this page. More entries can be added in the same format later.",
+    ko: "블로그에 쌓인 글 중 몇 편을 골라 영어 설명과 함께 묶었습니다. 문학, 언어, 에세이, 짧은 리뷰를 중심으로 천천히 늘려 갈 생각입니다.",
+    en: "A small set of blog posts is gathered here with English context. The page leans toward literature, language, essays, and short reviews, and can expand over time.",
   },
   blogUrl: "https://blog.naver.com/algo7112",
   blogLabel: {
@@ -243,18 +189,18 @@ export const writingPage = {
     en: "Blog link",
   },
   blogPlaceholder: {
-    ko: "블로그 URL을 추가하면 실제 링크가 표시됩니다.",
-    en: "Add your blog URL to turn this into a live link.",
+    ko: "블로그 링크가 아직 연결되지 않았습니다.",
+    en: "The blog link is not connected yet.",
   },
   entriesLabel: {
-    ko: "선별한 글",
+    ko: "골라 둔 글",
     en: "Selected posts",
   },
   entries: [
     {
       year: "2026",
       category: {
-        ko: "수필",
+        ko: "에세이",
         en: "Essay",
       },
       title: {
@@ -262,15 +208,15 @@ export const writingPage = {
         en: "You See More by Knowing Less",
       },
       summary: {
-        ko: "전문성의 경계에 가까워질수록 오히려 큰 맥락을 놓치기 쉬워진다는 점을 사유하는 수필.",
-        en: "An essay on how expertise can narrow perception even as it deepens technical understanding.",
+        ko: "전문성이 시야를 넓히는 동시에 무엇을 놓치게 만드는지에 대해 생각한 짧은 에세이.",
+        en: "A short essay on how expertise deepens understanding while also narrowing what remains visible.",
       },
       href: "https://blog.naver.com/algo7112/224232537490",
     },
     {
       year: "2026",
       category: {
-        ko: "작품 리뷰",
+        ko: "리뷰",
         en: "Review",
       },
       title: {
@@ -278,15 +224,15 @@ export const writingPage = {
         en: "'Ficciones' Is the Bible of the Postmodern Age",
       },
       summary: {
-        ko: "보르헤스의 '픽션들'을 다시 읽으며 독서, 포스트모더니즘, 그리고 글쓰기의 형식을 연결하는 글.",
-        en: "A review that connects Borges, postmodernism, and the structure of literary thinking.",
+        ko: "보르헤스의 문장과 포스트모던 감각을 함께 읽어 내려가는 독서 기록.",
+        en: "A reading note that ties Borges to a postmodern way of thinking and writing.",
       },
       href: "https://blog.naver.com/algo7112/224151247766",
     },
     {
       year: "2025",
       category: {
-        ko: "수필",
+        ko: "에세이",
         en: "Essay",
       },
       title: {
@@ -294,8 +240,8 @@ export const writingPage = {
         en: "I Want to Spend a Very Long Time Arriving at One Good Joke",
       },
       summary: {
-        ko: "왜 글을 쓰는가에 대한 질문을 농담, 직관, 문학의 목적이라는 방식으로 풀어가는 에세이.",
-        en: "A reflective essay on writing, intuition, and the idea of literature through the frame of a single good joke.",
+        ko: "글쓰기와 직관, 그리고 문학의 태도를 농담이라는 형식을 통해 돌아보는 글.",
+        en: "A reflective piece on writing, intuition, and literary attitude through the frame of a single joke.",
       },
       href: "https://blog.naver.com/algo7112/224070120051",
     },
@@ -306,28 +252,28 @@ export const writingPage = {
         en: "Language",
       },
       title: {
-        ko: "왜 일부 언어에서는 '내일'이 곧 '아침' 일까?",
+        ko: "왜 일부 언어에서는 '내일'이 곧 '아침'일까?",
         en: "Why Do Some Languages Use the Same Word for 'Morning' and 'Tomorrow'?",
       },
       summary: {
-        ko: "스페인어와 독일어 사례를 통해 시간 개념과 어원을 흥미롭게 푸는 짧은 언어학 글.",
-        en: "A concise linguistic note on how etymology links morning and tomorrow in some European languages.",
+        ko: "스페인어와 이탈리아어의 어원을 따라가며 시간 감각과 언어의 관계를 살피는 노트.",
+        en: "A short linguistic note following how etymology ties morning and tomorrow together in some languages.",
       },
       href: "https://blog.naver.com/algo7112/223786938523",
     },
     {
       year: "2025",
       category: {
-        ko: "단편",
-        en: "Short fiction",
+        ko: "픽션",
+        en: "Fiction",
       },
       title: {
         ko: "예술과 외설의 경계에 관한 스케치",
         en: "A Sketch on the Boundary Between Art and Obscenity",
       },
       summary: {
-        ko: "현대미술관 카페를 배경으로 예술, 외설, 해체와 상징을 대화 형식으로 밀어붙이는 단편.",
-        en: "A short fiction piece set in a museum cafe, pushing art, obscenity, and interpretation through dialogue.",
+        ko: "미술관 카페를 배경으로 해석과 감상의 경계를 밀어 보는 짧은 글.",
+        en: "A short piece set in a museum cafe, pressing on the boundary between art, obscenity, and interpretation.",
       },
       href: "https://blog.naver.com/algo7112/223722566599",
     },
@@ -340,37 +286,15 @@ export const researchPage = {
     en: "Research",
   },
   description: {
-    ko: "다이아몬드 시뮬레이션 이미지와 연구 내용을 업데이트할 공간입니다.",
-    en: "A space for diamond simulation images and research updates.",
+    ko: "현재 관심사를 둘러싼 논문 figure와 키워드를 시각적으로 모아 둔 보드.",
+    en: "A visual board of figures and keywords around the research topics I am working through now.",
   },
   title: {
-    ko: "다이아몬드 시뮬레이션 이미지는\n곧 업데이트됩니다.",
-    en: "Diamond simulation images\nwill be updated soon.",
+    ko: "Diamond photonic crystal과\nBTO hybrid modulation을\n시각적으로 훑기.",
+    en: "A visual pass through\ndiamond photonic crystals\nand BTO hybrid modulation.",
   },
   intro: {
-    ko: "이미지와 세부 연구 설명이 들어올 자리를 미리 만들어 두었습니다.",
-    en: "The layout is prepared in advance for images and more detailed research notes.",
+    ko: "아직 개인 시뮬레이션 결과물을 올리기 전이라, 현재는 관련 리뷰 논문에서 중요한 figure를 먼저 모아 두었습니다. 나중에는 이 자리에 직접 만든 simulation image가 들어갈 예정입니다.",
+    en: "My own simulation figures are not on the page yet, so the current board starts with a few useful review-paper images. This will later give way to original simulation outputs.",
   },
-  placeholderTitle: {
-    ko: "이미지 준비 중",
-    en: "To be updated",
-  },
-  placeholderBody: {
-    ko: "여기에 다이아몬드 시뮬레이션 이미지와 캡션을 넣을 예정입니다.",
-    en: "Diamond simulation images and captions will be placed here.",
-  },
-  notes: [
-    {
-      ko: "연구 개요",
-      en: "Research overview",
-    },
-    {
-      ko: "시뮬레이션 결과",
-      en: "Simulation output",
-    },
-    {
-      ko: "업데이트 예정",
-      en: "Further updates",
-    },
-  ],
 };

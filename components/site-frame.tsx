@@ -4,12 +4,30 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLocale } from "@/components/locale-provider";
-import { disciplines } from "@/lib/site-content";
 
 type SiteFrameProps = {
   current?: "home" | "music" | "writing" | "research";
   children: ReactNode;
 };
+
+const labels = {
+  home: {
+    ko: "홈",
+    en: "Home",
+  },
+  music: {
+    ko: "음악",
+    en: "Music",
+  },
+  writing: {
+    ko: "독서 / 글",
+    en: "Reading / Writing",
+  },
+  research: {
+    ko: "연구",
+    en: "Research",
+  },
+} as const;
 
 export function SiteFrame({ current = "home", children }: SiteFrameProps) {
   const { locale } = useLocale();
@@ -23,36 +41,22 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
               <Link href="/" className="text-sm font-medium tracking-[-0.02em]">
                 Junhyung Cho
               </Link>
-              <p className="text-sm text-[var(--muted)]">
-                {locale === "ko"
-                  ? "music, writing, research"
-                  : "music, writing, research"}
-              </p>
+              <p className="text-sm text-[var(--muted)]">music, writing, research</p>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <nav className="flex flex-wrap gap-2 text-sm text-[var(--muted)]">
-                <Link
-                  href="/"
-                  className={`rounded-full border px-3 py-1.5 transition ${
-                    current === "home"
-                      ? "border-black bg-black text-white"
-                      : "border-[var(--line)] bg-white"
-                  }`}
-                >
-                  {locale === "ko" ? "홈" : "Home"}
-                </Link>
-                {disciplines.map((item) => (
+                {(["home", "music", "writing", "research"] as const).map((key) => (
                   <Link
-                    key={item.key}
-                    href={item.path}
+                    key={key}
+                    href={key === "home" ? "/" : `/${key}`}
                     className={`rounded-full border px-3 py-1.5 transition ${
-                      current === item.key
+                      current === key
                         ? "border-black bg-black text-white"
                         : "border-[var(--line)] bg-white"
                     }`}
                   >
-                    {item.title[locale]}
+                    {labels[key][locale]}
                   </Link>
                 ))}
               </nav>
