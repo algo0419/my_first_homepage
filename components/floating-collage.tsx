@@ -7,6 +7,7 @@ type FloatingCard = {
   href: string;
   src: string;
   alt: string;
+  external?: boolean;
   x: number;
   y: number;
   w: number;
@@ -19,37 +20,54 @@ type FloatingCard = {
 };
 
 const cards: FloatingCard[] = [
-  { href: "/music", src: "/collage/off-the-wall.jpg", alt: "Off the Wall", x: 4, y: 10, w: 12, h: 17, rotate: -9, depth: 1.1, phase: 0.2 },
-  { href: "/music", src: "/collage/yeezus.jpg", alt: "Yeezus", x: 15, y: 31, w: 10, h: 13, rotate: 11, depth: 0.9, phase: 0.5 },
-  { href: "/music", src: "/collage/for-lovers.jpg", alt: "For Lovers", x: 27, y: 8, w: 11, h: 15, rotate: -6, depth: 0.95, phase: 0.8 },
-  { href: "/writing", src: "/collage/borges-ficciones.jpg", alt: "Ficciones", x: 41, y: 9, w: 12, h: 18, rotate: 8, depth: 1.05, phase: 1.1 },
-  { href: "/writing", src: "/collage/camus-sisyphus.jpg", alt: "The Myth of Sisyphus", x: 55, y: 14, w: 10, h: 15, rotate: -12, depth: 0.92, phase: 1.5 },
-  { href: "/research", src: "/collage/kaist-ee-logo.png", alt: "KAIST EE Logo", x: 67, y: 9, w: 20, h: 8, rotate: 3, depth: 0.8, phase: 1.9, fit: "contain", bg: "linear-gradient(135deg, rgba(12,18,48,0.96), rgba(6,8,18,0.98))" },
-  { href: "/research", src: "/collage/loncar-fig1.jpg", alt: "Loncar fig1", x: 75, y: 22, w: 14, h: 12, rotate: -4, depth: 0.88, phase: 2.2, fit: "contain", bg: "linear-gradient(135deg, rgba(20,9,29,0.96), rgba(8,18,39,0.98))" },
-  { href: "/research", src: "/collage/loncar-fig2.jpg", alt: "Loncar fig2", x: 7, y: 53, w: 13, h: 12, rotate: 7, depth: 0.86, phase: 2.4, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,26,0.96), rgba(23,10,35,0.96))" },
-  { href: "/research", src: "/collage/loncar-fig3.jpg", alt: "Loncar fig3", x: 21, y: 48, w: 14, h: 12, rotate: -5, depth: 0.84, phase: 2.7, fit: "contain", bg: "linear-gradient(135deg, rgba(31,12,14,0.96), rgba(10,16,34,0.96))" },
-  { href: "/research", src: "/collage/loncar-diamond-circuit.jpg", alt: "Loncar circuit", x: 37, y: 42, w: 19, h: 13, rotate: 4, depth: 0.9, phase: 3.0, fit: "contain", bg: "linear-gradient(135deg, rgba(23,13,9,0.96), rgba(11,14,30,0.98))" },
-  { href: "/research", src: "/collage/bto-phase.jpg", alt: "BTO phase", x: 59, y: 37, w: 18, h: 13, rotate: -3, depth: 0.83, phase: 3.2, fit: "contain", bg: "linear-gradient(135deg, rgba(8,20,43,0.96), rgba(20,7,35,0.98))" },
-  { href: "/research", src: "/collage/bto-fig1.jpg", alt: "BTO fig1", x: 74, y: 43, w: 13, h: 12, rotate: 9, depth: 0.82, phase: 3.4, fit: "contain", bg: "linear-gradient(135deg, rgba(10,28,44,0.96), rgba(22,10,31,0.98))" },
-  { href: "/research", src: "/collage/bto-fig3.jpg", alt: "BTO fig3", x: 46, y: 58, w: 14, h: 12, rotate: -8, depth: 0.85, phase: 3.7, fit: "contain", bg: "linear-gradient(135deg, rgba(13,32,29,0.96), rgba(16,11,39,0.98))" },
-  { href: "/research", src: "/collage/bto-fig5.jpg", alt: "BTO fig5", x: 63, y: 56, w: 14, h: 12, rotate: 5, depth: 0.84, phase: 4.0, fit: "contain", bg: "linear-gradient(135deg, rgba(35,14,14,0.96), rgba(11,14,40,0.98))" },
-  { href: "/research", src: "/collage/diamond-structures.jpg", alt: "Diamond structures", x: 77, y: 58, w: 16, h: 13, rotate: -5, depth: 0.9, phase: 4.3, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,28,0.98), rgba(28,8,32,0.98))" },
-  { href: "/research", src: "/collage/fab-fig1.jpg", alt: "Fabrication fig1", x: 5, y: 71, w: 14, h: 11, rotate: 8, depth: 0.85, phase: 4.5, fit: "contain", bg: "linear-gradient(135deg, rgba(29,14,9,0.96), rgba(9,14,30,0.98))" },
-  { href: "/research", src: "/collage/fab-fig2.jpg", alt: "Fabrication fig2", x: 22, y: 71, w: 14, h: 11, rotate: -6, depth: 0.83, phase: 4.8, fit: "contain", bg: "linear-gradient(135deg, rgba(16,10,35,0.96), rgba(6,20,34,0.98))" },
-  { href: "/research", src: "/collage/fab-fig5.jpg", alt: "Fabrication fig5", x: 39, y: 73, w: 14, h: 11, rotate: 4, depth: 0.82, phase: 5.0, fit: "contain", bg: "linear-gradient(135deg, rgba(10,27,31,0.98), rgba(18,10,31,0.98))" },
-  { href: "/research", src: "/collage/nihms-f1.jpg", alt: "NIHMS fig1", x: 56, y: 73, w: 13, h: 11, rotate: -9, depth: 0.86, phase: 5.2, fit: "contain", bg: "linear-gradient(135deg, rgba(26,10,16,0.98), rgba(9,17,36,0.98))" },
-  { href: "/research", src: "/collage/nihms-f2.jpg", alt: "NIHMS fig2", x: 71, y: 72, w: 12, h: 11, rotate: 7, depth: 0.81, phase: 5.4, fit: "contain", bg: "linear-gradient(135deg, rgba(10,18,42,0.96), rgba(15,9,28,0.98))" },
-  { href: "/research", src: "/collage/nihms-f3.jpg", alt: "NIHMS fig3", x: 84, y: 74, w: 11, h: 10, rotate: -4, depth: 0.78, phase: 5.6, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,26,0.98), rgba(28,10,22,0.98))" },
-  { href: "/research", src: "/collage/nihms-f4.jpg", alt: "NIHMS fig4", x: 31, y: 26, w: 11, h: 10, rotate: 5, depth: 0.76, phase: 5.8, fit: "contain", bg: "linear-gradient(135deg, rgba(32,13,11,0.98), rgba(10,20,34,0.98))" },
-  { href: "/research", src: "/collage/nat25-fig1.jpg", alt: "Nature 2025 fig1", x: 53, y: 28, w: 11, h: 9, rotate: -6, depth: 0.74, phase: 6.0, fit: "contain", bg: "linear-gradient(135deg, rgba(11,33,32,0.98), rgba(18,8,28,0.98))" },
-  { href: "/research", src: "/collage/nat25-fig2.jpg", alt: "Nature 2025 fig2", x: 65, y: 29, w: 11, h: 9, rotate: 6, depth: 0.72, phase: 6.2, fit: "contain", bg: "linear-gradient(135deg, rgba(28,9,18,0.98), rgba(9,16,38,0.98))" },
-  { href: "/research", src: "/collage/nat20-fig1.jpg", alt: "Nature 2020 fig1", x: 13, y: 21, w: 10, h: 10, rotate: -8, depth: 0.75, phase: 6.4, fit: "contain", bg: "linear-gradient(135deg, rgba(12,22,42,0.98), rgba(23,9,33,0.98))" },
-  { href: "/research", src: "/collage/nat20-fig2.jpg", alt: "Nature 2020 fig2", x: 86, y: 30, w: 10, h: 10, rotate: 8, depth: 0.73, phase: 6.6, fit: "contain", bg: "linear-gradient(135deg, rgba(11,32,29,0.98), rgba(18,8,28,0.98))" },
-  { href: "/research", src: "/collage/srep-f1.jpg", alt: "Scientific Reports fig1", x: 2, y: 37, w: 10, h: 10, rotate: 6, depth: 0.78, phase: 6.8, fit: "contain", bg: "linear-gradient(135deg, rgba(26,8,24,0.98), rgba(8,18,36,0.98))" },
-  { href: "/research", src: "/collage/srep-f2.jpg", alt: "Scientific Reports fig2", x: 89, y: 52, w: 9, h: 10, rotate: -7, depth: 0.76, phase: 7.0, fit: "contain", bg: "linear-gradient(135deg, rgba(10,18,40,0.98), rgba(29,12,14,0.98))" },
-  { href: "/research", src: "/portraits/portrait-night.jpg", alt: "Junhyung portrait", x: 44, y: 33, w: 13, h: 22, rotate: 2, depth: 1.2, phase: 7.2 },
-  { href: "/music", src: "/portraits/portrait-stage.jpg", alt: "Junhyung stage portrait", x: 90, y: 8, w: 8, h: 11, rotate: 12, depth: 0.98, phase: 7.4 },
-  { href: "/writing", src: "/portraits/portrait-city.jpg", alt: "Junhyung city portrait", x: 22, y: 2, w: 9, h: 12, rotate: -12, depth: 0.92, phase: 7.6 },
+  { href: "/music", src: "/collage/off-the-wall.jpg", alt: "Off the Wall", x: 3, y: 8, w: 12, h: 17, rotate: -9, depth: 1.1, phase: 0.2 },
+  { href: "/music", src: "/collage/yeezus.jpg", alt: "Yeezus", x: 15, y: 28, w: 10, h: 13, rotate: 11, depth: 0.9, phase: 0.5 },
+  { href: "/music", src: "/collage/for-lovers.jpg", alt: "For Lovers", x: 27, y: 6, w: 11, h: 15, rotate: -6, depth: 0.95, phase: 0.8 },
+  { href: "/music", src: "/collage/blonde.jpg", alt: "Blonde", x: 41, y: 4, w: 11, h: 14, rotate: 7, depth: 1.01, phase: 1.0 },
+  { href: "/music", src: "/collage/loveless.jpg", alt: "Loveless", x: 54, y: 11, w: 10, h: 13, rotate: -10, depth: 0.94, phase: 1.2 },
+  { href: "/music", src: "/collage/discovery.jpg", alt: "Discovery", x: 65, y: 4, w: 11, h: 14, rotate: 8, depth: 0.9, phase: 1.4 },
+  { href: "/music", src: "/collage/kind-of-blue.jpg", alt: "Kind of Blue", x: 78, y: 10, w: 10, h: 13, rotate: -7, depth: 0.86, phase: 1.6 },
+  { href: "/writing", src: "/collage/borges-ficciones.jpg", alt: "Ficciones", x: 6, y: 31, w: 12, h: 18, rotate: 6, depth: 1.05, phase: 1.8 },
+  { href: "/writing", src: "/collage/calvino-winter.jpg", alt: "If on a winter's night a traveler", x: 21, y: 18, w: 11, h: 16, rotate: -11, depth: 0.9, phase: 2.0 },
+  { href: "/writing", src: "/collage/bolano-detectives.jpg", alt: "The Savage Detectives", x: 33, y: 24, w: 10, h: 15, rotate: 9, depth: 0.88, phase: 2.2 },
+  { href: "/writing", src: "/collage/sartre-nausea.jpg", alt: "Nausea", x: 45, y: 17, w: 11, h: 15, rotate: -8, depth: 0.91, phase: 2.4 },
+  { href: "/writing", src: "/collage/kafka-trial.jpg", alt: "The Trial", x: 58, y: 24, w: 11, h: 15, rotate: 10, depth: 0.87, phase: 2.6 },
+  { href: "/writing", src: "/collage/fight-club.jpg", alt: "Fight Club", x: 74, y: 24, w: 11, h: 16, rotate: -6, depth: 0.9, phase: 2.8 },
+  { href: "/writing", src: "/collage/pulp-fiction.jpg", alt: "Pulp Fiction", x: 85, y: 36, w: 10, h: 15, rotate: 7, depth: 0.85, phase: 3.0 },
+  { href: "https://www.kaist.ac.kr/en/", external: true, src: "/collage/kaist-ee-logo.png", alt: "KAIST EE Logo", x: 70, y: 2, w: 20, h: 8, rotate: 2, depth: 0.8, phase: 3.2, fit: "contain", bg: "linear-gradient(135deg, rgba(12,18,48,0.96), rgba(6,8,18,0.98))" },
+  { href: "/research", src: "/collage/loncar-fig1.jpg", alt: "Loncar fig1", x: 74, y: 52, w: 14, h: 12, rotate: -4, depth: 0.88, phase: 3.4, fit: "contain", bg: "linear-gradient(135deg, rgba(20,9,29,0.96), rgba(8,18,39,0.98))" },
+  { href: "/research", src: "/collage/loncar-fig2.jpg", alt: "Loncar fig2", x: 4, y: 53, w: 13, h: 12, rotate: 7, depth: 0.86, phase: 3.6, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,26,0.96), rgba(23,10,35,0.96))" },
+  { href: "/research", src: "/collage/loncar-fig3.jpg", alt: "Loncar fig3", x: 18, y: 47, w: 14, h: 12, rotate: -5, depth: 0.84, phase: 3.8, fit: "contain", bg: "linear-gradient(135deg, rgba(31,12,14,0.96), rgba(10,16,34,0.96))" },
+  { href: "/research", src: "/collage/loncar-diamond-circuit.jpg", alt: "Loncar circuit", x: 32, y: 43, w: 19, h: 13, rotate: 4, depth: 0.9, phase: 4.0, fit: "contain", bg: "linear-gradient(135deg, rgba(23,13,9,0.96), rgba(11,14,30,0.98))" },
+  { href: "/research", src: "/collage/bto-phase.jpg", alt: "BTO phase", x: 52, y: 39, w: 18, h: 13, rotate: -3, depth: 0.83, phase: 4.2, fit: "contain", bg: "linear-gradient(135deg, rgba(8,20,43,0.96), rgba(20,7,35,0.98))" },
+  { href: "/research", src: "/collage/bto-fig1.jpg", alt: "BTO fig1", x: 72, y: 66, w: 13, h: 12, rotate: 9, depth: 0.82, phase: 4.4, fit: "contain", bg: "linear-gradient(135deg, rgba(10,28,44,0.96), rgba(22,10,31,0.98))" },
+  { href: "/research", src: "/collage/bto-fig3.jpg", alt: "BTO fig3", x: 43, y: 58, w: 14, h: 12, rotate: -8, depth: 0.85, phase: 4.6, fit: "contain", bg: "linear-gradient(135deg, rgba(13,32,29,0.96), rgba(16,11,39,0.98))" },
+  { href: "/research", src: "/collage/bto-fig5.jpg", alt: "BTO fig5", x: 59, y: 56, w: 14, h: 12, rotate: 5, depth: 0.84, phase: 4.8, fit: "contain", bg: "linear-gradient(135deg, rgba(35,14,14,0.96), rgba(11,14,40,0.98))" },
+  { href: "/research", src: "/collage/diamond-structures.jpg", alt: "Diamond structures", x: 82, y: 58, w: 15, h: 13, rotate: -5, depth: 0.9, phase: 5.0, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,28,0.98), rgba(28,8,32,0.98))" },
+  { href: "/research", src: "/collage/fab-fig1.jpg", alt: "Fabrication fig1", x: 7, y: 71, w: 14, h: 11, rotate: 8, depth: 0.85, phase: 5.2, fit: "contain", bg: "linear-gradient(135deg, rgba(29,14,9,0.96), rgba(9,14,30,0.98))" },
+  { href: "/research", src: "/collage/fab-fig2.jpg", alt: "Fabrication fig2", x: 23, y: 71, w: 14, h: 11, rotate: -6, depth: 0.83, phase: 5.4, fit: "contain", bg: "linear-gradient(135deg, rgba(16,10,35,0.96), rgba(6,20,34,0.98))" },
+  { href: "/research", src: "/collage/fab-fig5.jpg", alt: "Fabrication fig5", x: 39, y: 73, w: 14, h: 11, rotate: 4, depth: 0.82, phase: 5.6, fit: "contain", bg: "linear-gradient(135deg, rgba(10,27,31,0.98), rgba(18,10,31,0.98))" },
+  { href: "/research", src: "/collage/nihms-f1.jpg", alt: "NIHMS fig1", x: 55, y: 73, w: 13, h: 11, rotate: -9, depth: 0.86, phase: 5.8, fit: "contain", bg: "linear-gradient(135deg, rgba(26,10,16,0.98), rgba(9,17,36,0.98))" },
+  { href: "/research", src: "/collage/nihms-f2.jpg", alt: "NIHMS fig2", x: 69, y: 73, w: 12, h: 11, rotate: 7, depth: 0.81, phase: 6.0, fit: "contain", bg: "linear-gradient(135deg, rgba(10,18,42,0.96), rgba(15,9,28,0.98))" },
+  { href: "/research", src: "/collage/nihms-f3.jpg", alt: "NIHMS fig3", x: 82, y: 74, w: 11, h: 10, rotate: -4, depth: 0.78, phase: 6.2, fit: "contain", bg: "linear-gradient(135deg, rgba(12,28,26,0.98), rgba(28,10,22,0.98))" },
+  { href: "/research", src: "/collage/nihms-f4.jpg", alt: "NIHMS fig4", x: 31, y: 33, w: 11, h: 10, rotate: 5, depth: 0.76, phase: 6.4, fit: "contain", bg: "linear-gradient(135deg, rgba(32,13,11,0.98), rgba(10,20,34,0.98))" },
+  { href: "/research", src: "/collage/nat25-fig1.jpg", alt: "Nature 2025 fig1", x: 52, y: 31, w: 11, h: 9, rotate: -6, depth: 0.74, phase: 6.6, fit: "contain", bg: "linear-gradient(135deg, rgba(11,33,32,0.98), rgba(18,8,28,0.98))" },
+  { href: "/research", src: "/collage/nat25-fig2.jpg", alt: "Nature 2025 fig2", x: 63, y: 32, w: 11, h: 9, rotate: 6, depth: 0.72, phase: 6.8, fit: "contain", bg: "linear-gradient(135deg, rgba(28,9,18,0.98), rgba(9,16,38,0.98))" },
+  { href: "/research", src: "/collage/nat20-fig1.jpg", alt: "Nature 2020 fig1", x: 12, y: 18, w: 10, h: 10, rotate: -8, depth: 0.75, phase: 7.0, fit: "contain", bg: "linear-gradient(135deg, rgba(12,22,42,0.98), rgba(23,9,33,0.98))" },
+  { href: "/research", src: "/collage/nat20-fig2.jpg", alt: "Nature 2020 fig2", x: 87, y: 24, w: 10, h: 10, rotate: 8, depth: 0.73, phase: 7.2, fit: "contain", bg: "linear-gradient(135deg, rgba(11,32,29,0.98), rgba(18,8,28,0.98))" },
+  { href: "/research", src: "/collage/srep-f1.jpg", alt: "Scientific Reports fig1", x: 2, y: 42, w: 10, h: 10, rotate: 6, depth: 0.78, phase: 7.4, fit: "contain", bg: "linear-gradient(135deg, rgba(26,8,24,0.98), rgba(8,18,36,0.98))" },
+  { href: "/research", src: "/collage/srep-f2.jpg", alt: "Scientific Reports fig2", x: 89, y: 54, w: 9, h: 10, rotate: -7, depth: 0.76, phase: 7.6, fit: "contain", bg: "linear-gradient(135deg, rgba(10,18,40,0.98), rgba(29,12,14,0.98))" },
+  { href: "/research", src: "/portraits/portrait-night.jpg", alt: "Junhyung portrait", x: 41, y: 34, w: 13, h: 22, rotate: 2, depth: 1.2, phase: 7.8 },
+  { href: "/music", src: "/portraits/portrait-stage.jpg", alt: "Junhyung stage portrait", x: 91, y: 6, w: 8, h: 11, rotate: 12, depth: 0.98, phase: 8.0 },
+  { href: "/writing", src: "/portraits/portrait-city.jpg", alt: "Junhyung city portrait", x: 22, y: 1, w: 9, h: 12, rotate: -12, depth: 0.92, phase: 8.2 },
+  { href: "/music", src: "/portraits/portrait-archive-1.jpg", alt: "Junhyung portrait archive 1", x: 1, y: 78, w: 9, h: 13, rotate: -11, depth: 0.84, phase: 8.4 },
+  { href: "/writing", src: "/portraits/portrait-archive-2.jpg", alt: "Junhyung portrait archive 2", x: 12, y: 79, w: 10, h: 13, rotate: 8, depth: 0.87, phase: 8.6 },
+  { href: "/music", src: "/portraits/portrait-archive-3.jpg", alt: "Junhyung portrait archive 3", x: 25, y: 78, w: 9, h: 12, rotate: -6, depth: 0.8, phase: 8.8 },
+  { href: "/research", src: "/portraits/portrait-archive-4.jpg", alt: "Junhyung portrait archive 4", x: 35, y: 79, w: 10, h: 13, rotate: 10, depth: 0.88, phase: 9.0 },
+  { href: "/writing", src: "/portraits/portrait-archive-5.jpg", alt: "Junhyung portrait archive 5", x: 48, y: 79, w: 9, h: 13, rotate: -9, depth: 0.82, phase: 9.2 },
+  { href: "/music", src: "/portraits/portrait-archive-6.jpg", alt: "Junhyung portrait archive 6", x: 60, y: 77, w: 10, h: 14, rotate: 7, depth: 0.86, phase: 9.4 },
+  { href: "/research", src: "/portraits/portrait-archive-7.jpg", alt: "Junhyung portrait archive 7", x: 73, y: 79, w: 9, h: 13, rotate: -8, depth: 0.85, phase: 9.6 },
+  { href: "/music", src: "/portraits/portrait-archive-8.jpg", alt: "Junhyung portrait archive 8", x: 84, y: 79, w: 10, h: 13, rotate: 9, depth: 0.84, phase: 9.8 },
 ] as const;
 
 const SCALE = 1.32;
@@ -306,6 +324,8 @@ export function FloatingCollage() {
               cardRefs.current[index] = node;
             }}
             href={card.href}
+            target={card.external ? "_blank" : undefined}
+            rel={card.external ? "noreferrer" : undefined}
             onPointerDown={(event) => {
               event.preventDefault();
               const rect = containerRef.current?.getBoundingClientRect();
