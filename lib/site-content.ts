@@ -27,8 +27,10 @@ export type MusicVideo = {
 
 export type WritingEntry = {
   year: string;
+  category: LocalizedText;
   title: LocalizedText;
   summary: LocalizedText;
+  href: string;
 };
 
 export const links: SiteLink[] = [
@@ -54,7 +56,7 @@ export const links: SiteLink[] = [
     href: "mailto:junhyungcho@kaist.ac.kr",
     label: "Email",
     meta: {
-      ko: "협업 및 연락",
+      ko: "연락 및 협업",
       en: "contact and collaboration",
     },
     icon: "mail",
@@ -88,8 +90,8 @@ export const disciplines: DisciplineSummary[] = [
       en: "Reading / Writing",
     },
     strap: {
-      ko: "블로그 링크와 지금까지의 글을 한/영으로 정리하는 공간.",
-      en: "A page that organizes blog links and written pieces in Korean and English.",
+      ko: "블로그 링크와 실제 글 목록을 한국어와 영어로 함께 정리하는 공간.",
+      en: "A page that organizes your blog and selected posts in Korean and English.",
     },
     note: {
       ko: "블로그와 작성한 글 목록",
@@ -130,8 +132,8 @@ export const homeContent = {
     en: "Keep music,\nwriting, and research\nclear and separate.",
   },
   description: {
-    ko: "홈은 입구 역할만 하고, 실제 내용은 각각의 서브페이지에서 더 차분하고 밀도 있게 보이도록 재구성했습니다.",
-    en: "The homepage now acts as an entry point, while the actual content lives in dedicated pages with a calmer rhythm.",
+    ko: "홈은 입구 역할만 하고, 실제 내용은 각각의 서브페이지에서 더 차분하고 밀도 있게 보이도록 정리했습니다.",
+    en: "The homepage acts as an entry point, while the actual content lives in dedicated pages with a calmer rhythm.",
   },
   principles: [
     {
@@ -224,18 +226,18 @@ export const writingPage = {
     en: "Reading / Writing",
   },
   description: {
-    ko: "블로그 링크와 지금까지의 글 목록을 한국어와 영어로 함께 보여주는 페이지입니다.",
-    en: "A page for your blog link and a bilingual index of what you have written so far.",
+    ko: "네이버 블로그와 지금까지의 글 일부를 한/영으로 정리해 둔 페이지입니다.",
+    en: "A page that links your Naver blog and organizes selected pieces in Korean and English.",
   },
   title: {
-    ko: "블로그와 글 목록을\n한/영으로 정리하기.",
-    en: "Organize your blog\nand writing in two languages.",
+    ko: "블로그와 글 목록을\n한/영으로 함께 보기.",
+    en: "Read the blog\nand selected writing in two languages.",
   },
   intro: {
-    ko: "지금은 블로그 URL이 없어서 링크 영역을 placeholder로 남겨 두었습니다. URL만 넣으면 바로 실제 링크로 바뀌게 해 두었습니다.",
-    en: "The blog URL is currently left as a placeholder. Once you add the real URL, this section becomes a live link immediately.",
+    ko: "공개 RSS에서 확인 가능한 글 몇 편을 추려 writing 페이지에 실제 콘텐츠로 반영했습니다. 이후 더 추가하고 싶은 글은 같은 방식으로 계속 넣을 수 있습니다.",
+    en: "A small set of publicly visible posts from the blog RSS feed has been folded into this page. More entries can be added in the same format later.",
   },
-  blogUrl: "",
+  blogUrl: "https://blog.naver.com/algo7112",
   blogLabel: {
     ko: "블로그 링크",
     en: "Blog link",
@@ -245,42 +247,89 @@ export const writingPage = {
     en: "Add your blog URL to turn this into a live link.",
   },
   entriesLabel: {
-    ko: "작성한 글",
-    en: "Written pieces",
+    ko: "선별한 글",
+    en: "Selected posts",
   },
   entries: [
     {
       year: "2026",
+      category: {
+        ko: "수필",
+        en: "Essay",
+      },
       title: {
-        ko: "아이러니가 다시 진심처럼 들릴 때",
-        en: "When irony starts sounding sincere again",
+        ko: "모르는 만큼 보인다",
+        en: "You See More by Knowing Less",
       },
       summary: {
-        ko: "온라인 언어가 거리두기에서 친밀감 쪽으로 이동하는 방식에 대한 글.",
-        en: "A piece on how online language shifts from distance toward intimacy.",
+        ko: "전문성의 경계에 가까워질수록 오히려 큰 맥락을 놓치기 쉬워진다는 점을 사유하는 수필.",
+        en: "An essay on how expertise can narrow perception even as it deepens technical understanding.",
       },
+      href: "https://blog.naver.com/algo7112/224232537490",
+    },
+    {
+      year: "2026",
+      category: {
+        ko: "작품 리뷰",
+        en: "Review",
+      },
+      title: {
+        ko: "'픽션들'은 포스트모더니즘 시대의 성경이다",
+        en: "'Ficciones' Is the Bible of the Postmodern Age",
+      },
+      summary: {
+        ko: "보르헤스의 '픽션들'을 다시 읽으며 독서, 포스트모더니즘, 그리고 글쓰기의 형식을 연결하는 글.",
+        en: "A review that connects Borges, postmodernism, and the structure of literary thinking.",
+      },
+      href: "https://blog.naver.com/algo7112/224151247766",
     },
     {
       year: "2025",
+      category: {
+        ko: "수필",
+        en: "Essay",
+      },
       title: {
-        ko: "분위기가 논지보다 먼저 오는 문장들",
-        en: "Sentences where atmosphere arrives before thesis",
+        ko: "오직 하나의 좋은 농담을 생각해내기 위해 아주 긴 시간과 노력을 바치고 싶다",
+        en: "I Want to Spend a Very Long Time Arriving at One Good Joke",
       },
       summary: {
-        ko: "글을 쓸 때 분위기와 리듬이 논리보다 먼저 자리를 잡는 순간에 대한 메모.",
-        en: "Notes on the moment when mood and rhythm settle before the formal argument does.",
+        ko: "왜 글을 쓰는가에 대한 질문을 농담, 직관, 문학의 목적이라는 방식으로 풀어가는 에세이.",
+        en: "A reflective essay on writing, intuition, and the idea of literature through the frame of a single good joke.",
       },
+      href: "https://blog.naver.com/algo7112/224070120051",
     },
     {
-      year: "2024",
+      year: "2025",
+      category: {
+        ko: "언어",
+        en: "Language",
+      },
       title: {
-        ko: "야간 이동, 형광등, 유리창",
-        en: "Night transit, fluorescent light, reflected glass",
+        ko: "왜 일부 언어에서는 '내일'이 곧 '아침' 일까?",
+        en: "Why Do Some Languages Use the Same Word for 'Morning' and 'Tomorrow'?",
       },
       summary: {
-        ko: "도시의 늦은 시간대 이동감각을 짧은 산문으로 잡아본 기록.",
-        en: "A short prose fragment about moving through the city late at night.",
+        ko: "스페인어와 독일어 사례를 통해 시간 개념과 어원을 흥미롭게 푸는 짧은 언어학 글.",
+        en: "A concise linguistic note on how etymology links morning and tomorrow in some European languages.",
       },
+      href: "https://blog.naver.com/algo7112/223786938523",
+    },
+    {
+      year: "2025",
+      category: {
+        ko: "단편",
+        en: "Short fiction",
+      },
+      title: {
+        ko: "예술과 외설의 경계에 관한 스케치",
+        en: "A Sketch on the Boundary Between Art and Obscenity",
+      },
+      summary: {
+        ko: "현대미술관 카페를 배경으로 예술, 외설, 해체와 상징을 대화 형식으로 밀어붙이는 단편.",
+        en: "A short fiction piece set in a museum cafe, pushing art, obscenity, and interpretation through dialogue.",
+      },
+      href: "https://blog.naver.com/algo7112/223722566599",
     },
   ] as WritingEntry[],
 };

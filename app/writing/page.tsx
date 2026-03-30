@@ -31,7 +31,7 @@ export default function WritingPage() {
               rel="noreferrer"
               className="mt-4 flex items-center justify-between border border-[var(--line)] px-4 py-4 transition hover:bg-black hover:text-white"
             >
-              <span>Open blog</span>
+              <span>{locale === "ko" ? "블로그 열기" : "Open blog"}</span>
               <ArrowUpRight className="h-4 w-4" />
             </a>
           ) : (
@@ -57,6 +57,9 @@ export default function WritingPage() {
             >
               <span className="text-sm text-[var(--muted)]">{entry.year}</span>
               <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-black/35">
+                  {entry.category[locale]}
+                </p>
                 <h3 className="text-xl font-medium tracking-[-0.03em] text-black">
                   {entry.title[locale]}
                 </h3>
@@ -66,6 +69,15 @@ export default function WritingPage() {
                 <p className="mt-3 text-xs uppercase tracking-[0.2em] text-black/35">
                   {locale === "ko" ? entry.title.en : entry.title.ko}
                 </p>
+                <a
+                  href={entry.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-sm text-black underline underline-offset-4"
+                >
+                  {locale === "ko" ? "원문 보기" : "Read original"}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
               </div>
             </article>
           ))}
