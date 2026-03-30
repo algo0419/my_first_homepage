@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { type PointerEvent, useRef } from "react";
+import { type PointerEvent, useEffect, useRef, useState } from "react";
 
 type FloatingCard = {
   src: string;
@@ -85,8 +85,6 @@ const hiddenTargets: HiddenTarget[] = [
   { href: "https://www.kaist.ac.kr/en/", label: "KAIST", sublabel: "official site", x: 62, y: 62, w: 23, h: 14, rotate: 4, external: true, palette: "linear-gradient(135deg, rgba(0,116,255,0.96), rgba(66,255,220,0.96) 52%, rgba(255,255,255,0.92))" },
 ];
 
-const SCALE = 1.3;
-
 export function FloatingCollage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const draggingRef = useRef<{
@@ -94,6 +92,19 @@ export function FloatingCollage() {
     dx: number;
     dy: number;
   } | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const sync = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, []);
+
+  const scale = isMobile ? 0.9 : 1.3;
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     const dragging = draggingRef.current;
@@ -112,8 +123,8 @@ export function FloatingCollage() {
 
     const nextX = ((event.clientX - rect.left) / rect.width) * 100 - dragging.dx;
     const nextY = ((event.clientY - rect.top) / rect.height) * 100 - dragging.dy;
-    const maxX = 99 - card.w * SCALE;
-    const maxY = 99 - card.h * SCALE;
+    const maxX = 99 - card.w * scale;
+    const maxY = 99 - card.h * scale;
     const clampedX = Math.max(1, Math.min(maxX, nextX));
     const clampedY = Math.max(1, Math.min(maxY, nextY));
 
@@ -124,7 +135,7 @@ export function FloatingCollage() {
   return (
     <div
       ref={containerRef}
-      className="relative h-[2040px] overflow-hidden md:h-[1540px]"
+      className="relative h-[100svh] min-h-[100svh] overflow-hidden md:h-[100dvh] md:min-h-[100dvh]"
       onPointerMove={handlePointerMove}
       onPointerUp={() => {
         draggingRef.current = null;
@@ -203,11 +214,13 @@ export function FloatingCollage() {
           style={{
             left: `${card.x}%`,
             top: `${card.y}%`,
-            width: `${card.w * SCALE}%`,
-            height: `${card.h * SCALE}%`,
+            width: `${card.w * scale}%`,
+            height: `${card.h * scale}%`,
             transform: `rotate(${card.rotate}deg)`,
             zIndex: index + 10,
-            boxShadow: "0 18px 42px rgba(0,0,0,0.3)",
+            boxShadow: isMobile
+              ? "0 10px 22px rgba(0,0,0,0.24)"
+              : "0 18px 42px rgba(0,0,0,0.3)",
           }}
         >
           <img

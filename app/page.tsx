@@ -3,8 +3,8 @@ import { FloatingCollage } from "@/components/floating-collage";
 
 export default function HomePage() {
   return (
-    <SiteFrame current="home">
-      <section className="-mx-4 fade-up sm:-mx-6 lg:-mx-8">
+    <SiteFrame current="home" fullBleed>
+      <section className="fade-up">
         <FloatingCollage />
       </section>
     </SiteFrame>

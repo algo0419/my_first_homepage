@@ -7,10 +7,15 @@ import { ScrollProgress } from "@/components/scroll-progress";
 
 type SiteFrameProps = {
   current?: "home" | "music" | "writing" | "research";
+  fullBleed?: boolean;
   children: ReactNode;
 };
 
-export function SiteFrame({ current = "home", children }: SiteFrameProps) {
+export function SiteFrame({
+  current = "home",
+  fullBleed = false,
+  children,
+}: SiteFrameProps) {
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-white selection:text-black">
       <ScrollProgress />
@@ -28,7 +33,15 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
         <LanguageToggle />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">{children}</div>
+      <div
+        className={
+          fullBleed
+            ? "relative z-10 min-h-screen"
+            : "relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8"
+        }
+      >
+        {children}
+      </div>
     </main>
   );
 }
