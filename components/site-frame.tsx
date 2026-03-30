@@ -12,19 +12,19 @@ type SiteFrameProps = {
 
 const labels = {
   home: {
-    ko: "홈",
+    ko: "\uD648",
     en: "Home",
   },
   music: {
-    ko: "음악",
+    ko: "\uC74C\uC545",
     en: "Music",
   },
   writing: {
-    ko: "독서 / 글",
+    ko: "\uB3C5\uC11C / \uAE00",
     en: "Reading / Writing",
   },
   research: {
-    ko: "연구",
+    ko: "\uC5F0\uAD6C",
     en: "Research",
   },
 } as const;
@@ -34,11 +34,13 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-black selection:text-white">
-      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
-        <header className="mb-8 border border-[var(--line)] bg-[var(--surface)] px-4 py-4 backdrop-blur-sm sm:px-6">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <div className="space-y-2">
-              <Link href="/" className="text-sm font-medium tracking-[-0.02em]">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-0 h-80 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(255,255,255,0))]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
+        <header className="sticky top-4 z-20 mb-10">
+          <div className="glass-panel flex flex-col gap-5 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="space-y-1">
+              <Link href="/" className="text-sm font-medium tracking-[-0.02em] text-black">
                 Junhyung Cho
               </Link>
               <p className="text-sm text-[var(--muted)]">music, writing, research</p>
@@ -50,10 +52,10 @@ export function SiteFrame({ current = "home", children }: SiteFrameProps) {
                   <Link
                     key={key}
                     href={key === "home" ? "/" : `/${key}`}
-                    className={`rounded-full border px-3 py-1.5 transition ${
+                    className={`rounded-full border px-3.5 py-2 transition duration-300 ${
                       current === key
-                        ? "border-black bg-black text-white"
-                        : "border-[var(--line)] bg-white"
+                        ? "border-black bg-black text-white shadow-[0_12px_30px_rgba(17,17,17,0.18)]"
+                        : "border-[var(--line)] bg-white/70 text-black/70 hover:-translate-y-0.5 hover:bg-white"
                     }`}
                   >
                     {labels[key][locale]}

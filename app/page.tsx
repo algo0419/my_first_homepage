@@ -29,66 +29,71 @@ export default function HomePage() {
 
   return (
     <SiteFrame current="home">
-      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
-          <div className="mb-10 flex flex-wrap items-center justify-between gap-3">
-            <span className="rounded-full border border-[var(--line)] bg-white px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="soft-card fade-up p-7 sm:p-10">
+          <div className="mb-12 flex flex-wrap items-center justify-between gap-3">
+            <span className="rounded-full border border-[var(--line)] bg-white/85 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
               {homeContent.badge[locale]}
             </span>
             <span className="text-sm text-[var(--muted)]">{homeContent.location}</span>
           </div>
 
-          <p className="text-sm text-[var(--muted)]">{homeContent.introLabel[locale]}</p>
-          <h1 className="mt-4 whitespace-pre-line text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-black sm:text-6xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
+            {homeContent.introLabel[locale]}
+          </p>
+          <h1 className="mt-5 whitespace-pre-line text-6xl font-semibold leading-[0.9] tracking-[-0.07em] text-black sm:text-7xl">
             {homeContent.title[locale]}
           </h1>
-          <p className="mt-8 max-w-2xl text-base leading-8 text-[var(--muted)]">
+          <p className="mt-8 max-w-xl text-base leading-8 text-[var(--muted)]">
             {homeContent.description[locale]}
           </p>
         </div>
 
-        <div className="grid auto-rows-[160px] gap-4 sm:grid-cols-2">
+        <div className="grid auto-rows-[190px] gap-4 sm:grid-cols-2">
           {homePhotos.map((photo) => (
             <div
               key={photo.src}
-              className={`overflow-hidden border border-[var(--line)] bg-white ${photo.className}`}
+              className={`soft-card lift-card fade-up overflow-hidden ${photo.className}`}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
               />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mt-6 grid gap-4 lg:grid-cols-3">
+      <section className="mt-8 grid gap-4 lg:grid-cols-3">
         {disciplines.map((item) => (
           <Link
             key={item.key}
             href={item.path}
-            className="group border border-[var(--line)] bg-white p-6 transition hover:-translate-y-0.5"
+            className="soft-card lift-card group fade-up p-7"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-2xl font-medium tracking-[-0.04em] text-black">
+                <p className="text-sm uppercase tracking-[0.18em] text-black/35">
+                  {item.note[locale]}
+                </p>
+                <p className="mt-4 text-3xl font-medium tracking-[-0.05em] text-black">
                   {item.title[locale]}
                 </p>
-                <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
+                <p className="mt-5 text-sm leading-7 text-[var(--muted)]">
                   {item.strap[locale]}
                 </p>
               </div>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-black/45 transition group-hover:text-black" />
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-black/45 transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black" />
             </div>
           </Link>
         ))}
       </section>
 
-      <section className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
+      <section className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="soft-card fade-up p-7 sm:p-10">
           <p className="text-sm text-[var(--muted)]">{homeContent.profileLabel[locale]}</p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.05em] text-black sm:text-4xl">
+          <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.05em] text-black sm:text-4xl">
             {homeContent.profileTitle[locale]}
           </h2>
           <p className="mt-6 max-w-xl text-sm leading-8 text-[var(--muted)]">
@@ -103,13 +108,13 @@ export default function HomePage() {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-between border border-[var(--line)] bg-white px-5 py-4 transition hover:bg-black hover:text-white"
+              className="soft-card lift-card group fade-up flex items-center justify-between px-5 py-4"
             >
               <div>
                 <p className="text-base font-medium">{link.label}</p>
                 <p className="mt-1 text-sm opacity-65">{link.meta[locale]}</p>
               </div>
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowUpRight className="h-4 w-4 text-black/45 transition duration-300 group-hover:text-black" />
             </a>
           ))}
         </div>
