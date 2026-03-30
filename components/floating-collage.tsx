@@ -246,7 +246,7 @@ export function FloatingCollage() {
               key={card.src}
               type="button"
               onClick={() => setActiveCard(card)}
-              className="block appearance-none overflow-hidden border-0 bg-transparent p-0 text-left transition duration-200 hover:-translate-y-1 hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-white/70"
+              className="block appearance-none overflow-hidden border-0 bg-transparent p-0 text-left transition duration-200 hover:-translate-y-1 hover:scale-[1.01] focus:outline-none"
               style={{
                 gridColumn: `span ${isMobile ? card.mobileCols : card.desktopCols} / span ${isMobile ? card.mobileCols : card.desktopCols}`,
                 transform: `rotate(${card.rotate}deg)`,
@@ -254,13 +254,13 @@ export function FloatingCollage() {
               }}
             >
               <div
-                className={`w-full overflow-hidden ${card.fit === "contain" ? "bg-black/10 p-2 md:p-3" : ""}`}
+                className="w-full overflow-hidden bg-transparent p-0"
                 style={{ aspectRatio: card.aspectRatio }}
               >
                 <img
                   src={card.src}
                   alt={card.alt}
-                  className={`h-full w-full ${card.fit === "contain" ? "object-contain" : "object-cover"}`}
+                  className={`h-full w-full bg-transparent ${card.fit === "contain" ? "object-contain" : "object-cover"}`}
                   draggable={false}
                 />
               </div>
