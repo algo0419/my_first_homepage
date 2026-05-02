@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Space_Grotesk } from "next/font/google";
-import { LocaleProvider } from "@/components/locale-provider";
 import "./globals.css";
 
-const sans = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
 export const metadata: Metadata = {
-  title: "Junhyung Cho",
+  title: "Junhyung Cho - Personal Archive",
   description:
-    "A bilingual personal website for music, writing, and research.",
+    "A handmade personal archive for music, writing, and research.",
 };
 
 export default function RootLayout({
@@ -21,10 +14,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={sans.variable}>
-        <LocaleProvider>{children}</LocaleProvider>
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

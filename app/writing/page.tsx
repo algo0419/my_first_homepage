@@ -1,89 +1,54 @@
-"use client";
-
-import { ArrowUpRight } from "lucide-react";
-import { InteractivePanel } from "@/components/interactive-panel";
-import { SiteFrame } from "@/components/site-frame";
-import { useLocale } from "@/components/locale-provider";
-import { writingPage } from "@/lib/site-content";
+import { RetroFrame } from "@/components/retro-frame";
+import { writingNotes } from "@/lib/site-content";
 
 export default function WritingPage() {
-  const { locale } = useLocale();
-
   return (
-    <SiteFrame current="writing">
-      <section className="fade-up grid gap-6 lg:grid-cols-[1.06fr_0.94fr]">
-        <div className="soft-card p-7 sm:p-10">
-          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
-            {writingPage.description[locale]}
-          </p>
-          <h1 className="mt-5 whitespace-pre-line text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-[var(--text)] sm:text-6xl">
-            {writingPage.title[locale]}
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-8 text-[var(--muted)]">
-            {writingPage.intro[locale]}
-          </p>
-        </div>
+    <RetroFrame
+      current="writing"
+      eyebrow="writing desk"
+      title="Books, essays, fragments, and detours"
+      subtitle="Blog posts and reading notes arranged like a small shelf."
+    >
+      <section className="page-grid">
+        <article className="retro-box wide-panel pink">
+          <img src="/collage/bolano-detectives.jpg" alt="The Savage Detectives cover" />
+          <div>
+            <p className="box-kicker">Blog door</p>
+            <h2>The long notes live elsewhere, but the index starts here.</h2>
+            <p>
+              These entries point toward essays, reviews, language notes, and
+              unfinished questions that keep coming back through different
+              books.
+            </p>
+            <a
+              href="https://blog.naver.com/algo7112"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open the Naver blog
+            </a>
+          </div>
+        </article>
 
-        <InteractivePanel className="soft-card lift-card p-7 sm:p-9">
-          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
-            {writingPage.blogLabel[locale]}
-          </p>
-          <a
-            href={writingPage.blogUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 flex items-center justify-between rounded-[28px] border border-[var(--line)] bg-white/5 px-5 py-5 transition hover:bg-white/10"
-          >
-            <span className="text-base font-medium">
-              {locale === "ko" ? "\uBE14\uB85C\uADF8 \uC5F4\uAE30" : "Open blog"}
-            </span>
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </InteractivePanel>
-      </section>
-
-      <section className="mt-8 fade-up">
-        <div className="mb-4">
-          <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">
-            {writingPage.entriesLabel[locale]}
-          </p>
-        </div>
-
-        <div className="grid gap-4">
-          {writingPage.entries.map((entry) => (
-            <InteractivePanel key={`${entry.year}-${entry.title.en}`} className="soft-card lift-card">
-              <article className="grid gap-5 p-7 sm:grid-cols-[90px_1fr] sm:p-9">
-                <span className="text-sm text-[var(--muted)]">{entry.year}</span>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/35">
-                    {entry.category[locale]}
-                  </p>
-                  <h2 className="mt-4 text-3xl font-medium tracking-[-0.05em] text-[var(--text)]">
-                    {entry.title[locale]}
-                  </h2>
-                  <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">
-                    {entry.summary[locale]}
-                  </p>
-                  <div className="mt-6 flex flex-wrap items-center gap-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/35">
-                      {locale === "ko" ? entry.title.en : entry.title.ko}
-                    </p>
-                    <a
-                      href={entry.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-[var(--text)] underline underline-offset-4"
-                    >
-                      {locale === "ko" ? "\uC6D0\uBB38 \uBCF4\uAE30" : "Read original"}
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </InteractivePanel>
+        <div className="writing-list">
+          {writingNotes.map((note) => (
+            <a
+              key={`${note.year}-${note.title}`}
+              className="retro-box writing-card"
+              href={note.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={note.image} alt={note.title} />
+              <div>
+                <p>{note.year} / {note.kind}</p>
+                <h2>{note.title}</h2>
+                <span>{note.note}</span>
+              </div>
+            </a>
           ))}
         </div>
       </section>
-    </SiteFrame>
+    </RetroFrame>
   );
 }
