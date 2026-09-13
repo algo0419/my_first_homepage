@@ -1,4 +1,5 @@
 import { books, outsideLinks, photos, posts, records } from "@/lib/site-content";
+import { CriticalLightField } from "@/components/critical-light-field";
 import { InteractiveStudio } from "@/components/interactive-studio";
 
 const tickerText =
@@ -79,7 +80,7 @@ export default function HomePage() {
           <a href="#notes">THINGS I WROTE</a>
           <a href="#room">THE FAKE ROOM</a>
           <a href="#shelf">REPEAT OFFENDERS</a>
-          <a href="#day-job">DAY JOB</a>
+          <a href="#day-job">LIGHT FIELD</a>
           <a href="#proof">PHOTOGRAPHIC EVIDENCE</a>
         </nav>
 
@@ -253,7 +254,7 @@ export default function HomePage() {
 
         <section className="day-job" id="day-job">
           <div className="day-job-copy">
-            <p className="warning-label">DAY JOB INTERRUPTION</p>
+            <p className="warning-label">LABORATORY / EXHIBITION / FEEDBACK</p>
             <img
               src="/collage/kaist-ee-logo.png"
               alt="KAIST Electrical Engineering"
@@ -261,30 +262,38 @@ export default function HomePage() {
               height={418}
               loading="lazy"
             />
-            <h2>Occasionally, the photons behave.</h2>
+            <h2>Light is not innocent.</h2>
             <p>
-              I study electrical engineering at KAIST. Lately I have been
-              looking at diamond photonic circuits and BTO hybrid modulators.
-              That is enough research vocabulary for one home page.
+              I study electrical engineering at KAIST, working around diamond
+              photonic circuits and BTO hybrid modulators. The technical work
+              begins with devices, but it quickly expands into a larger
+              choreography of alignment, waiting, interpretation, and doubt.
             </p>
-          </div>
-          <div className="photon-machine" aria-hidden="true">
-            <b>LIGHT IN MOTION</b>
-            <span className="beam beam-one" />
-            <span className="beam beam-two" />
-            <span className="beam beam-three" />
-            <i className="photon photon-one" />
-            <i className="photon photon-two" />
-            <i className="photon photon-three" />
-            <div>
-              <span>LIGHT</span>
-              <span>MATTER</span>
-              <span>NOISE</span>
-              <span>REPEAT</span>
+            <p>
+              Here the laboratory apparatus refuses to remain backstage. A
+              laser, a graph, a cursor, and the person leaning over the table
+              all participate in producing what will later be called a result.
+              The clean signal is never clean; it is simply the moment when a
+              noisy situation agrees to hold still for publication.
+            </p>
+            <div className="day-job-propositions">
+              <p>
+                <b>01 / ALIGNMENT</b>
+                Precision is a posture maintained against fatigue.
+              </p>
+              <p>
+                <b>02 / NOISE</b>
+                Error is material waiting for a different title.
+              </p>
+              <p>
+                <b>03 / DISPLAY</b>
+                Evidence becomes public through graphic design.
+              </p>
             </div>
           </div>
+          <CriticalLightField />
           <div className="lab-arrow" aria-hidden="true">
-            &lt;&lt;&lt; LASER IN / NUMBERS OUT
+            &lt;&lt;&lt; THE RESULT IS STILL BEING INSTALLED
           </div>
         </section>
 
