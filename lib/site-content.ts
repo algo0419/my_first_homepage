@@ -65,30 +65,18 @@ export const books = [
   {
     title: "Ficciones",
     author: "Jorge Luis Borges",
-    image: "/collage/borges-ficciones.jpg",
-    width: 279,
-    height: 450,
   },
   {
     title: "If on a winter's night a traveler",
     author: "Italo Calvino",
-    image: "/collage/calvino-winter.jpg",
-    width: 337,
-    height: 479,
   },
   {
     title: "The Trial",
     author: "Franz Kafka",
-    image: "/collage/kafka-trial.jpg",
-    width: 575,
-    height: 863,
   },
   {
     title: "The Myth of Sisyphus",
     author: "Albert Camus",
-    image: "/collage/camus-sisyphus.jpg",
-    width: 290,
-    height: 475,
   },
 ];
 

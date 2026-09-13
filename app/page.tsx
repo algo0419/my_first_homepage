@@ -1,4 +1,5 @@
 import { books, outsideLinks, photos, posts, records } from "@/lib/site-content";
+import { InteractiveStudio } from "@/components/interactive-studio";
 
 const tickerText =
   "MUSIC / BOOKS / PHOTONS / BAD JOKES / STAGE LIGHTS / OPEN TABS / ALWAYS UNDER CONSTRUCTION";
@@ -181,20 +182,18 @@ export default function HomePage() {
           <span>REPEAT</span>
         </div>
 
-        <figure className="studio-diorama" id="room">
-          <img
-            src="/generated/studio-diorama.png"
-            alt="A colorful computer-generated music and photonics studio"
-            width={1536}
-            height={1024}
-            loading="lazy"
-          />
-          <figcaption>
-            <b>A COMPUTER-GENERATED LIE ABOUT MY DESK</b>
-            <span>This room does not exist. The mess is emotionally accurate.</span>
-          </figcaption>
-          <div className="room-sticker">SYNTHS + BOOKS + LASERS</div>
-        </figure>
+        <InteractiveStudio />
+
+        <div className="micro-ticker" aria-hidden="true">
+          <div>
+            <span>NO EMPTY SPACE</span>
+            <span>KEEP SCROLLING</span>
+            <span>TOO MANY TABS</span>
+            <span>NO EMPTY SPACE</span>
+            <span>KEEP SCROLLING</span>
+            <span>TOO MANY TABS</span>
+          </div>
+        </div>
 
         <section className="shelf-chaos" id="shelf">
           <div className="record-pile">
@@ -229,22 +228,25 @@ export default function HomePage() {
               <small>PERMANENT RESIDENTS</small>
               <h2>Books I keep reopening</h2>
             </header>
-            <div className="book-grid">
-              {books.map((book) => (
-                <figure key={book.title}>
-                  <img
-                    src={book.image}
-                    alt={book.title + " by " + book.author}
-                    width={book.width}
-                    height={book.height}
-                    loading="lazy"
-                  />
-                  <figcaption>
-                    <b>{book.title}</b>
-                    <small>{book.author}</small>
-                  </figcaption>
-                </figure>
-              ))}
+            <div className="book-belt">
+              <div className="book-track">
+                <div className="book-set">
+                  {books.map((book) => (
+                    <span className="book-spine" key={book.title}>
+                      <b>{book.title}</b>
+                      <small>{book.author}</small>
+                    </span>
+                  ))}
+                </div>
+                <div className="book-set" aria-hidden="true">
+                  {books.map((book) => (
+                    <span className="book-spine" key={"copy-" + book.title}>
+                      <b>{book.title}</b>
+                      <small>{book.author}</small>
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -266,18 +268,23 @@ export default function HomePage() {
               That is enough research vocabulary for one home page.
             </p>
           </div>
-          <figure>
-            <img
-              src="/collage/loncar-diamond-circuit.jpg"
-              alt="A diamond photonic circuit"
-              width={750}
-              height={404}
-              loading="lazy"
-            />
-            <figcaption>ONE (1) SCIENTIFIC IMAGE, AS PROMISED.</figcaption>
-          </figure>
+          <div className="photon-machine" aria-hidden="true">
+            <b>LIGHT IN MOTION</b>
+            <span className="beam beam-one" />
+            <span className="beam beam-two" />
+            <span className="beam beam-three" />
+            <i className="photon photon-one" />
+            <i className="photon photon-two" />
+            <i className="photon photon-three" />
+            <div>
+              <span>LIGHT</span>
+              <span>MATTER</span>
+              <span>NOISE</span>
+              <span>REPEAT</span>
+            </div>
+          </div>
           <div className="lab-arrow" aria-hidden="true">
-            &lt;&lt;&lt; LIGHT GOES SOMEWHERE IN HERE
+            &lt;&lt;&lt; LASER IN / NUMBERS OUT
           </div>
         </section>
 
