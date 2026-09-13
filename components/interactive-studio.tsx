@@ -128,7 +128,27 @@ const zones: StudioZone[] = [
 export function InteractiveStudio() {
   const [selected, setSelected] = useState<StudioZone | null>(null);
   const [preview, setPreview] = useState<StudioZone | null>(null);
+  const [lastActive, setLastActive] = useState<StudioZone | null>(null);
+  const [burstId, setBurstId] = useState(0);
   const active = preview ?? selected;
+  const displayed = active ?? lastActive;
+
+  const openZone = (zone: StudioZone) => {
+    setLastActive(zone);
+    setPreview(zone);
+    setBurstId((current) => current + 1);
+  };
+
+  const closeZone = () => {
+    setPreview(null);
+    setSelected(null);
+  };
+
+  const toggleZone = (zone: StudioZone) => {
+    setLastActive(zone);
+    setBurstId((current) => current + 1);
+    setSelected((current) => (current?.id === zone.id ? null : zone));
+  };
 
   const focusStyle = {
     "--focus-x": (active?.x ?? 50) + "%",
@@ -168,13 +188,11 @@ export function InteractiveStudio() {
             aria-label={"Inspect " + zone.label.toLowerCase()}
             aria-pressed={selected?.id === zone.id}
             data-active={active?.id === zone.id ? "true" : "false"}
-            onMouseEnter={() => setPreview(zone)}
-            onMouseLeave={() => setPreview(null)}
-            onFocus={() => setPreview(zone)}
-            onBlur={() => setPreview(null)}
-            onClick={() =>
-              setSelected((current) => (current?.id === zone.id ? null : zone))
-            }
+            onMouseEnter={() => openZone(zone)}
+            onMouseLeave={closeZone}
+            onFocus={() => openZone(zone)}
+            onBlur={closeZone}
+            onClick={() => toggleZone(zone)}
           >
             <span aria-hidden="true">+</span>
             <b>{zone.label}</b>
@@ -182,9 +200,22 @@ export function InteractiveStudio() {
         ))}
       </div>
 
-      {active && (
-        <div className="studio-panel-burst" key={active.id}>
-          {active.criticism.map((fragment, index) => (
+      {displayed && (
+        <div
+          className={
+            "studio-panel-burst " + (active ? "is-open" : "is-closing")
+          }
+          key={displayed.id + "-" + burstId}
+        >
+          <div className="studio-color-crash" aria-hidden="true">
+            {Array.from({ length: 8 }, (_, index) => (
+              <i key={index} />
+            ))}
+          </div>
+          <div className="studio-mega-word" aria-hidden="true">
+            {displayed.label}
+          </div>
+          {displayed.criticism.map((fragment, index) => (
             <article
               className={"studio-essay-panel studio-essay-" + (index + 1)}
               key={fragment.title}
@@ -204,7 +235,7 @@ export function InteractiveStudio() {
             "This room does not exist. The mess is emotionally accurate."}
         </span>
         {selected && (
-          <button type="button" onClick={() => setSelected(null)}>
+          <button type="button" onClick={closeZone}>
             RESET VIEW
           </button>
         )}

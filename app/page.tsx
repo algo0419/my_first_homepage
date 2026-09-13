@@ -76,15 +76,16 @@ export default function HomePage() {
         </div>
 
         <nav className="jump-links" aria-label="Jump around this page">
-          <a href="#hello">HELLO</a>
-          <a href="#notes">THINGS I WROTE</a>
-          <a href="#room">THE FAKE ROOM</a>
-          <a href="#shelf">REPEAT OFFENDERS</a>
-          <a href="#day-job">LIGHT FIELD</a>
-          <a href="#proof">PHOTOGRAPHIC EVIDENCE</a>
+          <a href="#hello">BEGIN HERE</a>
+          <a href="#notes">WORDS / NOISE</a>
+          <a href="#room">ENTER THE ROOM</a>
+          <a href="#shelf">HEAR / READ AGAIN</a>
+          <a href="#day-job">OVEREXPOSE</a>
+          <a href="#proof">PROOF?</a>
         </nav>
 
-        <section className="hello-grid" id="hello">
+        <div className="everything-collage">
+          <section className="hello-grid" id="hello">
           <div className="hello-copy">
             <p className="eyebrow">YES, THIS IS A HOME PAGE.</p>
             <h2>Hello, stranger.</h2>
@@ -125,9 +126,9 @@ export default function HomePage() {
               height={96}
             />
           </picture>
-        </section>
+          </section>
 
-        <section className="collision-grid" id="notes">
+          <section className="collision-grid" id="notes">
           <figure className="stage-panel">
             <img
               src="/portraits/portrait-stage.jpg"
@@ -174,29 +175,29 @@ export default function HomePage() {
               THE LONGER, MESSIER ARCHIVE IS OVER HERE &gt;&gt;&gt;
             </a>
           </aside>
-        </section>
+          </section>
 
-        <div className="scream-strip" aria-hidden="true">
-          <span>LISTEN</span>
-          <span>LOOK</span>
-          <span>READ</span>
-          <span>REPEAT</span>
-        </div>
-
-        <InteractiveStudio />
-
-        <div className="micro-ticker" aria-hidden="true">
-          <div>
-            <span>NO EMPTY SPACE</span>
-            <span>KEEP SCROLLING</span>
-            <span>TOO MANY TABS</span>
-            <span>NO EMPTY SPACE</span>
-            <span>KEEP SCROLLING</span>
-            <span>TOO MANY TABS</span>
+          <div className="scream-strip" aria-hidden="true">
+            <span>LISTEN</span>
+            <span>LOOK</span>
+            <span>READ</span>
+            <span>REPEAT</span>
           </div>
-        </div>
 
-        <section className="shelf-chaos" id="shelf">
+          <InteractiveStudio />
+
+          <div className="micro-ticker" aria-hidden="true">
+            <div>
+              <span>NO EMPTY SPACE</span>
+              <span>KEEP SCROLLING</span>
+              <span>TOO MANY TABS</span>
+              <span>NO EMPTY SPACE</span>
+              <span>KEEP SCROLLING</span>
+              <span>TOO MANY TABS</span>
+            </div>
+          </div>
+
+          <section className="shelf-chaos" id="shelf">
           <div className="record-pile">
             <header>
               <small>STUCK IN THE PLAYER</small>
@@ -250,9 +251,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
+          </section>
 
-        <section className="day-job" id="day-job">
+          <section className="day-job" id="day-job">
           <div className="day-job-copy">
             <p className="warning-label">LABORATORY / EXHIBITION / FEEDBACK</p>
             <img
@@ -295,9 +296,9 @@ export default function HomePage() {
           <div className="lab-arrow" aria-hidden="true">
             &lt;&lt;&lt; THE RESULT IS STILL BEING INSTALLED
           </div>
-        </section>
+          </section>
 
-        <section className="photo-proof" id="proof">
+          <section className="photo-proof" id="proof">
           <header>
             <span>APPARENTLY I LEAVE THE DESK</span>
             <h2>Photographic evidence</h2>
@@ -316,7 +317,8 @@ export default function HomePage() {
               </figure>
             ))}
           </div>
-        </section>
+          </section>
+        </div>
 
         <footer className="escape-hatches">
           <div>
