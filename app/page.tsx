@@ -1,127 +1,331 @@
-import Link from "next/link";
-import { RetroFrame } from "@/components/retro-frame";
-import {
-  bulletinItems,
-  homePanels,
-  musicRecords,
-  portraitStrip,
-  researchFigures,
-  socialLinks,
-  writingNotes,
-} from "@/lib/site-content";
+import { books, outsideLinks, photos, posts, records } from "@/lib/site-content";
+
+const tickerText =
+  "MUSIC / BOOKS / PHOTONS / BAD JOKES / STAGE LIGHTS / OPEN TABS / ALWAYS UNDER CONSTRUCTION";
 
 export default function HomePage() {
   return (
-    <RetroFrame
-      current="home"
-      eyebrow="personal front page"
-      title="Hello, thanks for finding this page!"
-      subtitle="A handmade index for records, essays, lab figures, and photographs."
-    >
-      <section className="home-board">
-        <article className="retro-box intro-box span-7">
-          <div>
-            <p className="box-kicker">Main notice</p>
-            <h2>Music, writing, and research in one noisy directory.</h2>
+    <main className="chaos-site">
+      <div className="status-ribbon">
+        <b>JUNHYUNGCHO.NET</b>
+        <span>LAST MUTATED: 12 SEP 2026</span>
+        <span>FILE NO. 0419</span>
+        <span className="blink">ONLINE!</span>
+      </div>
+
+      <div className="site-shell">
+        <header className="masthead">
+          <aside className="latest-transmission">
             <p>
-              This version throws away the polished dark layout and keeps the
-              archive feeling: colored cells, obvious links, real images, and
-              a personal-site density that rewards wandering.
+              <b className="blink">NEW!</b> FROM THE BLOG
+            </p>
+            <a href={posts[0].href} target="_blank" rel="noreferrer">
+              {posts[0].title}
+            </a>
+            <img
+              src="/collage/wittgenstein-investigations.jpg"
+              alt="Wittgenstein's Philosophical Investigations"
+              width={500}
+              height={386}
+            />
+          </aside>
+
+          <div className="name-banner">
+            <p>WELCOME TO THE INTERNET HOME OF</p>
+            <h1>
+              <span>JUNHYUNG</span>
+              <span>CHO!</span>
+            </h1>
+            <small>MUSIC / NOTES / LIGHT / MISCELLANEOUS DEBRIS</small>
+            <picture className="hero-object">
+              <source
+                media="(prefers-reduced-motion: reduce)"
+                srcSet="/generated/prism-playground.png"
+              />
+              <img
+                src="/generated/prism-spin.gif"
+                alt="A spinning 3D sculpture made from colorful geometric objects"
+                width={390}
+                height={390}
+              />
+            </picture>
+          </div>
+
+          <aside className="location-box">
+            <img
+              src="/portraits/portrait-archive-3.jpg"
+              alt="Portrait of Junhyung Cho"
+              width={663}
+              height={663}
+            />
+            <p>
+              BROADCASTING FROM
+              <b>DAEJEON, KOREA</b>
+              <span>36.35 N / 127.38 E</span>
+            </p>
+          </aside>
+        </header>
+
+        <div className="ticker" aria-label={tickerText}>
+          <div aria-hidden="true">
+            <span>{tickerText}</span>
+            <span>{tickerText}</span>
+          </div>
+        </div>
+
+        <nav className="jump-links" aria-label="Jump around this page">
+          <a href="#hello">HELLO</a>
+          <a href="#notes">THINGS I WROTE</a>
+          <a href="#room">THE FAKE ROOM</a>
+          <a href="#shelf">REPEAT OFFENDERS</a>
+          <a href="#day-job">DAY JOB</a>
+          <a href="#proof">PHOTOGRAPHIC EVIDENCE</a>
+        </nav>
+
+        <section className="hello-grid" id="hello">
+          <div className="hello-copy">
+            <p className="eyebrow">YES, THIS IS A HOME PAGE.</p>
+            <h2>Hello, stranger.</h2>
+            <p>
+              I&apos;m Junhyung Cho. I study electrical engineering at KAIST,
+              perform whenever a stage appears, collect records faster than I
+              can hear them, and write whenever an idea refuses to leave.
+            </p>
+            <p>
+              This page is where those things collide. Nothing here has been
+              sorted into a respectable professional category.
             </p>
           </div>
-          <img
-            src="/portraits/portrait-archive-4.jpg"
-            alt="Junhyung Cho portrait"
-          />
-        </article>
 
-        <aside className="retro-box tiny-news span-5">
-          <p className="box-kicker">Site bulletin</p>
-          <ul>
-            {bulletinItems.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </aside>
+          <div className="right-now">
+            <h2>RIGHT NOW:</h2>
+            <dl>
+              <dt>PLAYING</dt>
+              <dd>Off the Wall</dd>
+              <dt>READING</dt>
+              <dd>Borges, again</dd>
+              <dt>STARING AT</dt>
+              <dd>Diamond photonics</dd>
+              <dt>AVOIDING</dt>
+              <dd>A reasonable bedtime</dd>
+            </dl>
+          </div>
 
-        {homePanels.map((panel) => (
-          <Link
-            key={panel.href}
-            href={panel.href}
-            className={`retro-box feature-box ${panel.tone} span-4`}
-          >
-            <img src={panel.image} alt={panel.alt} />
-            <div>
-              <p className="box-kicker">Click through</p>
-              <h2>{panel.label}</h2>
-              <p>{panel.body}</p>
-            </div>
-          </Link>
-        ))}
+          <picture className="signal-gif">
+            <source
+              media="(prefers-reduced-motion: reduce)"
+              srcSet="/generated/signal-still.png"
+            />
+            <img
+              src="/generated/signal-loop.gif"
+              alt="Animated color bars marked signal"
+              width={288}
+              height={96}
+            />
+          </picture>
+        </section>
 
-        <article className="retro-box shelf-box span-6">
-          <p className="box-kicker">Record pile</p>
-          <div className="mini-shelf">
-            {musicRecords.slice(0, 4).map((record) => (
+        <section className="collision-grid" id="notes">
+          <figure className="stage-panel">
+            <img
+              src="/portraits/portrait-stage.jpg"
+              alt="Junhyung performing on stage"
+              width={1210}
+              height={1210}
+            />
+            <figcaption>
+              <b>LOUD ENOUGH TO BECOME A MEMORY</b>
+              <span>A photograph from somewhere under the stage lights.</span>
               <a
-                key={record.title}
-                href={record.href}
+                href="https://rateyourmusic.com/~jHyung"
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={record.image} alt={`${record.artist} - ${record.title}`} />
-                <span>{record.title}</span>
+                ENTER THE RECORD LOG
               </a>
-            ))}
-          </div>
-        </article>
+            </figcaption>
+            <span className="live-stamp">LIVE?</span>
+          </figure>
 
-        <article className="retro-box links-box span-3">
-          <p className="box-kicker">External links</p>
-          {socialLinks.map((link) => (
+          <aside className="note-stack">
+            <header>
+              <span>WORDS FOUND BESIDE THE KEYBOARD</span>
+              <h2>Things I wrote</h2>
+            </header>
+            <ol>
+              {posts.map((post, index) => (
+                <li key={post.href}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <a href={post.href} target="_blank" rel="noreferrer">
+                    {post.title}
+                  </a>
+                  <small>{post.year}</small>
+                </li>
+              ))}
+            </ol>
             <a
-              key={link.href}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              className="all-notes"
+              href="https://blog.naver.com/algo7112"
+              target="_blank"
+              rel="noreferrer"
             >
-              {link.label}
+              THE LONGER, MESSIER ARCHIVE IS OVER HERE &gt;&gt;&gt;
             </a>
-          ))}
-        </article>
+          </aside>
+        </section>
 
-        <article className="retro-box photo-stack span-3">
-          <p className="box-kicker">Photo strip</p>
+        <div className="scream-strip" aria-hidden="true">
+          <span>LISTEN</span>
+          <span>LOOK</span>
+          <span>READ</span>
+          <span>REPEAT</span>
+        </div>
+
+        <figure className="studio-diorama" id="room">
+          <img
+            src="/generated/studio-diorama.png"
+            alt="A colorful computer-generated music and photonics studio"
+            width={1536}
+            height={1024}
+            loading="lazy"
+          />
+          <figcaption>
+            <b>A COMPUTER-GENERATED LIE ABOUT MY DESK</b>
+            <span>This room does not exist. The mess is emotionally accurate.</span>
+          </figcaption>
+          <div className="room-sticker">SYNTHS + BOOKS + LASERS</div>
+        </figure>
+
+        <section className="shelf-chaos" id="shelf">
+          <div className="record-pile">
+            <header>
+              <small>STUCK IN THE PLAYER</small>
+              <h2>Four repeat offenders</h2>
+            </header>
+            <div className="record-grid">
+              {records.map((record) => (
+                <a
+                  key={record.title}
+                  href={record.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={record.image}
+                    alt={record.title + " by " + record.artist}
+                    width={record.width}
+                    height={record.height}
+                    loading="lazy"
+                  />
+                  <b>{record.title}</b>
+                  <small>{record.artist}</small>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="book-pile">
+            <header>
+              <small>PERMANENT RESIDENTS</small>
+              <h2>Books I keep reopening</h2>
+            </header>
+            <div className="book-grid">
+              {books.map((book) => (
+                <figure key={book.title}>
+                  <img
+                    src={book.image}
+                    alt={book.title + " by " + book.author}
+                    width={book.width}
+                    height={book.height}
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    <b>{book.title}</b>
+                    <small>{book.author}</small>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="day-job" id="day-job">
+          <div className="day-job-copy">
+            <p className="warning-label">DAY JOB INTERRUPTION</p>
+            <img
+              src="/collage/kaist-ee-logo.png"
+              alt="KAIST Electrical Engineering"
+              width={1920}
+              height={418}
+              loading="lazy"
+            />
+            <h2>Occasionally, the photons behave.</h2>
+            <p>
+              I study electrical engineering at KAIST. Lately I have been
+              looking at diamond photonic circuits and BTO hybrid modulators.
+              That is enough research vocabulary for one home page.
+            </p>
+          </div>
+          <figure>
+            <img
+              src="/collage/loncar-diamond-circuit.jpg"
+              alt="A diamond photonic circuit"
+              width={750}
+              height={404}
+              loading="lazy"
+            />
+            <figcaption>ONE (1) SCIENTIFIC IMAGE, AS PROMISED.</figcaption>
+          </figure>
+          <div className="lab-arrow" aria-hidden="true">
+            &lt;&lt;&lt; LIGHT GOES SOMEWHERE IN HERE
+          </div>
+        </section>
+
+        <section className="photo-proof" id="proof">
+          <header>
+            <span>APPARENTLY I LEAVE THE DESK</span>
+            <h2>Photographic evidence</h2>
+          </header>
           <div>
-            {portraitStrip.map((photo) => (
-              <figure key={photo.src}>
-                <img src={photo.src} alt={photo.alt} />
+            {photos.map((photo) => (
+              <figure key={photo.label}>
+                <img
+                  src={photo.image}
+                  alt={photo.label.toLowerCase()}
+                  width={photo.width}
+                  height={photo.height}
+                  loading="lazy"
+                />
                 <figcaption>{photo.label}</figcaption>
               </figure>
             ))}
           </div>
-        </article>
+        </section>
 
-        <article className="retro-box writing-preview span-5">
-          <p className="box-kicker">Recent writing</p>
-          <h2>{writingNotes[0].title}</h2>
-          <p>{writingNotes[0].note}</p>
-          <Link href="/writing">Open the writing desk</Link>
-        </article>
-
-        <article className="retro-box research-preview span-7">
-          <img
-            src={researchFigures[0].image}
-            alt={researchFigures[0].title}
-          />
+        <footer className="escape-hatches">
           <div>
-            <p className="box-kicker">Research shelf</p>
-            <h2>{researchFigures[0].title}</h2>
-            <p>{researchFigures[0].note}</p>
-            <Link href="/research">See the figures</Link>
+            <small>ESCAPE HATCHES</small>
+            <h2>The rest of the internet</h2>
           </div>
-        </article>
-      </section>
-    </RetroFrame>
+          <div className="outside-links">
+            {outsideLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <p>
+            BUILT BY HAND, THEN REBUILT AGAIN.
+            <br />
+            (C) 2026 JUNHYUNG CHO
+          </p>
+        </footer>
+      </div>
+    </main>
   );
 }

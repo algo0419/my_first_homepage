@@ -1,210 +1,122 @@
-export type NavKey = "home" | "music" | "writing" | "research";
-
-export const siteNav: { key: NavKey; label: string; href: string }[] = [
-  { key: "home", label: "Home", href: "/" },
-  { key: "music", label: "Music room", href: "/music" },
-  { key: "writing", label: "Writing desk", href: "/writing" },
-  { key: "research", label: "Research shelf", href: "/research" },
-];
-
-export const socialLinks = [
+export const posts = [
   {
-    href: "https://github.com/algo0419",
-    label: "GitHub",
+    year: "2026",
+    title: "You See Only as Much as You Don't Know",
+    href: "https://blog.naver.com/algo7112/224232537490",
   },
   {
-    href: "https://rateyourmusic.com/~jHyung",
-    label: "Rate Your Music",
+    year: "2026",
+    title: "Ficciones Is the Bible of the Postmodern Age",
+    href: "https://blog.naver.com/algo7112/224151247766",
   },
   {
-    href: "https://blog.naver.com/algo7112",
-    label: "Naver Blog",
+    year: "2025",
+    title: "In Search of One Good Joke",
+    href: "https://blog.naver.com/algo7112/224070120051",
   },
   {
-    href: "https://www.instagram.com/whwns_gud/",
-    label: "Instagram",
+    year: "2025",
+    title: "Why Does Tomorrow Also Mean Morning?",
+    href: "https://blog.naver.com/algo7112/223786938523",
   },
   {
-    href: "mailto:junhyungcho@kaist.ac.kr",
-    label: "Email",
+    year: "2025",
+    title: "A Sketch of the Line Between Art and Obscenity",
+    href: "https://blog.naver.com/algo7112/223722566599",
   },
 ];
 
-export const homePanels = [
-  {
-    href: "/music",
-    label: "Music shows and record shelf",
-    image: "/portraits/portrait-stage.jpg",
-    alt: "Junhyung Cho on stage",
-    tone: "cream",
-    body: "Live fragments, favorite albums, and a shelf that keeps getting rearranged.",
-  },
-  {
-    href: "/writing",
-    label: "Books, essays, and notes",
-    image: "/collage/borges-ficciones.jpg",
-    alt: "Ficciones book cover",
-    tone: "pink",
-    body: "Short pieces, book notes, strange sentences, and links back to the blog.",
-  },
-  {
-    href: "/research",
-    label: "Diamond photonics and BTO",
-    image: "/collage/loncar-diamond-circuit.jpg",
-    alt: "Diamond photonic circuit figure",
-    tone: "cyan",
-    body: "Figures, keywords, device sketches, and references from the lab notebook.",
-  },
-];
-
-export const bulletinItems = [
-  "Now playing: Off the Wall, Loveless, and Kind of Blue still refuse to leave the desk.",
-  "Current lab shelf: diamond photonic crystals, BTO phase shifters, hybrid modulators.",
-  "Reading pile: Borges, Calvino, Kafka, Camus, and notes that become essays later.",
-  "Site rule: keep the images actual, the boxes loud, and the links obvious.",
-];
-
-export const portraitStrip = [
-  {
-    src: "/portraits/portrait-night.jpg",
-    alt: "Portrait of Junhyung at night",
-    label: "Night archive",
-  },
-  {
-    src: "/portraits/portrait-city.jpg",
-    alt: "Portrait in the city",
-    label: "City square",
-  },
-  {
-    src: "/portraits/portrait-archive-7.jpg",
-    alt: "Archive portrait",
-    label: "Photo fragment",
-  },
-];
-
-export const musicRecords = [
+export const records = [
   {
     artist: "Michael Jackson",
     title: "Off the Wall",
-    year: "1979",
     image: "/collage/off-the-wall.jpg",
     href: "https://open.spotify.com/album/2ZytN2cY4Zjrr9ukb2rqTP",
-    note: "A record that makes precision feel effortless.",
+    width: 300,
+    height: 300,
+  },
+  {
+    artist: "Frank Ocean",
+    title: "Blonde",
+    image: "/collage/blonde.jpg",
+    href: "https://open.spotify.com/album/3mH6qwIy9crq0I9YQbOuDf",
+    width: 1200,
+    height: 1200,
   },
   {
     artist: "My Bloody Valentine",
     title: "Loveless",
-    year: "1991",
     image: "/collage/loveless.jpg",
     href: "https://open.spotify.com/album/3USQKOw0se5pBNEndu82Rb",
-    note: "Density, blur, pressure, and melody welded together.",
+    width: 1200,
+    height: 1200,
   },
   {
     artist: "Miles Davis",
     title: "Kind of Blue",
-    year: "1959",
     image: "/collage/kind-of-blue.jpg",
     href: "https://open.spotify.com/album/1weenld61qoidwYuZ1GESA",
-    note: "Calm space that still feels newly arranged.",
-  },
-  {
-    artist: "Kanye West",
-    title: "Yeezus",
-    year: "2013",
-    image: "/collage/yeezus.jpg",
-    href: "https://open.spotify.com/album/7D2NdGvBHIavgLhmcwhluK",
-    note: "Abrasion as structure, rhythm as architecture.",
-  },
-  {
-    artist: "Lamp",
-    title: "For Lovers",
-    year: "2004",
-    image: "/collage/for-lovers.jpg",
-    href: "https://open.spotify.com/album/0gwS2D9sukMLXNvleEnYr2",
-    note: "Soft arrangements with sharp edges hidden inside.",
-  },
-  {
-    artist: "Daft Punk",
-    title: "Discovery",
-    year: "2001",
-    image: "/collage/discovery.jpg",
-    href: "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
-    note: "A bright machine that learned to sing.",
+    width: 600,
+    height: 600,
   },
 ];
 
-export const writingNotes = [
+export const books = [
   {
-    year: "2026",
-    kind: "Essay",
-    title: "You See More by Knowing Less",
-    image: "/collage/wittgenstein-investigations.jpg",
-    href: "https://blog.naver.com/algo7112/224232537490",
-    note: "Expertise opens a room and quietly closes a few windows.",
-  },
-  {
-    year: "2026",
-    kind: "Review",
-    title: "Ficciones and the postmodern maze",
+    title: "Ficciones",
+    author: "Jorge Luis Borges",
     image: "/collage/borges-ficciones.jpg",
-    href: "https://blog.naver.com/algo7112/224151247766",
-    note: "Borges as a small machine for mirrors, libraries, and doubt.",
+    width: 279,
+    height: 450,
   },
   {
-    year: "2025",
-    kind: "Essay",
-    title: "One good joke after a long time",
+    title: "If on a winter's night a traveler",
+    author: "Italo Calvino",
     image: "/collage/calvino-winter.jpg",
-    href: "https://blog.naver.com/algo7112/224070120051",
-    note: "A note on writing, timing, intuition, and patience.",
+    width: 337,
+    height: 479,
   },
   {
-    year: "2025",
-    kind: "Language",
-    title: "Morning, tomorrow, and borrowed time",
-    image: "/collage/camus-sisyphus.jpg",
-    href: "https://blog.naver.com/algo7112/223786938523",
-    note: "A linguistic detour through words that carry daylight forward.",
-  },
-  {
-    year: "2025",
-    kind: "Fiction",
-    title: "A sketch on art and obscenity",
+    title: "The Trial",
+    author: "Franz Kafka",
     image: "/collage/kafka-trial.jpg",
-    href: "https://blog.naver.com/algo7112/223722566599",
-    note: "Museum talk, bad categories, and the trouble with interpretation.",
+    width: 575,
+    height: 863,
+  },
+  {
+    title: "The Myth of Sisyphus",
+    author: "Albert Camus",
+    image: "/collage/camus-sisyphus.jpg",
+    width: 290,
+    height: 475,
   },
 ];
 
-export const researchFigures = [
+export const photos = [
   {
-    title: "Diamond photonic circuit",
-    image: "/collage/loncar-diamond-circuit.jpg",
-    href: "https://opg.optica.org/optica/fulltext.cfm?uri=optica-7-2-144&id=426789",
-    note: "A compact reference for how device geometry, coupling, and optical routing meet.",
+    label: "ON STAGE",
+    image: "/portraits/portrait-stage.jpg",
+    width: 1210,
+    height: 1210,
   },
   {
-    title: "Diamond structures",
-    image: "/collage/diamond-structures.jpg",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7823554/",
-    note: "Nanophotonic forms, fabrication constraints, and the charm of repeated holes.",
+    label: "AFTER DARK",
+    image: "/portraits/portrait-night.jpg",
+    width: 1027,
+    height: 1976,
   },
   {
-    title: "BTO phase map",
-    image: "/collage/bto-phase.jpg",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8230192/",
-    note: "Hybrid modulation as a negotiation between materials, fields, and loss.",
+    label: "SOMEWHERE OUTSIDE",
+    image: "/portraits/portrait-city.jpg",
+    width: 1080,
+    height: 1080,
   },
-  {
-    title: "Fabrication figure",
-    image: "/collage/fab-fig2.jpg",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7823554/",
-    note: "Process images that explain more quickly than a paragraph can.",
-  },
-  {
-    title: "Nature 2025 board",
-    image: "/collage/nat25-fig1.jpg",
-    href: "https://www.nature.com/",
-    note: "A saved figure for keeping recent device ideas close at hand.",
-  },
+];
+
+export const outsideLinks = [
+  { label: "GITHUB", href: "https://github.com/algo0419" },
+  { label: "NAVER BLOG", href: "https://blog.naver.com/algo7112" },
+  { label: "RATE YOUR MUSIC", href: "https://rateyourmusic.com/~jHyung" },
+  { label: "INSTAGRAM", href: "https://www.instagram.com/whwns_gud/" },
+  { label: "E-MAIL", href: "mailto:junhyungcho@kaist.ac.kr" },
 ];
