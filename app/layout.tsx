@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Junhyung Cho's Home Page",
-  description: "Music, notes, photographs, and occasional photons by Junhyung Cho.",
+  title: "Junhyung Cho | Personal Index",
+  description:
+    "Notes, music, light, and the things in between. A personal index by Junhyung Cho.",
 };
 
 export default function RootLayout({
