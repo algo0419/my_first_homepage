@@ -131,6 +131,11 @@ export function PersonalIndex() {
             </a>
           </div>
           <InteractiveStudio />
+          <p className="offset-annotation">
+            The frame is never neutral. It tells us what deserves attention and
+            what may be ignored. I keep thinking about the things it excludes:
+            a cable, a pause, a person just outside the picture.
+          </p>
           {posts.map((post, index) => (
             <a
               key={post.href}

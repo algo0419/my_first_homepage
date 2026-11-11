@@ -170,6 +170,13 @@ figcaption {
     serif;
   margin-bottom: 10px;
 }
+.offset-annotation {
+  grid-area: 18 / 14 / 22 / 19;
+  font: 12px/1.25 Georgia, serif;
+  rotate: -4deg;
+  padding: 8px 8px 0;
+  z-index: 4;
+}
 .loose-note {
   align-self: center;
   z-index: 8;
@@ -743,6 +750,10 @@ figcaption {
   .hello-fragment p {
     font-size: 17px;
   }
+  .offset-annotation {
+    grid-area: 19 / 14 / 23 / 19;
+    font-size: 11px;
+  }
   .note-0 {
     grid-area: 4 / 17 / 8 / 25;
   }
@@ -870,6 +881,11 @@ figcaption {
   }
   .hello-fragment .small-link {
     font-size: 9px;
+  }
+  .offset-annotation {
+    grid-area: 84 / 2 / 87 / 12;
+    font-size: 11px;
+    padding-top: 0;
   }
   .room-fragment {
     grid-area: 16 / 1 / 27 / 13;
@@ -1003,7 +1019,7 @@ figcaption {
     grid-area: 193 / 2 / 200 / 12;
   }
   .farewell-fragment {
-    grid-area: 202 / 1 / 210 / 13;
+    grid-area: 200 / 1 / 206 / 13;
     font-size: 66px;
     padding-left: 0;
   }
@@ -1015,7 +1031,7 @@ figcaption {
     height: 38px;
   }
   .end-scribble {
-    grid-area: 212 / 4 / 214 / 13;
+    grid-area: 208 / 2 / 210 / 12;
     font-size: 26px;
   }
   .index-footer {
