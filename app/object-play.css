@@ -1,61 +1,3 @@
-.floating-artifact > span {
-  pointer-events: none;
-}
-.floating-artifact[data-preview="true"] > span {
-  opacity: 0.16;
-}
-.floating-artifact .artifact-drift {
-  animation-duration: 2.8s;
-}
-.floating-artifact .artifact-impact {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.object-parade {
-  position: relative;
-  z-index: 12;
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  align-items: center;
-  height: 134px;
-  margin: -4px -5px 0;
-}
-.parade-slot {
-  position: relative;
-  min-width: 0;
-  height: 108px;
-}
-.parade-slot:nth-child(3n + 1) {
-  translate: 0 -7px;
-}
-.parade-slot:nth-child(3n + 2) {
-  translate: 0 8px;
-}
-.parade-slot .floating-artifact {
-  width: 100%;
-  height: 100%;
-  rotate: -8deg;
-}
-.parade-slot:nth-child(even) .floating-artifact {
-  rotate: 11deg;
-}
-.parade-slot .artifact-drift {
-  animation: parade-bounce 2.2s ease-in-out infinite alternate;
-}
-.parade-slot:nth-child(even) .artifact-drift {
-  animation-delay: -1.5s;
-  animation-direction: alternate-reverse;
-}
-.parade-slot:nth-child(3n) .artifact-drift {
-  animation-duration: 3.1s;
-}
-.parade-slot .artifact-caption {
-  display: none;
-}
-.parade-slot:has(:focus-visible) {
-  z-index: 3;
-}
 .artifact-preview {
   position: fixed;
   z-index: 10000;
@@ -122,53 +64,8 @@
     transform: scale(1) rotate(0deg);
   }
 }
-@keyframes parade-bounce {
-  from {
-    transform: translateY(5px) rotate(-7deg);
-  }
-  to {
-    transform: translateY(-11px) rotate(8deg);
-  }
-}
-@media (min-width: 1450px) {
-  .object-parade {
-    height: 150px;
-  }
-  .parade-slot {
-    height: 130px;
-  }
-}
-@media (min-width: 761px) and (max-width: 980px) {
-  .object-parade {
-    height: 112px;
-  }
-  .parade-slot {
-    height: 88px;
-  }
-}
-@media (max-width: 760px) {
-  .object-parade {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    height: 148px;
-    margin: 0 -4px 4px;
-    gap: 0;
-  }
-  .parade-slot {
-    height: 66px;
-  }
-  .parade-slot:nth-child(3n + 1) {
-    translate: 0 -2px;
-  }
-  .parade-slot:nth-child(3n + 2) {
-    translate: 0 3px;
-  }
-  .artifact-preview-caption {
-    font-size: 10px;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  .artifact-preview:not([data-motion="true"]) *,
-  .personal-index:not([data-motion="true"]) .object-parade * {
+  .artifact-preview:not([data-motion="true"]) * {
     animation: none !important;
     transition: none !important;
   }

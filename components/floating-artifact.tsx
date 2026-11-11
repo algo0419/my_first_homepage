@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { CSSProperties, PointerEvent } from "react";
@@ -111,11 +110,11 @@ type Preview = { left: number; top: number; size: number; src: string };
 
 export function FloatingArtifact({
   kind,
-  compact = false,
+  eager = false,
   onActivate,
 }: {
   kind: ArtifactKind;
-  compact?: boolean;
+  eager?: boolean;
   onActivate?: () => void;
 }) {
   const [turn, setTurn] = useState(0);
@@ -226,7 +225,6 @@ export function FloatingArtifact({
         data-phase={turn % 3}
         data-preview={Boolean(preview)}
         data-turn={turn}
-        data-compact={compact}
         style={
           {
             "--artifact-turn": `${rotation}deg`,
@@ -251,13 +249,20 @@ export function FloatingArtifact({
         <span className="artifact-drift">
           <span className="artifact-turn">
             <span className="artifact-impact" ref={impactRef}>
-              <Image
-                src={`/generated/${artifact.image}.png`}
+              <img
+                src={`/media/${artifact.image}-320.webp`}
+                srcSet={[160, 320, 640]
+                  .map(
+                    (width) =>
+                      `/media/${artifact.image}-${width}.webp ${width}w`,
+                  )
+                  .join(", ")}
                 alt={artifact.alt}
                 width={1254}
                 height={1254}
-                sizes={compact ? "340px" : "(max-width: 760px) 200px, 340px"}
-                priority={kind === "star" || kind === "monitor"}
+                sizes="(max-width: 600px) 38vw, (max-width: 1040px) 25vw, 22vw"
+                loading={eager ? "eager" : "lazy"}
+                decoding="async"
                 draggable={false}
               />
             </span>

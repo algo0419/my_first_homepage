@@ -1,58 +1,26 @@
-.nameplate h1 em {
-  display: inline-block;
-  padding: 0 10px 5px;
-  background: var(--pink);
-  box-shadow: 7px 7px 0 #273cff;
-  line-height: 0.78;
-  transform: rotate(-7deg);
-}
-.nameplate h1 {
-  position: relative;
-  z-index: 2;
-}
-.interference-strip {
-  position: relative;
-  z-index: 7;
-  height: 25px;
-  margin: 0 -28px 7px;
-  overflow: hidden;
-  background: #273cff;
-  color: #ffa8d0;
-  transform: rotate(-0.6deg);
+.loose-object {
+  z-index: 10;
   pointer-events: none;
+  translate: var(--shift-x) var(--shift-y);
+  rotate: var(--shift-angle);
+  transition:
+    translate 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    rotate 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.interference-strip > div {
-  display: flex;
-  width: max-content;
-  animation: interference-scroll 32s linear infinite;
-}
-.interference-strip span {
-  white-space: nowrap;
-  padding-right: 20px;
-  font:
-    700 15px/25px Arial,
-    sans-serif;
-}
-.interference-strip i {
-  color: #e5ff54;
-  padding: 0 16px;
-}
-.loose-notes {
-  transform: rotate(-2deg);
-}
-.loose-notes > a:nth-of-type(2) > span:nth-child(2) {
-  background: var(--pink);
-}
-.stage-fragment {
-  z-index: 6;
+.loose-object:has(:focus-visible) {
+  z-index: 20;
 }
 .floating-artifact {
   display: block;
-  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 0;
-  background: transparent;
-  isolation: isolate;
-  touch-action: manipulation;
+  background: none;
+  pointer-events: auto;
+  position: relative;
+}
+.floating-artifact > span {
+  pointer-events: none;
 }
 .artifact-drift,
 .artifact-turn,
@@ -62,470 +30,192 @@
   height: 100%;
 }
 .artifact-drift {
-  animation: artifact-float 5.6s ease-in-out infinite alternate;
+  animation: artifact-drift 3.6s ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+.loose-object:nth-child(even) .artifact-drift {
+  animation-direction: alternate-reverse;
+  animation-duration: 4.2s;
 }
 .artifact-turn {
   transform: translate(var(--lean-x, 0px), var(--lean-y, 0px))
     rotate(var(--artifact-turn, 0deg));
-  transition:
-    transform 620ms cubic-bezier(0.15, 0.7, 0.2, 1),
-    filter 300ms;
+  transition: transform 620ms cubic-bezier(0.15, 0.7, 0.2, 1);
 }
 .floating-artifact img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(6px 10px 0 #bf2b2420);
-  transition: scale 250ms cubic-bezier(0.2, 0.8, 0.3, 1.4);
-}
-.floating-artifact:hover img,
-.floating-artifact:focus-visible img {
-  scale: 1;
-}
-.floating-artifact:hover .artifact-drift,
-.floating-artifact:focus-visible .artifact-drift {
-  animation-play-state: paused;
+  filter: drop-shadow(4px 7px 0 #242c3630);
 }
 .artifact-caption {
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-5deg);
-  white-space: nowrap;
-  padding: 3px 5px;
-  background: #273cff;
-  color: #e5ff54;
-  font:
-    9px/1.1 Arial,
-    sans-serif;
-  pointer-events: none;
+  display: none;
 }
-.artifact-star {
-  position: absolute;
-  z-index: 3;
-  width: 230px;
-  height: 195px;
-  right: -4px;
-  top: -3px;
+.floating-artifact[data-preview="true"] > span {
+  opacity: 0.2;
 }
-.artifact-star .artifact-drift {
-  animation-name: star-roll;
-  animation-duration: 9s;
+.floating-artifact[data-phase="1"] img {
+  filter: hue-rotate(65deg) drop-shadow(5px 7px 0 #ff4dba50);
 }
-.artifact-star .artifact-caption {
-  bottom: 17px;
-  background: var(--red);
+.floating-artifact[data-phase="2"] img {
+  filter: hue-rotate(180deg) drop-shadow(5px 7px 0 #273cff50);
 }
-.artifact-star[data-phase="1"] img {
-  filter: hue-rotate(110deg) drop-shadow(6px 10px 0 #273cff30);
+.object-star {
+  grid-area: 1 / 11 / 7 / 15;
 }
-.artifact-star[data-phase="2"] img {
-  filter: hue-rotate(240deg) drop-shadow(6px 10px 0 #273cff30);
+.object-piano {
+  grid-area: 15 / 1 / 23 / 5;
 }
-.monitor-fragment {
-  grid-area: 1 / 10 / 5 / 13;
-  z-index: 8;
+.object-cursor {
+  grid-area: 8 / 9 / 12 / 12;
 }
-.artifact-monitor {
-  width: 100%;
-  height: 225px;
-  margin-top: -12px;
+.object-monitor {
+  grid-area: 12 / 19 / 21 / 25;
 }
-.artifact-monitor .artifact-drift {
-  animation-name: monitor-rock;
-  animation-duration: 4s;
+.object-pencil {
+  grid-area: 18 / 11 / 24 / 14;
 }
-.artifact-monitor .artifact-caption {
-  bottom: 12px;
-  background: var(--pink);
-  color: var(--ink);
+.object-guitar {
+  grid-area: 23 / 9 / 34 / 14;
 }
-.artifact-monitor[data-phase="1"] img {
-  filter: hue-rotate(100deg) saturate(1.5);
+.object-dice {
+  grid-area: 28 / 1 / 34 / 4;
 }
-.artifact-monitor[data-phase="2"] img {
-  filter: hue-rotate(230deg) contrast(1.2);
+.object-megaphone {
+  grid-area: 30 / 15 / 35 / 20;
 }
-.artifact-guitar {
-  position: absolute;
-  right: -38px;
-  bottom: 14px;
-  width: 275px;
-  height: 340px;
-  z-index: 8;
+.object-camera {
+  grid-area: 39 / 18 / 47 / 25;
 }
-.artifact-guitar .artifact-drift {
-  animation-name: guitar-swing;
-  animation-duration: 6s;
+.object-prism {
+  grid-area: 17 / 5 / 22 / 9;
 }
-.artifact-guitar .artifact-caption {
-  background: var(--pink);
-  color: #273cff;
-  bottom: 14px;
+.object-floppy {
+  grid-area: 49 / 7 / 55 / 11;
 }
-.artifact-guitar[data-phase="1"] img {
-  filter: hue-rotate(80deg);
+.object-stairs {
+  grid-area: 57 / 9 / 62 / 14;
 }
-.artifact-guitar[data-phase="2"] img {
-  filter: hue-rotate(210deg);
+.object-chair {
+  grid-area: 60 / 14 / 66 / 17;
 }
-.paper-object-fragment {
-  grid-area: 34 / 9 / 40 / 13;
-  z-index: 3;
+.object-book {
+  grid-area: 69 / 17 / 77 / 24;
 }
-.artifact-book {
-  width: 100%;
-  height: 280px;
-  margin-top: -60px;
+.object-hourglass {
+  grid-area: 65 / 12 / 70 / 16;
 }
-.artifact-book .artifact-drift {
-  animation-name: paper-orbit;
-  animation-duration: 11s;
+.object-plane {
+  grid-area: 73 / 11 / 78 / 17;
 }
-.artifact-book .artifact-caption {
-  bottom: 32px;
-}
-.margin-word {
-  align-self: end;
-  z-index: 5;
-  pointer-events: none;
-  font-size: 62px;
-  padding-bottom: 10px;
-}
-.popup-artifact {
-  position: absolute;
-  right: 15px;
-  top: 37px;
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  transform: rotate(12deg);
-  pointer-events: none;
-  animation: popup-object-arrive 400ms cubic-bezier(0.2, 0.8, 0.3, 1.4) both;
-}
-.room-popup h2 {
-  padding-right: 145px;
-}
-.movement-stopped .artifact-turn,
-.movement-stopped .floating-artifact img {
-  transition: none;
-}
-@keyframes interference-scroll {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@keyframes artifact-float {
-  to {
-    transform: translateY(-12px) rotate(5deg);
-  }
-}
-@keyframes star-roll {
-  0% {
-    transform: rotate(-15deg) translateY(2px);
-  }
-  100% {
-    transform: rotate(15deg) translateY(-8px);
-  }
-}
-@keyframes monitor-rock {
-  0% {
-    transform: rotate(8deg) translateY(0);
-  }
-  100% {
-    transform: rotate(-5deg) translateY(9px);
-  }
-}
-@keyframes guitar-swing {
-  0% {
-    transform: rotate(-10deg) translate(-8px, 0);
-  }
-  100% {
-    transform: rotate(9deg) translate(10px, -15px);
-  }
-}
-@keyframes paper-orbit {
-  0% {
-    transform: rotate(-17deg) translateY(10px);
-  }
-  100% {
-    transform: rotate(18deg) translateY(-10px);
-  }
-}
-@keyframes popup-object-arrive {
+@keyframes artifact-drift {
   from {
-    transform: rotate(-30deg) scale(0.3);
-    opacity: 0;
+    transform: translateY(7px) rotate(-9deg);
   }
   to {
-    transform: rotate(12deg) scale(1);
-    opacity: 1;
+    transform: translateY(-10px) rotate(9deg);
   }
 }
-
-@media (min-width: 1450px) {
-  .artifact-star {
-    width: 280px;
-    height: 220px;
+@media (min-width: 601px) and (max-width: 1040px) {
+  .object-star {
+    grid-area: 1 / 17 / 5 / 22;
   }
-  .artifact-monitor {
-    height: 255px;
+  .object-piano {
+    grid-area: 15 / 1 / 22 / 7;
   }
-  .artifact-guitar {
-    width: 320px;
-    height: 400px;
+  .object-cursor {
+    grid-area: 7 / 8 / 11 / 12;
   }
-  .artifact-book {
-    height: 325px;
+  .object-monitor {
+    grid-area: 16 / 18 / 23 / 25;
   }
-}
-@media (min-width: 761px) and (max-width: 1190px) {
-  .artifact-star {
-    width: 185px;
-    height: 160px;
+  .object-pencil {
+    grid-area: 30 / 10 / 35 / 14;
   }
-  .artifact-monitor {
-    height: 205px;
+  .object-guitar {
+    grid-area: 26 / 1 / 36 / 7;
   }
-  .artifact-guitar {
-    width: 220px;
-    height: 280px;
-    right: -23px;
+  .object-dice {
+    grid-area: 34 / 1 / 39 / 5;
   }
-  .paper-object-fragment {
-    grid-row: 35 / 40;
+  .object-megaphone {
+    grid-area: 36 / 18 / 42 / 25;
   }
-  .artifact-book {
-    height: 235px;
+  .object-camera {
+    grid-area: 53 / 7 / 60 / 14;
   }
-  .margin-word {
-    font-size: 50px;
+  .object-prism {
+    grid-area: 46 / 7 / 51 / 14;
   }
-}
-@media (min-width: 761px) and (max-width: 980px) {
-  .artifact-star {
-    width: 140px;
-    height: 135px;
-    top: 0;
+  .object-floppy {
+    grid-area: 64 / 9 / 69 / 14;
   }
-  .artifact-caption {
-    font-size: 7px;
+  .object-stairs {
+    grid-area: 77 / 7 / 83 / 14;
   }
-  .monitor-fragment {
-    grid-row: 1 / 6;
+  .object-chair {
+    grid-area: 89 / 3 / 97 / 10;
   }
-  .artifact-monitor {
-    height: 220px;
+  .object-book {
+    grid-area: 99 / 17 / 106 / 25;
   }
-  .artifact-guitar {
-    width: 175px;
-    height: 240px;
-    right: -20px;
+  .object-hourglass {
+    grid-area: 94 / 10 / 99 / 14;
   }
-  .paper-object-fragment {
-    grid-row: 36 / 43;
-  }
-  .popup-artifact {
-    width: 115px;
-    height: 115px;
-    right: 10px;
-  }
-  .room-popup h2 {
-    padding-right: 105px;
+  .object-plane {
+    grid-area: 105 / 15 / 110 / 22;
   }
 }
-@media (max-width: 760px) {
-  .nameplate h1 em {
-    padding: 0 7px 3px;
-    box-shadow: 4px 4px 0 #273cff;
+@media (max-width: 600px) {
+  .loose-object {
+    translate: calc(var(--shift-x) * 0.45) calc(var(--shift-y) * 0.6);
   }
-  .artifact-star {
-    top: auto;
-    bottom: 9px;
-    right: 2px;
-    width: 97px;
-    height: 78px;
+  .object-star {
+    grid-area: 5 / 1 / 7 / 4;
   }
-  .artifact-star .artifact-caption {
-    display: none;
+  .object-piano {
+    grid-area: 10 / 8 / 17 / 13;
   }
-  .interference-strip {
-    height: 22px;
-    margin-bottom: 7px;
+  .object-cursor {
+    grid-area: 27 / 10 / 32 / 13;
   }
-  .interference-strip span {
-    font-size: 12px;
-    line-height: 22px;
+  .object-monitor {
+    grid-area: 24 / 8 / 29 / 13;
   }
-  .monitor-fragment {
-    grid-area: 1 / 4 / 4 / 5;
+  .object-pencil {
+    grid-area: 34 / 1 / 40 / 5;
   }
-  .artifact-monitor {
-    width: 105px;
-    height: 134px;
-    margin-top: 4px;
-    margin-left: -14px;
+  .object-guitar {
+    grid-area: 43 / 1 / 51 / 6;
   }
-  .artifact-caption {
-    font-size: 7px;
+  .object-dice {
+    grid-area: 55 / 9 / 61 / 13;
   }
-  .artifact-monitor .artifact-caption {
-    font-size: 6px;
-    bottom: 0;
+  .object-megaphone {
+    grid-area: 62 / 6 / 68 / 13;
   }
-  .artifact-guitar {
-    width: 172px;
-    height: 237px;
-    right: -14px;
-    bottom: 20px;
+  .object-camera {
+    grid-area: 103 / 7 / 107 / 13;
   }
-  .artifact-guitar .artifact-caption {
-    bottom: 3px;
+  .object-prism {
+    grid-area: 73 / 9 / 79 / 13;
   }
-  .paper-object-fragment {
-    grid-area: 76 / 3 / 81 / 5;
+  .object-floppy {
+    grid-area: 126 / 7 / 133 / 13;
   }
-  .artifact-book {
-    height: 185px;
-    margin-top: -37px;
+  .object-stairs {
+    grid-area: 145 / 8 / 151 / 13;
   }
-  .artifact-book .artifact-caption {
-    bottom: 5px;
-    font-size: 7px;
+  .object-chair {
+    grid-area: 151 / 1 / 160 / 7;
   }
-  .margin-word {
-    font-size: 38px;
-    padding-bottom: 0;
+  .object-book {
+    grid-area: 189 / 1 / 193 / 8;
   }
-  .popup-artifact {
-    width: 95px;
-    height: 95px;
-    top: 32px;
-    right: 2px;
+  .object-hourglass {
+    grid-area: 189 / 9 / 193 / 13;
   }
-  .room-popup h2 {
-    padding-right: 75px;
-    font-size: 49px;
-  }
-}
-@media (min-width: 500px) and (max-width: 760px) {
-  .artifact-star {
-    width: 155px;
-    height: 135px;
-    bottom: 5px;
-  }
-  .artifact-monitor {
-    width: 140px;
-    height: 175px;
-  }
-  .artifact-guitar {
-    width: 200px;
-    height: 260px;
-  }
-  .artifact-book {
-    height: 240px;
-  }
-}
-@media (max-width: 400px) {
-  .artifact-star {
-    width: 82px;
-    height: 72px;
-    right: 8px;
-  }
-  .artifact-monitor {
-    width: 85px;
-    height: 110px;
-    margin-left: -16px;
-    margin-top: 14px;
-  }
-  .artifact-monitor .artifact-caption {
-    font-size: 5px;
-  }
-  .artifact-guitar {
-    width: 150px;
-    height: 210px;
-    right: -4px;
-  }
-  .floating-artifact:hover img,
-  .floating-artifact:focus-visible img {
-    scale: 1;
-  }
-  .room-popup h2 {
-    font-size: 43px;
-  }
-}
-.artifact-prism {
-  width: 100%;
-  height: 100%;
-}
-.artifact-prism .artifact-drift {
-  animation: prism-tilt 7s ease-in-out infinite alternate;
-}
-.artifact-prism .artifact-caption {
-  background: var(--pink);
-  color: var(--ink);
-}
-.artifact-prism[data-phase="1"] img {
-  filter: hue-rotate(70deg);
-}
-.artifact-prism[data-phase="2"] img {
-  filter: hue-rotate(180deg);
-}
-.artifact-chair {
-  position: absolute;
-  left: -14px;
-  bottom: 28px;
-  width: 180px;
-  height: 235px;
-  z-index: 4;
-}
-.artifact-chair .artifact-drift {
-  animation: chair-balance 5s ease-in-out infinite alternate;
-}
-.artifact-chair .artifact-caption {
-  bottom: 7px;
-  font-size: 7px;
-}
-.city-fragment > figcaption {
-  position: relative;
-  z-index: 5;
-}
-@keyframes prism-tilt {
-  from {
-    transform: translateY(-5px) rotate(-9deg);
-  }
-  to {
-    transform: translateY(7px) rotate(9deg);
-  }
-}
-@keyframes chair-balance {
-  from {
-    transform: rotate(-8deg);
-  }
-  to {
-    transform: rotate(7deg) translateY(-10px);
-  }
-}
-@media (min-width: 761px) and (max-width: 980px) {
-  .artifact-chair {
-    width: 135px;
-    height: 180px;
-    bottom: 28px;
-  }
-}
-@media (max-width: 760px) {
-  .artifact-chair {
-    width: 150px;
-    height: 200px;
-    left: -7px;
-    bottom: 32px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .personal-index:not([data-motion="true"]) .floating-artifact *,
-  .personal-index:not([data-motion="true"]) .interference-strip > div,
-  .personal-index:not([data-motion="true"]) .popup-artifact {
-    animation: none !important;
-    transition: none !important;
+  .object-plane {
+    grid-area: 209 / 9 / 213 / 13;
   }
 }

@@ -3,6 +3,7 @@
 import { ArrowUpRight, Plus, X } from "lucide-react";
 import { useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { CollageImage } from "@/components/collage-image";
 
 const zones = [
   {
@@ -83,11 +84,14 @@ export function InteractiveStudio() {
       }}
     >
       <div className="room-image">
-        <img
-          src="/generated/studio-diorama.png"
+        <CollageImage
+          name="studio-diorama"
           width={1536}
           height={1024}
           alt="An imagined studio filled with records, a synthesizer, a CRT monitor and an optical table"
+          room
+          eager
+          sizes="(max-width: 600px) 100vw, (max-width: 1040px) 68vw, 55vw"
         />
         {zones.map((zone, index) => (
           <button
@@ -149,14 +153,16 @@ export function InteractiveStudio() {
           </span>
         </div>
         <h2>{shownZone.title}</h2>
-        <img
-          className="popup-artifact"
-          src={`/generated/${["exploded-book", "folded-guitar", "signal-monitor", "angular-prism"][activeIndex ?? lastIndex]}.png`}
-          alt=""
-          aria-hidden="true"
-          width={150}
-          height={150}
-        />
+        {activeIndex !== null && (
+          <img
+            className="popup-artifact"
+            src={`/media/${["exploded-book", "folded-guitar", "signal-monitor", "angular-prism"][activeIndex]}-320.webp`}
+            alt=""
+            aria-hidden="true"
+            width={150}
+            height={150}
+          />
+        )}
         <div className="popup-columns">
           {shownZone.notes.map((note, index) => (
             <p key={note}>
