@@ -1,9 +1,11 @@
 "use client";
 
 import { ArrowUpRight, Plus, X } from "lucide-react";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { createPortal } from "react-dom";
 import { CollageImage } from "@/components/collage-image";
+import { ArtifactMotionContext } from "@/components/floating-artifact";
 
 const zones = [
   {
@@ -65,6 +67,7 @@ const zones = [
 ] as const;
 
 export function InteractiveStudio() {
+  const motion = useContext(ArtifactMotionContext);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [lastIndex, setLastIndex] = useState(0);
   const pointerType = useRef("mouse");
@@ -138,52 +141,56 @@ export function InteractiveStudio() {
         <br />
         <em>at home.</em>
       </span>
-      <div
-        className={"room-popup" + (activeIndex !== null ? " popup-open" : "")}
-        id="room-popup"
-        role="region"
-        aria-label={shownZone.title}
-        aria-hidden={activeIndex === null}
-        style={{ "--popup-color": shownZone.color } as CSSProperties}
-      >
-        <div className="popup-metadata">
-          <span>{shownZone.subtitle}</span>
-          <span>
-            {String((activeIndex ?? lastIndex) + 1).padStart(2, "0")} / 04
-          </span>
-        </div>
-        <h2>{shownZone.title}</h2>
-        {activeIndex !== null && (
-          <img
-            className="popup-artifact"
-            src={`/media/${["exploded-book", "folded-guitar", "signal-monitor", "angular-prism"][activeIndex]}-320.webp`}
-            alt=""
-            aria-hidden="true"
-            width={150}
-            height={150}
-          />
+      {activeIndex !== null &&
+        createPortal(
+          <div className="room-inspection" data-motion={motion}>
+            <div
+              className="room-popup popup-open"
+              id="room-popup"
+              role="region"
+              aria-label={shownZone.title}
+              aria-hidden={activeIndex === null}
+              style={{ "--popup-color": shownZone.color } as CSSProperties}
+            >
+              <div className="popup-metadata">
+                <span>{shownZone.subtitle}</span>
+                <span>
+                  {String((activeIndex ?? lastIndex) + 1).padStart(2, "0")} / 04
+                </span>
+              </div>
+              <h2>{shownZone.title}</h2>
+              {activeIndex !== null && (
+                <img
+                  className="popup-artifact"
+                  src={`/media/${["exploded-book", "folded-guitar", "signal-monitor", "angular-prism"][activeIndex]}-320.webp`}
+                  alt=""
+                  aria-hidden="true"
+                  width={150}
+                  height={150}
+                />
+              )}
+              <div className="popup-columns">
+                {shownZone.notes.map((note, index) => (
+                  <p key={note}>
+                    <span>({String(index + 1).padStart(2, "0")})</span>
+                    {note}
+                  </p>
+                ))}
+              </div>
+              <div className="popup-checker" aria-hidden="true" />
+            </div>
+            <button
+              type="button"
+              className="room-dismiss icon-control"
+              onClick={close}
+              aria-label="Close room note"
+              title="Close room note"
+            >
+              <X size={16} />
+            </button>
+          </div>,
+          document.body,
         )}
-        <div className="popup-columns">
-          {shownZone.notes.map((note, index) => (
-            <p key={note}>
-              <span>({String(index + 1).padStart(2, "0")})</span>
-              {note}
-            </p>
-          ))}
-        </div>
-        <div className="popup-checker" aria-hidden="true" />
-      </div>
-      {activeIndex !== null && (
-        <button
-          type="button"
-          className="room-dismiss icon-control"
-          onClick={close}
-          aria-label="Close room note"
-          title="Close room note"
-        >
-          <X size={16} />
-        </button>
-      )}
       <span className="room-live-status" aria-live="polite">
         {activeIndex === null ? "" : shownZone.title}
       </span>

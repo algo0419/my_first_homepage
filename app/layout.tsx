@@ -5,9 +5,9 @@ import "./artifacts.css";
 import "./object-play.css";
 
 export const metadata: Metadata = {
-  title: "Junhyung Cho | Personal Index",
+  title: "Junhyung Cho | Elsewhere, Meanwhile",
   description:
-    "Notes, music, light, and the things in between. A personal index by Junhyung Cho.",
+    "A person in several places at once. Notes, music, photographs and unfinished thoughts by Junhyung Cho.",
 };
 
 export default function RootLayout({

@@ -1,417 +1,428 @@
 "use client";
 
 import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
   ArrowUpRight,
+  Mail,
+  Minus,
   Pause,
   Play,
+  Plus,
+  Search,
   Shuffle,
   SkipBack,
   SkipForward,
+  X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
-import { books, outsideLinks, posts, records } from "@/lib/site-content";
-import { InteractiveStudio } from "@/components/interactive-studio";
-import { CollageImage } from "@/components/collage-image";
+import { ArtifactMotionContext, FloatingArtifact } from "./floating-artifact";
+import { InteractiveStudio } from "./interactive-studio";
 import {
-  ArtifactMotionContext,
-  FloatingArtifact,
-} from "@/components/floating-artifact";
-import type { ArtifactKind } from "@/components/floating-artifact";
+  sphereItems,
+  indexItems,
+  spherePosition,
+} from "@/lib/spherical-content";
+import type { SphereItem } from "@/lib/spherical-content";
+import type { SphereController } from "@/lib/spherical-scene";
+import { outsideLinks, records } from "@/lib/site-content";
 
-const objects: ArtifactKind[] = [
-  "star",
-  "piano",
-  "cursor",
-  "monitor",
-  "pencil",
-  "guitar",
-  "dice",
-  "megaphone",
-  "camera",
-  "prism",
-  "floppy",
-  "stairs",
-  "chair",
-  "book",
-  "hourglass",
-  "plane",
-];
+function initialStyle(item: SphereItem, index: number): React.CSSProperties {
+  const [x, y, z] = spherePosition(item.lon, item.lat);
+  const [mx, my, mz] = spherePosition(...(item.mobile ?? [item.lon, item.lat]));
+  return {
+    width: item.width,
+    height: item.height,
+    zIndex:
+      item.kind === "artifact"
+        ? 20
+        : item.kind === "photo"
+          ? 2
+          : item.kind === "room"
+            ? 5
+            : item.kind === "word"
+              ? 35
+              : 30,
+    "--delay": `${-index * 0.37}s`,
+    "--boot-angle": `${item.tilt}deg`,
+    "--boot-x": `${x}px`,
+    "--boot-y": `${-y}px`,
+    "--boot-depth": `${-z}px`,
+    "--boot-visible": z < -100 ? "visible" : "hidden",
+    "--boot-mobile-x": `${mx}px`,
+    "--boot-mobile-y": `${-my}px`,
+    "--boot-mobile-depth": `${-mz}px`,
+    "--boot-mobile-visible": mz < -100 ? "visible" : "hidden",
+  } as React.CSSProperties;
+}
+
+function RecordObject() {
+  const [index, setIndex] = useState(0);
+  const record = records[index];
+  return (
+    <div className="record-object">
+      <a
+        href={record.href}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Listen to ${record.title} by ${record.artist}`}
+      >
+        <img
+          src={record.image}
+          width={record.width}
+          height={record.height}
+          alt={`${record.title} album cover`}
+          loading="lazy"
+        />
+      </a>
+      <div className="record-caption">
+        <span aria-live="polite">
+          {record.title}
+          <small>{record.artist}</small>
+        </span>
+        <button
+          type="button"
+          aria-label="Previous record"
+          title="Previous record"
+          onClick={() =>
+            setIndex((index + records.length - 1) % records.length)
+          }
+        >
+          <SkipBack size={17} />
+        </button>
+        <button
+          type="button"
+          aria-label="Next record"
+          title="Next record"
+          onClick={() => setIndex((index + 1) % records.length)}
+        >
+          <SkipForward size={17} />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function PersonalIndex() {
+  const root = useRef<HTMLDivElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const controller = useRef<SphereController | null>(null);
+  const latestMotion = useRef(false);
+  const userChoseMotion = useRef(false);
   const [motion, setMotion] = useState(false);
-  const motionChosen = useRef(false);
-  const [arrangement, setArrangement] = useState(0);
-  const [recordIndex, setRecordIndex] = useState(0);
-  const [spinning, setSpinning] = useState(true);
-  const record = records[recordIndex];
-  const shuffle = () => setArrangement((current) => (current + 1) % 3);
+  const [indexOpen, setIndexOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<SphereItem | null>(null);
+  const indexDialog = useRef<HTMLDialogElement>(null);
+  const readingDialog = useRef<HTMLDialogElement>(null);
+  const [engineError, setEngineError] = useState(false);
 
   useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const preference = matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => {
-      if (!motionChosen.current) setMotion(!preference.matches);
+      if (!userChoseMotion.current) setMotion(!preference.matches);
     };
     sync();
     preference.addEventListener("change", sync);
     return () => preference.removeEventListener("change", sync);
   }, []);
 
-  const changeRecord = (direction: number) =>
-    setRecordIndex(
-      (current) => (current + direction + records.length) % records.length,
-    );
+  useEffect(() => {
+    let cancelled = false;
+    import("@/lib/spherical-scene")
+      .then(({ createSphericalScene }) => {
+        if (cancelled || !root.current || !canvas.current) return;
+        controller.current = createSphericalScene(root.current, canvas.current);
+        controller.current.setMotion(latestMotion.current);
+        const hash = location.hash.slice(1);
+        if (hash && hash !== "top")
+          controller.current.focus(
+            ({ notes: "post-0", daytime: "between" } as Record<string, string>)[
+              hash
+            ] ?? hash,
+          );
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setEngineError(true);
+          setIndexOpen(true);
+        }
+      });
+    return () => {
+      cancelled = true;
+      controller.current?.dispose();
+      controller.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    latestMotion.current = motion;
+    controller.current?.setMotion(motion);
+  }, [motion]);
+  useEffect(() => {
+    controller.current?.setSuspended(indexOpen || !!selected);
+    if (indexOpen && !indexDialog.current?.open)
+      indexDialog.current?.showModal();
+    if (!indexOpen) indexDialog.current?.close();
+    if (selected && !readingDialog.current?.open)
+      readingDialog.current?.showModal();
+    if (!selected) readingDialog.current?.close();
+  }, [indexOpen, selected]);
+
+  const openItem = (item: SphereItem) => setSelected(item);
+  const focusItem = (item: SphereItem) => {
+    setIndexOpen(false);
+    if (engineError) {
+      setSelected(item);
+      return;
+    }
+    controller.current?.focus(item.id);
+  };
+  const filtered = indexItems.filter((item) =>
+    `${item.title} ${item.body ?? ""}`
+      .toLowerCase()
+      .includes(query.toLowerCase()),
+  );
 
   return (
     <ArtifactMotionContext.Provider value={motion}>
-      <main
-        data-motion={motion}
-        data-arrangement={arrangement}
-        className="personal-index"
-        id="top"
-      >
-        <header className="index-meta">
-          <a className="home-mark" href="#top">
-            J.C. / ALWAYS IN THE MIDDLE OF SOMETHING
-          </a>
-          <span className="meta-location">
-            DAEJEON, KR <i className="online-dot" /> STILL HERE
-          </span>
-          <div className="meta-actions">
-            <a href="mailto:junhyungcho@kaist.ac.kr">
-              Say hello <ArrowUpRight size={14} />
-            </a>
-            <button
-              className="icon-control"
-              type="button"
-              onClick={shuffle}
-              aria-label="Rearrange the objects"
-              title="Rearrange the objects"
-            >
-              <Shuffle size={17} />
-            </button>
-            <button
-              className="icon-control"
-              type="button"
-              onClick={() => {
-                motionChosen.current = true;
-                setMotion((current) => !current);
-              }}
-              aria-label={motion ? "Pause animations" : "Resume animations"}
-              title={motion ? "Pause animations" : "Resume animations"}
-              aria-pressed={!motion}
-            >
-              {motion ? <Pause size={16} /> : <Play size={16} />}
-            </button>
-          </div>
-        </header>
-
-        <div className="collage-field">
-          <div className="identity-fragment">
-            <span className="micro-label">
-              A PERSON, IN SEVERAL PLACES AT ONCE.
-            </span>
-            <h1>
-              Junhyung <em>Cho.</em>
-            </h1>
-          </div>
-          <div className="hello-fragment">
-            <p>
-              I study electrical engineering at KAIST. I also perform, listen
-              obsessively, and write things down. Most days these are the same
-              activity, seen from different sides of a table.
-            </p>
-            <a
-              className="small-link"
-              href="https://blog.naver.com/algo7112"
-              target="_blank"
-              rel="noreferrer"
-            >
-              A longer version, elsewhere <ArrowUpRight size={13} />
-            </a>
-          </div>
-          <InteractiveStudio />
-          <p className="offset-annotation">
-            The frame is never neutral. It tells us what deserves attention and
-            what may be ignored. I keep thinking about the things it excludes:
-            a cable, a pause, a person just outside the picture.
-          </p>
-          {posts.map((post, index) => (
-            <a
-              key={post.href}
-              id={index === 0 ? "notes" : undefined}
-              className={`loose-note note-${index}`}
-              href={post.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="micro-label">
-                {String(index + 1).padStart(2, "0")} / A MARGINAL NOTE /{" "}
-                {post.year}
-              </span>
-              <span className="note-title">
-                {post.title} <ArrowUpRight size={23} />
-              </span>
-            </a>
-          ))}
-          <figure className="stage-fragment photograph">
-            <CollageImage
-              name="portrait-stage"
-              width={1210}
-              height={1210}
-              sizes="(max-width: 600px) 68vw, 44vw"
-              alt="Junhyung playing guitar under stage lights"
-              eager
-            />
-            <figcaption>01 / OUTSIDE THE LAB / TURN IT UP.</figcaption>
-            <span className="photo-handwriting">
-              a little louder,
-              <br />
-              <em>please.</em>
-            </span>
-          </figure>
-          <span className="side-sentence" aria-hidden="true">
-            THE THINGS BETWEEN THE THINGS BETWEEN THE THINGS
-          </span>
-          <div className="interrupt-type" aria-hidden="true">
-            meanwhile,
-            <br />
-            <em>elsewhere.</em>
-          </div>
-          <div className="record-fragment" id="desk">
-            <span className="micro-label">
-              SIDE A, AGAIN. / {String(recordIndex + 1).padStart(2, "0")}
-            </span>
-            <div className="record-artwork">
-              <a
-                className="record-sleeve"
-                href={record.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Listen to ${record.title} by ${record.artist}`}
-              >
-                <img
-                  src={record.image}
-                  width={record.width}
-                  height={record.height}
-                  alt={`${record.title} album cover`}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-              <div
-                className={`vinyl-disc${spinning ? "" : " rotation-paused"}`}
-                aria-hidden="true"
-              >
-                <div className="vinyl-label">
-                  <img
-                    src={record.image}
-                    alt=""
-                    width={70}
-                    height={70}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="record-information">
-              <div aria-live="polite">
-                <h2>{record.title}</h2>
-                <p>{record.artist}</p>
-              </div>
-              <div className="record-controls">
-                <button
-                  className="icon-control"
-                  onClick={() => changeRecord(-1)}
-                  type="button"
-                  aria-label="Previous record"
-                  title="Previous record"
-                >
-                  <SkipBack size={17} />
-                </button>
-                <button
-                  className="icon-control"
-                  onClick={() => setSpinning((current) => !current)}
-                  type="button"
-                  aria-label={
-                    spinning
-                      ? "Pause record rotation"
-                      : "Resume record rotation"
-                  }
-                  title={
-                    spinning
-                      ? "Pause record rotation"
-                      : "Resume record rotation"
-                  }
-                >
-                  {spinning ? <Pause size={17} /> : <Play size={17} />}
-                </button>
-                <button
-                  className="icon-control"
-                  onClick={() => changeRecord(1)}
-                  type="button"
-                  aria-label="Next record"
-                  title="Next record"
-                >
-                  <SkipForward size={17} />
-                </button>
-              </div>
-            </div>
-            <a
-              className="small-link"
-              href="https://rateyourmusic.com/~jHyung"
-              target="_blank"
-              rel="noreferrer"
-            >
-              The listening log <ArrowUpRight size={13} />
-            </a>
-          </div>
-          <article className="paper-fragment" id="daytime">
-            <span className="micro-label">AN UNFINISHED THOUGHT / J.C.</span>
-            <h2>
-              What happens
-              <br />
-              <em>between things?</em>
-            </h2>
-            <p>
-              A photograph of a performance leaves out the wait before the first
-              note. A clean trace leaves out the hands adjusting the apparatus.
-              A book on a shelf conceals the hundred times it has been moved,
-              opened, abandoned.
-            </p>
-            <p>
-              These intervals interest me. In an exhibition, the distance
-              between two objects can carry as much meaning as either object. In
-              a room, that distance becomes ordinary life: a cable across the
-              floor, music from the next desk, a sentence on the back of a
-              receipt.
-            </p>
-            <p>
-              Perhaps an archive should keep a little of that friction. Things
-              placed together without being made to agree.
-            </p>
-          </article>
-          <aside className="pink-fragment">
-            <span className="micro-label">NOT A CONCLUSION.</span>
-            <p>
-              The room
-              <br />
-              is a <em>score.</em>
-            </p>
-            <span>
-              Move a chair. Change the listening position. The same record
-              becomes a different record.
-            </span>
-          </aside>
-          <figure className="city-fragment photograph">
-            <CollageImage
-              name="portrait-city"
-              width={1080}
-              height={1080}
-              sizes="(max-width: 600px) 46vw, 25vw"
-              alt="Junhyung smiling beside a mural"
-            />
-            <figcaption>02 / SOMEWHERE OUTSIDE</figcaption>
-          </figure>
-          <div className="book-fragment">
-            <span className="micro-label">LEFT OPEN, SIMULTANEOUSLY</span>
-            {books.map((book) => (
-              <p key={book.title}>
-                <i>{book.title}</i>
-                <small>{book.author}</small>
-              </p>
-            ))}
-            <span className="book-annotation">
-              Especially the one about the labyrinth.
-            </span>
-          </div>
-          <figure className="night-fragment photograph">
-            <CollageImage
-              name="portrait-night"
-              width={1027}
-              height={1976}
-              sizes="(max-width: 600px) 45vw, 26vw"
-              alt="Junhyung at night, away from the desk"
-            />
-            <figcaption>03 / AFTER HOURS. NO FIELD NOTES.</figcaption>
-          </figure>
-          <article className="closing-fragment">
-            <span className="micro-label">ON LIGHT, AND LOOKING</span>
-            <h2>
-              Not everything
-              <br />
-              needs a <em>frame.</em>
-            </h2>
-            <p>
-              Working with light involves learning to look at what is almost
-              invisible. The beam is easy to photograph; the alignment is not.
-              The important adjustment might be a fraction of a turn, followed
-              by another hour of waiting. Electrical engineering gives these
-              observations a technical vocabulary.
-            </p>
-            <p>
-              Outside the laboratory, I keep finding versions of the same
-              problem. A stage rearranges our attention. A record changes the
-              atmosphere of a room. A sentence makes something familiar briefly
-              strange. I am interested in the apparatus, but also in the person
-              standing beside it.
-            </p>
-            <a
-              className="small-link"
-              href="https://github.com/algo0419"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Some of the work behind it <ArrowUpRight size={13} />
-            </a>
-          </article>
-          <div className="running-thought" aria-hidden="true">
-            <span>
-              NO FINAL ARRANGEMENT / NO FINAL ARRANGEMENT / NO FINAL ARRANGEMENT
-              / NO FINAL ARRANGEMENT /{" "}
-            </span>
-          </div>
-          <p className="receipt-fragment">
-            The exhibition does not stop at the edge of the work. It continues
-            in the angle of a chair, the conversation leaking through a wall,
-            the decision to look again. An object is never only itself; it is
-            also the company it keeps.
-          </p>
-          {objects.map((kind, index) => (
+      <main className="sphere-app" data-motion={motion}>
+        <h1 className="sr-only">Junhyung Cho</h1>
+        <div
+          className="sphere-world"
+          ref={root}
+          tabIndex={0}
+          aria-label="Junhyung Cho's spherical personal archive"
+          aria-roledescription="interactive spatial archive"
+        >
+          <canvas ref={canvas} className="sphere-canvas" aria-hidden="true" />
+          {sphereItems.map((item, index) => (
             <div
-              className={`loose-object object-${kind}`}
-              key={kind}
-              data-object={kind}
-              style={
-                {
-                  "--shift-x": `${arrangement === 0 ? 0 : ((index % 3) - 1) * (arrangement === 1 ? 42 : -34)}px`,
-                  "--shift-y": `${arrangement === 0 ? 0 : (index % 2 ? 1 : -1) * (arrangement === 1 ? 24 : -18)}px`,
-                  "--shift-angle": `${arrangement === 0 ? 0 : (index % 2 ? -14 : 16) * arrangement}deg`,
-                  "--delay": `${index * -0.39}s`,
-                } as CSSProperties
-              }
+              key={item.id}
+              className={`world-node node-${item.kind} tone-${item.color ?? "ink"}`}
+              data-node={item.id}
+              style={initialStyle(item, index)}
             >
-              <FloatingArtifact
-                kind={kind}
-                eager={index < 4}
-                onActivate={shuffle}
-              />
+              {item.kind === "artifact" && (
+                <FloatingArtifact
+                  kind={item.artifact!}
+                  eager={index < 40}
+                  onActivate={() =>
+                    controller.current?.turn(index % 2 ? 0.12 : -0.12, 0.05)
+                  }
+                />
+              )}
+              {item.kind === "room" && <InteractiveStudio />}
+              {item.kind === "photo" && (
+                <button
+                  className="photo-hit"
+                  type="button"
+                  onClick={() => openItem(item)}
+                  aria-label={`View photograph: ${item.title}`}
+                  title={item.title}
+                >
+                  <img
+                    className="photo-fallback"
+                    src={item.image}
+                    alt={item.title}
+                    width={item.width}
+                    height={item.height}
+                    loading={index < 10 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                </button>
+              )}
+              {item.kind === "word" && (
+                <button
+                  className={`word-fragment word-${item.id}`}
+                  type="button"
+                  onClick={() => openItem(item)}
+                >
+                  {item.title}
+                </button>
+              )}
+              {item.kind === "note" && (
+                <button
+                  className={`text-fragment ${item.id.startsWith("about-") ? "personal-sentence" : ""}`}
+                  type="button"
+                  onClick={() => openItem(item)}
+                >
+                  <span>{item.title}</span>
+                  {item.body && !item.id.startsWith("about-") && (
+                    <p>{item.body}</p>
+                  )}
+                </button>
+              )}
+              {item.kind === "post" && (
+                <a
+                  className="post-fragment"
+                  href={item.href}
+                  target={
+                    item.href?.startsWith("mailto:") ? undefined : "_blank"
+                  }
+                  rel="noreferrer"
+                >
+                  {item.title}
+                  <ArrowUpRight size={20} />
+                </a>
+              )}
+              {item.kind === "record" && <RecordObject />}
             </div>
           ))}
-          <a
-            className="farewell-fragment"
-            href="mailto:junhyungcho@kaist.ac.kr"
-          >
-            Anyway,
-            <br />
-            <em>say hello.</em>
-            <ArrowUpRight size={72} />
-          </a>
-          <span className="end-scribble">to be continued...</span>
         </div>
-        <footer className="index-footer">
-          <span>JUNHYUNG CHO / 2026</span>
-          <div className="footer-links">
+
+        <nav className="scene-dock" aria-label="Archive controls">
+          <button
+            type="button"
+            className="signature"
+            title="Return to the opening view"
+            aria-label="Return to the opening view"
+            onClick={() => controller.current?.reset()}
+          >
+            J.C.
+          </button>
+          <button
+            type="button"
+            title="Find something"
+            aria-label="Find something"
+            onClick={() => setIndexOpen(true)}
+          >
+            <Search size={18} />
+          </button>
+          <span className="dock-rule" />
+          <button
+            type="button"
+            title="Turn left"
+            aria-label="Turn left"
+            onClick={() => controller.current?.turn(0.2, 0)}
+          >
+            <ArrowLeft size={18} />
+          </button>
+          <button
+            type="button"
+            title="Turn right"
+            aria-label="Turn right"
+            onClick={() => controller.current?.turn(-0.2, 0)}
+          >
+            <ArrowRight size={18} />
+          </button>
+          <button
+            type="button"
+            className="desktop-control"
+            title="Look up"
+            aria-label="Look up"
+            onClick={() => controller.current?.turn(0, 0.2)}
+          >
+            <ArrowUp size={18} />
+          </button>
+          <button
+            type="button"
+            className="desktop-control"
+            title="Look down"
+            aria-label="Look down"
+            onClick={() => controller.current?.turn(0, -0.2)}
+          >
+            <ArrowDown size={18} />
+          </button>
+          <button
+            type="button"
+            title="Zoom out"
+            aria-label="Zoom out"
+            onClick={() => controller.current?.zoom(8)}
+          >
+            <Minus size={18} />
+          </button>
+          <button
+            type="button"
+            title="Zoom in"
+            aria-label="Zoom in"
+            onClick={() => controller.current?.zoom(-8)}
+          >
+            <Plus size={18} />
+          </button>
+          <button
+            type="button"
+            title="Another direction"
+            aria-label="Another direction"
+            onClick={() => controller.current?.shuffle()}
+          >
+            <Shuffle size={18} />
+          </button>
+          <button
+            type="button"
+            aria-label={motion ? "Pause motion" : "Resume motion"}
+            title={motion ? "Pause motion" : "Resume motion"}
+            aria-pressed={!motion}
+            onClick={() => {
+              userChoseMotion.current = true;
+              setMotion((value) => !value);
+            }}
+          >
+            {motion ? <Pause size={17} /> : <Play size={17} />}
+          </button>
+          <a
+            href="mailto:junhyungcho@kaist.ac.kr"
+            aria-label="Email Junhyung"
+            title="Email Junhyung"
+          >
+            <Mail size={18} />
+          </a>
+        </nav>
+        <a
+          className="location-stamp"
+          href="https://blog.naver.com/algo7112"
+          target="_blank"
+          rel="noreferrer"
+        >
+          DAEJEON, KR / STILL HERE <ArrowUpRight size={11} />
+        </a>
+
+        <dialog
+          ref={indexDialog}
+          className="archive-dialog"
+          aria-labelledby="find-heading"
+          onCancel={(event) => {
+            event.preventDefault();
+            setIndexOpen(false);
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setIndexOpen(false);
+          }}
+        >
+          <div className="dialog-topline">
+            <h2 id="find-heading">Something in mind?</h2>
+            <button
+              type="button"
+              aria-label="Close index"
+              title="Close index"
+              onClick={() => setIndexOpen(false)}
+            >
+              <X size={22} />
+            </button>
+          </div>
+          <input
+            type="search"
+            aria-label="Search the archive"
+            placeholder="A word, a record, a thought..."
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <div className="index-results">
+            {filtered.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                onClick={() => focusItem(item)}
+              >
+                <span>{item.title}</span>
+                <ArrowUpRight size={16} />
+              </button>
+            ))}
+            {!filtered.length && <p>No matches.</p>}
+          </div>
+          <div className="outside-links">
             {outsideLinks.map((link) => (
               <a
                 key={link.href}
@@ -424,10 +435,66 @@ export function PersonalIndex() {
               </a>
             ))}
           </div>
-          <a href="#top">
-            Back into it <ArrowUpRight size={14} />
-          </a>
-        </footer>
+        </dialog>
+
+        <dialog
+          ref={readingDialog}
+          className={`reading-dialog${selected?.kind === "photo" ? " photo-dialog" : ""}`}
+          aria-labelledby="reading-heading"
+          onCancel={(event) => {
+            event.preventDefault();
+            setSelected(null);
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setSelected(null);
+          }}
+        >
+          <div className="dialog-topline">
+            <span>J.C. / A CLOSER LOOK</span>
+            <button
+              type="button"
+              aria-label="Close reading"
+              title="Close reading"
+              onClick={() => setSelected(null)}
+            >
+              <X size={22} />
+            </button>
+          </div>
+          {selected && (
+            <>
+              <h2 id="reading-heading">{selected.title}</h2>
+              {selected.image ? (
+                <img src={selected.image} alt={selected.title} />
+              ) : (
+                <p>{selected.body ?? selected.title}</p>
+              )}
+              {selected.href && (
+                <a
+                  className="reading-link"
+                  href={selected.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Read the original <ArrowUpRight size={17} />
+                </a>
+              )}
+            </>
+          )}
+        </dialog>
+        <noscript>
+          <div className="no-script">
+            <h2>Junhyung Cho</h2>
+            <p>
+              Electrical engineering at KAIST. Performing, listening, and
+              writing things down.
+            </p>
+            {outsideLinks.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </noscript>
       </main>
     </ArtifactMotionContext.Provider>
   );

@@ -30,6 +30,7 @@ export function CollageImage({
       alt={alt}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
+      draggable={false}
       fetchPriority={room ? "high" : "auto"}
     />
   );

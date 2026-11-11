@@ -1,15 +1,3 @@
-.loose-object {
-  z-index: 10;
-  pointer-events: none;
-  translate: var(--shift-x) var(--shift-y);
-  rotate: var(--shift-angle);
-  transition:
-    translate 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    rotate 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.loose-object:has(:focus-visible) {
-  z-index: 20;
-}
 .floating-artifact {
   display: block;
   width: 100%;
@@ -33,7 +21,7 @@
   animation: artifact-drift 3.6s ease-in-out infinite alternate;
   animation-delay: var(--delay, 0s);
 }
-.loose-object:nth-child(even) .artifact-drift {
+.world-node:nth-child(even) .artifact-drift {
   animation-direction: alternate-reverse;
   animation-duration: 4.2s;
 }
@@ -60,162 +48,11 @@
 .floating-artifact[data-phase="2"] img {
   filter: hue-rotate(180deg) drop-shadow(5px 7px 0 #273cff50);
 }
-.object-star {
-  grid-area: 1 / 11 / 7 / 15;
-}
-.object-piano {
-  grid-area: 15 / 1 / 23 / 5;
-}
-.object-cursor {
-  grid-area: 8 / 9 / 12 / 12;
-}
-.object-monitor {
-  grid-area: 12 / 19 / 21 / 25;
-}
-.object-pencil {
-  grid-area: 18 / 11 / 24 / 14;
-}
-.object-guitar {
-  grid-area: 23 / 9 / 34 / 14;
-}
-.object-dice {
-  grid-area: 28 / 1 / 34 / 4;
-}
-.object-megaphone {
-  grid-area: 30 / 15 / 35 / 20;
-}
-.object-camera {
-  grid-area: 39 / 18 / 47 / 25;
-}
-.object-prism {
-  grid-area: 17 / 5 / 22 / 9;
-}
-.object-floppy {
-  grid-area: 49 / 7 / 55 / 11;
-}
-.object-stairs {
-  grid-area: 57 / 9 / 62 / 14;
-}
-.object-chair {
-  grid-area: 60 / 14 / 66 / 17;
-}
-.object-book {
-  grid-area: 69 / 17 / 77 / 24;
-}
-.object-hourglass {
-  grid-area: 65 / 12 / 70 / 16;
-}
-.object-plane {
-  grid-area: 73 / 11 / 78 / 17;
-}
 @keyframes artifact-drift {
   from {
     transform: translateY(7px) rotate(-9deg);
   }
   to {
     transform: translateY(-10px) rotate(9deg);
-  }
-}
-@media (min-width: 601px) and (max-width: 1040px) {
-  .object-star {
-    grid-area: 1 / 17 / 5 / 22;
-  }
-  .object-piano {
-    grid-area: 15 / 1 / 22 / 7;
-  }
-  .object-cursor {
-    grid-area: 7 / 8 / 11 / 12;
-  }
-  .object-monitor {
-    grid-area: 16 / 18 / 23 / 25;
-  }
-  .object-pencil {
-    grid-area: 30 / 10 / 35 / 14;
-  }
-  .object-guitar {
-    grid-area: 26 / 1 / 36 / 7;
-  }
-  .object-dice {
-    grid-area: 34 / 1 / 39 / 5;
-  }
-  .object-megaphone {
-    grid-area: 36 / 18 / 42 / 25;
-  }
-  .object-camera {
-    grid-area: 53 / 7 / 60 / 14;
-  }
-  .object-prism {
-    grid-area: 46 / 7 / 51 / 14;
-  }
-  .object-floppy {
-    grid-area: 64 / 9 / 69 / 14;
-  }
-  .object-stairs {
-    grid-area: 77 / 7 / 83 / 14;
-  }
-  .object-chair {
-    grid-area: 89 / 3 / 97 / 10;
-  }
-  .object-book {
-    grid-area: 99 / 17 / 106 / 25;
-  }
-  .object-hourglass {
-    grid-area: 94 / 10 / 99 / 14;
-  }
-  .object-plane {
-    grid-area: 105 / 15 / 110 / 22;
-  }
-}
-@media (max-width: 600px) {
-  .loose-object {
-    translate: calc(var(--shift-x) * 0.45) calc(var(--shift-y) * 0.6);
-  }
-  .object-star {
-    grid-area: 5 / 1 / 7 / 4;
-  }
-  .object-piano {
-    grid-area: 10 / 8 / 17 / 13;
-  }
-  .object-cursor {
-    grid-area: 27 / 10 / 32 / 13;
-  }
-  .object-monitor {
-    grid-area: 24 / 8 / 29 / 13;
-  }
-  .object-pencil {
-    grid-area: 34 / 1 / 40 / 5;
-  }
-  .object-guitar {
-    grid-area: 43 / 1 / 51 / 6;
-  }
-  .object-dice {
-    grid-area: 55 / 9 / 61 / 13;
-  }
-  .object-megaphone {
-    grid-area: 62 / 6 / 68 / 13;
-  }
-  .object-camera {
-    grid-area: 103 / 7 / 107 / 13;
-  }
-  .object-prism {
-    grid-area: 73 / 9 / 79 / 13;
-  }
-  .object-floppy {
-    grid-area: 126 / 7 / 133 / 13;
-  }
-  .object-stairs {
-    grid-area: 145 / 8 / 151 / 13;
-  }
-  .object-chair {
-    grid-area: 151 / 1 / 160 / 7;
-  }
-  .object-book {
-    grid-area: 189 / 1 / 193 / 8;
-  }
-  .object-hourglass {
-    grid-area: 189 / 9 / 193 / 13;
-  }
-  .object-plane {
-    grid-area: 204 / 9 / 208 / 13;
   }
 }
