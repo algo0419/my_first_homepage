@@ -149,6 +149,14 @@ export function InteractiveStudio() {
           </span>
         </div>
         <h2>{shownZone.title}</h2>
+        <img
+          className="popup-artifact"
+          src={`/generated/${["exploded-book", "folded-guitar", "signal-monitor", "chrome-knot"][activeIndex ?? lastIndex]}.png`}
+          alt=""
+          aria-hidden="true"
+          width={150}
+          height={150}
+        />
         <div className="popup-columns">
           {shownZone.notes.map((note, index) => (
             <p key={note}>

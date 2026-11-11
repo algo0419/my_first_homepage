@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { books, outsideLinks, posts, records } from "@/lib/site-content";
 import { InteractiveStudio } from "@/components/interactive-studio";
+import { FloatingArtifact } from "@/components/floating-artifact";
 
 export function PersonalIndex() {
   const [motion, setMotion] = useState(true);
@@ -57,22 +58,27 @@ export function PersonalIndex() {
             Junhyung <em>Cho</em>
             <span className="name-period">.</span>
           </h1>
-          <span className="name-aside">
-            A PERSON,
-            <br />
-            IN SEVERAL PLACES
-            <br />
-            AT ONCE.
-          </span>
+          <FloatingArtifact kind="knot" />
         </div>
         <div className="index-colophon">
           <span>Some things I do. Some things I keep coming back to.</span>
           <a href="#desk">
             An open desk <ArrowDownRight size={15} />
           </a>
-          <span>VOL. 01 &nbsp; / &nbsp; OCTOBER 2026</span>
+          <span>VOL. 02 &nbsp; / &nbsp; NOVEMBER 2026</span>
         </div>
       </header>
+
+      <div className="interference-strip" aria-hidden="true">
+        <div>
+          {[0, 1, 2, 3].map((copy) => (
+            <span key={copy}>
+              SOME ASSEMBLY REQUIRED <i>////</i> EVERYTHING IS CONNECTED{" "}
+              <i>////</i> PLEASE DISTURB <i>////</i>{" "}
+            </span>
+          ))}
+        </div>
+      </div>
 
       <div className="index-spread">
         <div className="hello-fragment">
@@ -113,19 +119,9 @@ export function PersonalIndex() {
           ))}
         </div>
 
-        <a className="hello-stamp" href="mailto:junhyungcho@kaist.ac.kr">
-          <img
-            src="/portraits/portrait-city.jpg"
-            width={1080}
-            height={1080}
-            alt="Junhyung outside, beside a painted wall"
-          />
-          <span>
-            say hello
-            <ArrowUpRight size={24} />
-          </span>
-          <small>DAEJEON / SOUTH KOREA</small>
-        </a>
+        <div className="monitor-fragment">
+          <FloatingArtifact kind="monitor" />
+        </div>
 
         <figure className="stage-fragment photograph">
           <img
@@ -144,6 +140,7 @@ export function PersonalIndex() {
             <br />
             please.
           </span>
+          <FloatingArtifact kind="guitar" />
         </figure>
 
         <InteractiveStudio />
@@ -391,6 +388,9 @@ export function PersonalIndex() {
         <span className="margin-word" aria-hidden="true">
           to be continued
         </span>
+        <div className="paper-object-fragment">
+          <FloatingArtifact kind="book" />
+        </div>
       </div>
 
       <footer className="index-footer">

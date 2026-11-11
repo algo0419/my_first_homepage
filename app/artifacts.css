@@ -1,0 +1,463 @@
+.nameplate h1 em {
+  display: inline-block;
+  padding: 0 10px 5px;
+  background: var(--pink);
+  box-shadow: 7px 7px 0 #273cff;
+  line-height: 0.78;
+  transform: rotate(-7deg);
+}
+.nameplate h1 {
+  position: relative;
+  z-index: 2;
+}
+.interference-strip {
+  position: relative;
+  z-index: 7;
+  height: 25px;
+  margin: 0 -28px 7px;
+  overflow: hidden;
+  background: #273cff;
+  color: #ffa8d0;
+  transform: rotate(-0.6deg);
+  pointer-events: none;
+}
+.interference-strip > div {
+  display: flex;
+  width: max-content;
+  animation: interference-scroll 32s linear infinite;
+}
+.interference-strip span {
+  white-space: nowrap;
+  padding-right: 20px;
+  font:
+    700 15px/25px Arial,
+    sans-serif;
+}
+.interference-strip i {
+  color: #e5ff54;
+  padding: 0 16px;
+}
+.loose-notes {
+  transform: rotate(-2deg);
+}
+.loose-notes > a:nth-of-type(2) > span:nth-child(2) {
+  background: var(--pink);
+}
+.stage-fragment {
+  z-index: 6;
+}
+.floating-artifact {
+  display: block;
+  position: relative;
+  padding: 0;
+  background: transparent;
+  isolation: isolate;
+  touch-action: manipulation;
+}
+.artifact-drift,
+.artifact-turn {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.artifact-drift {
+  animation: artifact-float 5.6s ease-in-out infinite alternate;
+}
+.artifact-turn {
+  transform: translate(var(--lean-x, 0px), var(--lean-y, 0px))
+    rotate(var(--artifact-turn, 0deg));
+  transition:
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 300ms;
+}
+.floating-artifact img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(6px 10px 0 #bf2b2420);
+  transition: scale 250ms cubic-bezier(0.2, 0.8, 0.3, 1.4);
+}
+.floating-artifact:hover img,
+.floating-artifact:focus-visible img {
+  scale: 1.16;
+}
+.floating-artifact:hover .artifact-drift,
+.floating-artifact:focus-visible .artifact-drift {
+  animation-play-state: paused;
+}
+.artifact-caption {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  white-space: nowrap;
+  padding: 3px 5px;
+  background: #273cff;
+  color: #e5ff54;
+  font:
+    9px/1.1 Arial,
+    sans-serif;
+  pointer-events: none;
+}
+.artifact-knot {
+  position: absolute;
+  z-index: 3;
+  width: 230px;
+  height: 195px;
+  right: -4px;
+  top: -3px;
+}
+.artifact-knot .artifact-drift {
+  animation-name: knot-roll;
+  animation-duration: 9s;
+}
+.artifact-knot .artifact-caption {
+  bottom: 17px;
+  background: var(--red);
+}
+.artifact-knot[data-phase="1"] img {
+  filter: hue-rotate(110deg) drop-shadow(6px 10px 0 #273cff30);
+}
+.artifact-knot[data-phase="2"] img {
+  filter: hue-rotate(240deg) drop-shadow(6px 10px 0 #273cff30);
+}
+.monitor-fragment {
+  grid-area: 1 / 10 / 5 / 13;
+  z-index: 8;
+}
+.artifact-monitor {
+  width: 100%;
+  height: 225px;
+  margin-top: -12px;
+}
+.artifact-monitor .artifact-drift {
+  animation-name: monitor-rock;
+  animation-duration: 4s;
+}
+.artifact-monitor .artifact-caption {
+  bottom: 12px;
+  background: var(--pink);
+  color: var(--ink);
+}
+.artifact-monitor[data-phase="1"] img {
+  filter: hue-rotate(100deg) saturate(1.5);
+}
+.artifact-monitor[data-phase="2"] img {
+  filter: hue-rotate(230deg) contrast(1.2);
+}
+.artifact-guitar {
+  position: absolute;
+  right: -38px;
+  bottom: 14px;
+  width: 275px;
+  height: 340px;
+  z-index: 8;
+}
+.artifact-guitar .artifact-drift {
+  animation-name: guitar-swing;
+  animation-duration: 6s;
+}
+.artifact-guitar .artifact-caption {
+  background: var(--pink);
+  color: #273cff;
+  bottom: 14px;
+}
+.artifact-guitar[data-phase="1"] img {
+  filter: hue-rotate(80deg);
+}
+.artifact-guitar[data-phase="2"] img {
+  filter: hue-rotate(210deg);
+}
+.paper-object-fragment {
+  grid-area: 34 / 9 / 40 / 13;
+  z-index: 3;
+}
+.artifact-book {
+  width: 100%;
+  height: 280px;
+  margin-top: -60px;
+}
+.artifact-book .artifact-drift {
+  animation-name: paper-orbit;
+  animation-duration: 11s;
+}
+.artifact-book .artifact-caption {
+  bottom: 32px;
+}
+.margin-word {
+  align-self: end;
+  z-index: 5;
+  pointer-events: none;
+  font-size: 62px;
+  padding-bottom: 10px;
+}
+.popup-artifact {
+  position: absolute;
+  right: 15px;
+  top: 37px;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  transform: rotate(12deg);
+  pointer-events: none;
+  animation: popup-object-arrive 400ms cubic-bezier(0.2, 0.8, 0.3, 1.4) both;
+}
+.room-popup h2 {
+  padding-right: 145px;
+}
+.movement-stopped .artifact-turn,
+.movement-stopped .floating-artifact img {
+  transition: none;
+}
+@keyframes interference-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes artifact-float {
+  to {
+    transform: translateY(-12px) rotate(5deg);
+  }
+}
+@keyframes knot-roll {
+  0% {
+    transform: rotate(-15deg) translateY(2px);
+  }
+  100% {
+    transform: rotate(15deg) translateY(-8px);
+  }
+}
+@keyframes monitor-rock {
+  0% {
+    transform: rotate(8deg) translateY(0);
+  }
+  100% {
+    transform: rotate(-5deg) translateY(9px);
+  }
+}
+@keyframes guitar-swing {
+  0% {
+    transform: rotate(-10deg) translate(-8px, 0);
+  }
+  100% {
+    transform: rotate(9deg) translate(10px, -15px);
+  }
+}
+@keyframes paper-orbit {
+  0% {
+    transform: rotate(-17deg) translateY(10px);
+  }
+  100% {
+    transform: rotate(18deg) translateY(-10px);
+  }
+}
+@keyframes popup-object-arrive {
+  from {
+    transform: rotate(-30deg) scale(0.3);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(12deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1450px) {
+  .artifact-knot {
+    width: 280px;
+    height: 220px;
+  }
+  .artifact-monitor {
+    height: 255px;
+  }
+  .artifact-guitar {
+    width: 320px;
+    height: 400px;
+  }
+  .artifact-book {
+    height: 325px;
+  }
+}
+@media (min-width: 761px) and (max-width: 1190px) {
+  .artifact-knot {
+    width: 185px;
+    height: 160px;
+  }
+  .artifact-monitor {
+    height: 205px;
+  }
+  .artifact-guitar {
+    width: 220px;
+    height: 280px;
+    right: -23px;
+  }
+  .paper-object-fragment {
+    grid-row: 35 / 40;
+  }
+  .artifact-book {
+    height: 235px;
+  }
+  .margin-word {
+    font-size: 50px;
+  }
+}
+@media (min-width: 761px) and (max-width: 980px) {
+  .artifact-knot {
+    width: 140px;
+    height: 135px;
+    top: 0;
+  }
+  .artifact-caption {
+    font-size: 7px;
+  }
+  .monitor-fragment {
+    grid-row: 1 / 6;
+  }
+  .artifact-monitor {
+    height: 220px;
+  }
+  .artifact-guitar {
+    width: 175px;
+    height: 240px;
+    right: -20px;
+  }
+  .paper-object-fragment {
+    grid-row: 36 / 43;
+  }
+  .popup-artifact {
+    width: 115px;
+    height: 115px;
+    right: 10px;
+  }
+  .room-popup h2 {
+    padding-right: 105px;
+  }
+}
+@media (max-width: 760px) {
+  .nameplate h1 em {
+    padding: 0 7px 3px;
+    box-shadow: 4px 4px 0 #273cff;
+  }
+  .artifact-knot {
+    top: auto;
+    bottom: 9px;
+    right: 2px;
+    width: 97px;
+    height: 78px;
+  }
+  .artifact-knot .artifact-caption {
+    display: none;
+  }
+  .interference-strip {
+    height: 22px;
+    margin-bottom: 7px;
+  }
+  .interference-strip span {
+    font-size: 12px;
+    line-height: 22px;
+  }
+  .monitor-fragment {
+    grid-area: 1 / 4 / 4 / 5;
+  }
+  .artifact-monitor {
+    width: 105px;
+    height: 134px;
+    margin-top: 4px;
+    margin-left: -14px;
+  }
+  .artifact-caption {
+    font-size: 7px;
+  }
+  .artifact-monitor .artifact-caption {
+    font-size: 6px;
+    bottom: 0;
+  }
+  .artifact-guitar {
+    width: 172px;
+    height: 237px;
+    right: -14px;
+    bottom: 20px;
+  }
+  .artifact-guitar .artifact-caption {
+    bottom: 3px;
+  }
+  .paper-object-fragment {
+    grid-area: 76 / 3 / 81 / 5;
+  }
+  .artifact-book {
+    height: 185px;
+    margin-top: -37px;
+  }
+  .artifact-book .artifact-caption {
+    bottom: 5px;
+    font-size: 7px;
+  }
+  .margin-word {
+    font-size: 38px;
+    padding-bottom: 0;
+  }
+  .popup-artifact {
+    width: 95px;
+    height: 95px;
+    top: 32px;
+    right: 2px;
+  }
+  .room-popup h2 {
+    padding-right: 75px;
+    font-size: 49px;
+  }
+}
+@media (min-width: 500px) and (max-width: 760px) {
+  .artifact-knot {
+    width: 155px;
+    height: 135px;
+    bottom: 5px;
+  }
+  .artifact-monitor {
+    width: 140px;
+    height: 175px;
+  }
+  .artifact-guitar {
+    width: 200px;
+    height: 260px;
+  }
+  .artifact-book {
+    height: 240px;
+  }
+}
+@media (max-width: 400px) {
+  .artifact-knot {
+    width: 82px;
+    height: 72px;
+    right: 8px;
+  }
+  .artifact-monitor {
+    width: 85px;
+    height: 110px;
+    margin-left: -16px;
+    margin-top: 14px;
+  }
+  .artifact-monitor .artifact-caption {
+    font-size: 5px;
+  }
+  .artifact-guitar {
+    width: 150px;
+    height: 210px;
+    right: -4px;
+  }
+  .floating-artifact:hover img,
+  .floating-artifact:focus-visible img {
+    scale: 1.06;
+  }
+  .room-popup h2 {
+    font-size: 43px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-artifact *,
+  .interference-strip > div,
+  .popup-artifact {
+    animation: none !important;
+    transition: none !important;
+  }
+}
