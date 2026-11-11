@@ -99,7 +99,7 @@
     sans-serif;
   pointer-events: none;
 }
-.artifact-knot {
+.artifact-star {
   position: absolute;
   z-index: 3;
   width: 230px;
@@ -107,18 +107,18 @@
   right: -4px;
   top: -3px;
 }
-.artifact-knot .artifact-drift {
-  animation-name: knot-roll;
+.artifact-star .artifact-drift {
+  animation-name: star-roll;
   animation-duration: 9s;
 }
-.artifact-knot .artifact-caption {
+.artifact-star .artifact-caption {
   bottom: 17px;
   background: var(--red);
 }
-.artifact-knot[data-phase="1"] img {
+.artifact-star[data-phase="1"] img {
   filter: hue-rotate(110deg) drop-shadow(6px 10px 0 #273cff30);
 }
-.artifact-knot[data-phase="2"] img {
+.artifact-star[data-phase="2"] img {
   filter: hue-rotate(240deg) drop-shadow(6px 10px 0 #273cff30);
 }
 .monitor-fragment {
@@ -219,7 +219,7 @@
     transform: translateY(-12px) rotate(5deg);
   }
 }
-@keyframes knot-roll {
+@keyframes star-roll {
   0% {
     transform: rotate(-15deg) translateY(2px);
   }
@@ -263,7 +263,7 @@
 }
 
 @media (min-width: 1450px) {
-  .artifact-knot {
+  .artifact-star {
     width: 280px;
     height: 220px;
   }
@@ -279,7 +279,7 @@
   }
 }
 @media (min-width: 761px) and (max-width: 1190px) {
-  .artifact-knot {
+  .artifact-star {
     width: 185px;
     height: 160px;
   }
@@ -302,7 +302,7 @@
   }
 }
 @media (min-width: 761px) and (max-width: 980px) {
-  .artifact-knot {
+  .artifact-star {
     width: 140px;
     height: 135px;
     top: 0;
@@ -338,14 +338,14 @@
     padding: 0 7px 3px;
     box-shadow: 4px 4px 0 #273cff;
   }
-  .artifact-knot {
+  .artifact-star {
     top: auto;
     bottom: 9px;
     right: 2px;
     width: 97px;
     height: 78px;
   }
-  .artifact-knot .artifact-caption {
+  .artifact-star .artifact-caption {
     display: none;
   }
   .interference-strip {
@@ -408,7 +408,7 @@
   }
 }
 @media (min-width: 500px) and (max-width: 760px) {
-  .artifact-knot {
+  .artifact-star {
     width: 155px;
     height: 135px;
     bottom: 5px;
@@ -426,7 +426,7 @@
   }
 }
 @media (max-width: 400px) {
-  .artifact-knot {
+  .artifact-star {
     width: 82px;
     height: 72px;
     right: 8px;
@@ -451,6 +451,73 @@
   }
   .room-popup h2 {
     font-size: 43px;
+  }
+}
+.artifact-prism {
+  width: 100%;
+  height: 100%;
+}
+.artifact-prism .artifact-drift {
+  animation: prism-tilt 7s ease-in-out infinite alternate;
+}
+.artifact-prism .artifact-caption {
+  background: var(--pink);
+  color: var(--ink);
+}
+.artifact-prism[data-phase="1"] img {
+  filter: hue-rotate(70deg);
+}
+.artifact-prism[data-phase="2"] img {
+  filter: hue-rotate(180deg);
+}
+.artifact-chair {
+  position: absolute;
+  left: -14px;
+  bottom: 28px;
+  width: 180px;
+  height: 235px;
+  z-index: 4;
+}
+.artifact-chair .artifact-drift {
+  animation: chair-balance 5s ease-in-out infinite alternate;
+}
+.artifact-chair .artifact-caption {
+  bottom: 7px;
+  font-size: 7px;
+}
+.city-fragment > figcaption {
+  position: relative;
+  z-index: 5;
+}
+@keyframes prism-tilt {
+  from {
+    transform: translateY(-5px) rotate(-9deg);
+  }
+  to {
+    transform: translateY(7px) rotate(9deg);
+  }
+}
+@keyframes chair-balance {
+  from {
+    transform: rotate(-8deg);
+  }
+  to {
+    transform: rotate(7deg) translateY(-10px);
+  }
+}
+@media (min-width: 761px) and (max-width: 980px) {
+  .artifact-chair {
+    width: 135px;
+    height: 180px;
+    bottom: 28px;
+  }
+}
+@media (max-width: 760px) {
+  .artifact-chair {
+    width: 150px;
+    height: 200px;
+    left: -7px;
+    bottom: 32px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

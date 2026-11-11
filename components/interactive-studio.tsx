@@ -151,7 +151,7 @@ export function InteractiveStudio() {
         <h2>{shownZone.title}</h2>
         <img
           className="popup-artifact"
-          src={`/generated/${["exploded-book", "folded-guitar", "signal-monitor", "chrome-knot"][activeIndex ?? lastIndex]}.png`}
+          src={`/generated/${["exploded-book", "folded-guitar", "signal-monitor", "angular-prism"][activeIndex ?? lastIndex]}.png`}
           alt=""
           aria-hidden="true"
           width={150}

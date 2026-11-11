@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   Pause,
   Play,
-  RotateCcw,
   SkipBack,
   SkipForward,
 } from "lucide-react";
@@ -18,7 +17,6 @@ export function PersonalIndex() {
   const [motion, setMotion] = useState(true);
   const [recordIndex, setRecordIndex] = useState(0);
   const [spinning, setSpinning] = useState(true);
-  const [objectVersion, setObjectVersion] = useState(0);
   const record = records[recordIndex];
 
   const changeRecord = (direction: number) => {
@@ -58,7 +56,7 @@ export function PersonalIndex() {
             Junhyung <em>Cho</em>
             <span className="name-period">.</span>
           </h1>
-          <FloatingArtifact kind="knot" />
+          <FloatingArtifact kind="star" />
         </div>
         <div className="index-colophon">
           <span>Some things I do. Some things I keep coming back to.</span>
@@ -261,35 +259,9 @@ export function PersonalIndex() {
           <span className="paper-footnote">A NOTE, NOT A CONCLUSION.</span>
         </article>
 
-        <button
-          type="button"
-          className="object-fragment"
-          onClick={() => setObjectVersion((current) => current + 1)}
-          aria-label="Turn the sculpture"
-          title="Turn the sculpture"
-        >
-          <picture
-            style={{ transform: `rotate(${objectVersion * 90 - 9}deg)` }}
-          >
-            <source
-              media="(prefers-reduced-motion: reduce)"
-              srcSet="/generated/prism-playground.png"
-            />
-            <img
-              src={
-                motion
-                  ? "/generated/prism-spin.gif"
-                  : "/generated/prism-playground.png"
-              }
-              width={390}
-              height={390}
-              alt="A rotating chrome, glass and colored plastic sculpture"
-            />
-          </picture>
-          <span className="object-caption">
-            AN OBJECT WITH NO JOB <RotateCcw size={13} />
-          </span>
-        </button>
+        <div className="object-fragment">
+          <FloatingArtifact kind="prism" />
+        </div>
 
         <aside className="pink-fragment">
           <span className="micro-label">STUDIO NOTE / 02</span>
@@ -312,6 +284,7 @@ export function PersonalIndex() {
             alt="Junhyung smiling beside a mural"
             loading="lazy"
           />
+          <FloatingArtifact kind="chair" />
           <figcaption>
             <span>02 / A CHANGE OF SCENE</span>
             <span>OFFLINE, MOSTLY.</span>

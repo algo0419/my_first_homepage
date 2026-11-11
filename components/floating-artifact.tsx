@@ -4,14 +4,26 @@ import Image from "next/image";
 import { useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 
-type ArtifactKind = "knot" | "guitar" | "monitor" | "book";
+type ArtifactKind = "star" | "prism" | "chair" | "guitar" | "monitor" | "book";
 
 const artifacts = {
-  knot: {
-    image: "chrome-knot",
-    label: "Twist the chrome knot",
-    caption: "A TANGLED THOUGHT",
-    alt: "Inflatable chrome knot threaded with a red cable",
+  star: {
+    image: "mechanical-star",
+    label: "Spin the mechanical star",
+    caption: "A DIFFERENT ANGLE",
+    alt: "Intersecting silver, cobalt and pink stars with a square mechanical hub",
+  },
+  prism: {
+    image: "angular-prism",
+    label: "Turn the glass prisms",
+    caption: "LIGHT, REARRANGED",
+    alt: "Angular cyan glass prisms crossed by blue, yellow and pink plates",
+  },
+  chair: {
+    image: "checker-chair",
+    label: "Tilt the checkerboard chair",
+    caption: "TAKE A DIFFERENT SEAT",
+    alt: "Folded checkerboard chair with blue and yellow slab legs",
   },
   guitar: {
     image: "folded-guitar",
@@ -59,7 +71,7 @@ export function FloatingArtifact({ kind }: { kind: ArtifactKind }) {
       data-phase={turn % 3}
       style={
         {
-          "--artifact-turn": `${kind === "monitor" ? [0, -8, 8][turn % 3] : turn * (kind === "book" ? 90 : 35)}deg`,
+          "--artifact-turn": `${kind === "monitor" || kind === "chair" ? [0, -8, 8][turn % 3] : turn * (kind === "book" ? 90 : kind === "star" ? 72 : 35)}deg`,
         } as CSSProperties
       }
       onClick={() => setTurn((current) => current + 1)}
@@ -77,7 +89,7 @@ export function FloatingArtifact({ kind }: { kind: ArtifactKind }) {
             width={1254}
             height={1254}
             sizes="(max-width: 760px) 200px, 340px"
-            priority={kind === "knot" || kind === "monitor"}
+            priority={kind === "star" || kind === "monitor"}
             draggable={false}
           />
         </span>
