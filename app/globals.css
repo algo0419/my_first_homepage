@@ -1583,9 +1583,9 @@ h3 {
   html {
     scroll-behavior: auto;
   }
-  *,
-  *::before,
-  *::after {
+  .personal-index:not([data-motion="true"]) *,
+  .personal-index:not([data-motion="true"]) *::before,
+  .personal-index:not([data-motion="true"]) *::after {
     animation: none !important;
     transition: none !important;
   }

@@ -55,7 +55,8 @@
   touch-action: manipulation;
 }
 .artifact-drift,
-.artifact-turn {
+.artifact-turn,
+.artifact-impact {
   display: block;
   width: 100%;
   height: 100%;
@@ -67,7 +68,7 @@
   transform: translate(var(--lean-x, 0px), var(--lean-y, 0px))
     rotate(var(--artifact-turn, 0deg));
   transition:
-    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 620ms cubic-bezier(0.15, 0.7, 0.2, 1),
     filter 300ms;
 }
 .floating-artifact img {
@@ -79,7 +80,7 @@
 }
 .floating-artifact:hover img,
 .floating-artifact:focus-visible img {
-  scale: 1.16;
+  scale: 1;
 }
 .floating-artifact:hover .artifact-drift,
 .floating-artifact:focus-visible .artifact-drift {
@@ -447,7 +448,7 @@
   }
   .floating-artifact:hover img,
   .floating-artifact:focus-visible img {
-    scale: 1.06;
+    scale: 1;
   }
   .room-popup h2 {
     font-size: 43px;
@@ -521,9 +522,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .floating-artifact *,
-  .interference-strip > div,
-  .popup-artifact {
+  .personal-index:not([data-motion="true"]) .floating-artifact *,
+  .personal-index:not([data-motion="true"]) .interference-strip > div,
+  .personal-index:not([data-motion="true"]) .popup-artifact {
     animation: none !important;
     transition: none !important;
   }
